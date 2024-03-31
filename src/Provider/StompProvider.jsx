@@ -5,28 +5,25 @@ import StompContext from "../context/StompContext";
 
 const StompProvider = ({ children }) => {
     const [stompClient, setStompClient] = useState(null);
+    let interval;
+    const connect = () => {
+        const socket = new SockJS('http://localhost:8080/api/ws');
+        const stompClient = Stomp.over(socket);
 
+        stompClient.connect({}, () => {
+            console.log('WebSocket Connected');
+            setStompClient(stompClient);
+        }, () => {
+            console.log('Connection error, scheduling reconnect');
+            scheduleReconnect();
+        });
+    };
+
+    const scheduleReconnect = () => {
+        // 5초 후에 재연결을 시도합니다.
+        interval = setTimeout(connect, 5000);
+    };
     useEffect(() => {
-        let interval;
-
-        const connect = () => {
-            const socket = new SockJS('http://localhost:8080/api/ws');
-            const stompClient = Stomp.over(socket);
-
-            stompClient.connect({}, () => {
-                console.log('WebSocket Connected');
-                setStompClient(stompClient);
-            }, () => {
-                console.log('Connection error, scheduling reconnect');
-                scheduleReconnect();
-            });
-        };
-
-        const scheduleReconnect = () => {
-            // 5초 후에 재연결을 시도합니다.
-            interval = setTimeout(connect, 5000);
-        };
-
         connect();
 
         return () => {
