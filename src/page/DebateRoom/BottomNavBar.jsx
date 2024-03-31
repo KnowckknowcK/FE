@@ -6,12 +6,11 @@ export const BottomNavBar = ({ roomNumber, onSendMessage, message, setMessage })
         setMessage(e.target.value);
     };
 
-    const handleKeyPress = (e) => {
+    const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter') {
-            onSendMessage();
+            onSendMessage(); // 작성한 댓글 post 요청하는 함수
         }
     };
-
     const handleClick = () => {
         onSendMessage();
     };
@@ -24,7 +23,7 @@ export const BottomNavBar = ({ roomNumber, onSendMessage, message, setMessage })
                 placeholder={`${roomNumber}번 토론방에 메시지 보내기`}
                 value={message}
                 onChange={handleInputChange}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyDown}
             />
             <div className={styles.sendIcon} onClick={handleClick}>send</div>
         </div>
