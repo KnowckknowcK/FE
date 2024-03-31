@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useStomp } from '../context/StompContext';
-import { fetchUtil } from "../utils/fetchUtil";
+import { useStomp } from '../../context/StompContext';
+import { fetchUtil } from "../../utils/fetchUtil";
+import {Message} from "./Message";
+import {TopNavBar} from "./TopNavBar";
+import styles from './DebateRoom.module.css';
+import {BottomNavBar} from "./BottomNavBar";
 
-export function ChatRoom() {
+export function DebateRoom() {
     const stompClient = useStomp();
     let { roomId } = useParams();
     const [yourMessage, setYourMessage] = useState('');
@@ -57,29 +61,22 @@ export function ChatRoom() {
 
     return (
         <div>
-            <div>{roomId}</div>
-            <div>
+            <TopNavBar roomNumber={roomId} participantCount={10} agreeRate={70} disagreeRate={30}/>
+
+            <div className={styles.topMargin}>
                 {messages.map((message) => (
-                    <div key={message.messageId}>
-                        <p>작성자: {message.writer}</p>
-                        <p>내용: {message.content}</p>
-                        <p>작성 시간: {message.createdTime}</p>
-                        <button onClick={() => handleShowComments(message.messageId)}>댓글</button>
-                        {messageThreads[message.messageId] && (
-                            <div>
-                                {messageThreads[message.messageId].map((messageThread) => (
-                                    <div key={messageThread.threadId}>
-                                        <p>댓글 작성자: {messageThread.writer}</p>
-                                        <p>댓글 내용: {messageThread.content}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
+                    <Message key={message.messageId} message={message} handleShowComments={handleShowComments}
+                             messageThreads={messageThreads}/>
                 ))}
             </div>
-            <input type="text" value={yourMessage} onChange={(e) => setYourMessage(e.target.value)} />
-            <button onClick={sendMessage}>Send</button>
+
+            <div className={styles.bottomMargin}>
+                <BottomNavBar roomNumber={roomId}
+                              onSendMessage={sendMessage}
+                              message={yourMessage}
+                              setMessage={setYourMessage}/>
+            </div>
+
         </div>
     );
 }
