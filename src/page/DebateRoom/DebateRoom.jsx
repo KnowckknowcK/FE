@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useStomp } from '../../context/StompContext';
 import { fetchUtil } from "../../utils/fetchUtil";
-import {Message} from "./Message";
+import {MessageItem} from "./MessageItem";
 import {TopNavBar} from "./TopNavBar";
 import styles from './DebateRoom.module.css';
 import {BottomNavBar} from "./BottomNavBar";
@@ -65,8 +65,8 @@ export function DebateRoom() {
 
             <div className={styles.topMargin}>
                 {messages.map((message) => (
-                    <Message key={message.messageId} message={message} handleShowComments={handleShowComments}
-                             messageThreads={messageThreads}/>
+                    <MessageItem key={message.messageId} message={message} handleShowComments={handleShowComments}
+                                 messageThreads={messageThreads}/>
                 ))}
             </div>
 
