@@ -4,7 +4,7 @@ import {MessageThread} from '../MessageThread/MessageThread';
 import styles from './MessageItem.module.css';
 import {fetchUtil} from "../../../utils/fetchUtil";
 
-export const MessageItem = ({ message, handleShowComments, messageThreads, handlePutPreference }) => {
+export const MessageItem = ({ message, handlePutPreference }) => {
 
     return (
         <div className={styles.messageContainer} key={message.messageId}>
