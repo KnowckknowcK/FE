@@ -34,7 +34,14 @@ export const useMessages = (roomId, stompClient) => {
         console.log(`subscribe room: ${roomId}`);
         const subscription = stompClient.subscribe(url, function (chat) {
             const message = JSON.parse(chat.body);
-            setMessages((prevMessages) => [...prevMessages, message]);
+            setMessages((prevMessages) => {
+                // 메시지 객체에 새로운 메시지를 추가
+                // message.id를 키로 사용하여 메시지를 저장
+                return {
+                    ...prevMessages,
+                    [message.id]: message
+                };
+            });
         });
 
         return () => {
