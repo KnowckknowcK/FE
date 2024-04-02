@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
-import {DebateRoom} from "./page/DebateRoom/DebateRoom";
+import {DebateRoom} from "./page/DebateRoom/DebateRoom/DebateRoom";
 import {RoomPage} from "./page/RoomPage";
 
 function App() {

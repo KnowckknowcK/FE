@@ -1,9 +1,11 @@
 // Message.js 파일
 import React from 'react';
-import {MessageThread} from './MessageThread';
+import {MessageThread} from '../MessageThread/MessageThread';
 import styles from './MessageItem.module.css';
+import {fetchUtil} from "../../../utils/fetchUtil";
 
-export const MessageItem = ({ message, handleShowComments, messageThreads }) => {
+export const MessageItem = ({ message, handleShowComments, messageThreads, handlePutPreference }) => {
+
     return (
         <div className={styles.messageContainer} key={message.messageId}>
             <div className={styles.header}>
@@ -18,7 +20,7 @@ export const MessageItem = ({ message, handleShowComments, messageThreads }) => 
                         <div className={`${styles.position} ${message.position === 'DISAGREE' ? styles.oppose : ''}`}>
                             {message.position}
                         </div>
-                        <div className={styles.likeIcon}>👍</div>
+                        <button onClick={() => handlePutPreference(message.messageId, message.position, message.likesNum)}>👍</button>
 
                         {message.likesNum > 0 && (
                             <div>{message.likesNum}</div>
