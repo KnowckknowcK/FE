@@ -24,7 +24,7 @@ export async function fetchUtil(endpoint, options = {}) {
 
         const response = await axiosInstance(axiosOptions);
         console.log((response.data))
-        return response.data; // 데이터 반환
+        return response.data.data; // 데이터 반환
     } catch (error) {
         console.error(error);
         // 오류 처리 및/또는 오류 데이터 반환
