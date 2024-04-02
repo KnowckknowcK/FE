@@ -13,7 +13,7 @@ export function DebateRoom() {
     let { roomId } = useParams();
     const [yourMessage, setYourMessage] = useState('');
     const [messageThreads, setMessageThreads] = useState({});
-    const { messages, agreeRatio, disagreeRatio, handlePutPreference } = useMessages(roomId, stompClient);
+    const { messages, agreeNum, disagreeNum, agreeRatio, disagreeRatio, handlePutPreference } = useMessages(roomId, stompClient);
 
 
     function sendMessage() {
@@ -35,12 +35,18 @@ export function DebateRoom() {
     }
     return (
         <div>
-            <TopNavBar roomNumber={roomId} participantCount={10} agreeRate={agreeRatio} disagreeRate={disagreeRatio}/>
+            <TopNavBar
+                roomNumber={roomId}
+                agreeNum={agreeNum}
+                disagreeNum={disagreeNum}
+                agreeRate={agreeRatio}
+                disagreeRate={disagreeRatio}
+            />
 
             <div className={styles.topMargin}>
                 {Object.values(messages).map((message) => (
-                    <MessageItem key={message.messageId} message={message} handleShowComments={handleShowComments}
-                                 messageThreads={messageThreads} handlePutPreference={handlePutPreference}/>
+                    <MessageItem key={message.messageId} message={message}
+                                 handlePutPreference={handlePutPreference}/>
                 ))}
             </div>
 

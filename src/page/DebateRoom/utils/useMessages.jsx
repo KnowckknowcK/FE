@@ -4,8 +4,23 @@ import { fetchUtil } from "../../../utils/fetchUtil";
 
 export const useMessages = (roomId, stompClient) => {
     const [messages, setMessages] = useState({});
+    const [agreeNum, setAgreeNum] = useState(0)
+    const [disagreeNum, setDisagreeNum] = useState(0)
     const [agreeRatio, setAgreeRatio] = useState(0);
     const [disagreeRatio, setDisagreeRatio] = useState(0);
+
+    // 토론방 입장 시 찬/반 비율 보여줌 -> 수정 필요 현재 받고 있는 있는 ratio가 잘못됨(좋아요 비율이 바뀌는 중)
+    useEffect(()=>{
+        const getDebateRoomInfo = async () => {
+            const dto = await fetchUtil(`/debate-room/${roomId}`, {
+                method: 'PUT'
+            });
+            updateRatio(dto.ratio)
+            setAgreeNum(dto.agreeNum);
+            setDisagreeNum(dto.disagreeNum);
+        }
+        getDebateRoomInfo();
+    }, [])
 
     // 메세지 받아오기
     useEffect(() => {
@@ -22,7 +37,7 @@ export const useMessages = (roomId, stompClient) => {
             setMessages(messagesObject);
         };
         fetchMessages();
-    }, [roomId]);
+    }, []);
 
     // 해당 메세지 구독 -> 실시간 채팅 제공
     useEffect(() => {
@@ -39,7 +54,7 @@ export const useMessages = (roomId, stompClient) => {
                 // message.id를 키로 사용하여 메시지를 저장
                 return {
                     ...prevMessages,
-                    [message.id]: message
+                    [message.messageId]: message
                 };
             });
         });
@@ -49,16 +64,7 @@ export const useMessages = (roomId, stompClient) => {
         };
     }, [roomId, stompClient]);
 
-    // 토론방 입장 시 찬/반 비율 보여줌 -> 수정 필요 현재 받고 있는 있는 ratio가 잘못됨(좋아요 비율이 바뀌는 중)
-    useEffect(()=>{
-        const getRatio = async () => {
-            const curRatio = await fetchUtil(`/debate-room/${roomId}`, {
-                method: 'PUT'
-            });
-            setAgreeRatio(curRatio);
-        }
-        getRatio();
-    }, [])
+
 
 
     // 좋아요 추가 로직
@@ -95,6 +101,6 @@ export const useMessages = (roomId, stompClient) => {
             ...prevMessages,
             [messageId]: { ...prevMessages[messageId], likesNum: newLikesNum }
         }));
-    };
-    return { messages, agreeRatio, disagreeRatio, handlePutPreference };
+    }
+    return { messages, agreeNum, disagreeNum, agreeRatio, disagreeRatio, handlePutPreference };
 };
