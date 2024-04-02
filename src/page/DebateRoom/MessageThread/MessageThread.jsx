@@ -1,4 +1,3 @@
-// MessageThread.js 파일
 import React from 'react';
 
 export const MessageThread = ({ messageThread }) => {

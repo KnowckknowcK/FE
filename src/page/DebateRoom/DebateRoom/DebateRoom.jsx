@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { useStomp } from '../../../context/StompContext';
 import { fetchUtil } from "../../../utils/fetchUtil";
@@ -13,7 +13,12 @@ export function DebateRoom() {
     let { roomId } = useParams();
     const [yourMessage, setYourMessage] = useState('');
     const [messageThreads, setMessageThreads] = useState({});
-    const { messages, agreeNum, disagreeNum, agreeRatio, disagreeRatio, handlePutPreference } = useMessages(roomId, stompClient);
+    const { messages,
+            agreeNum,
+            disagreeNum,
+            agreeRatio,
+            disagreeRatio,
+            handlePutPreference } = useMessages(roomId, stompClient);
 
 
     function sendMessage() {

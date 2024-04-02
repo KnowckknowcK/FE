@@ -1,8 +1,6 @@
 // Message.js 파일
 import React from 'react';
-import {MessageThread} from '../MessageThread/MessageThread';
 import styles from './MessageItem.module.css';
-import {fetchUtil} from "../../../utils/fetchUtil";
 
 export const MessageItem = ({ message, handlePutPreference }) => {
 
@@ -31,15 +29,6 @@ export const MessageItem = ({ message, handlePutPreference }) => {
                     </div>
                 </div>
             </div>
-
-            {/*<button onClick={() => handleShowComments(message.messageId)}>댓글</button>*/}
-            {/*{messageThreads[message.messageId] && (*/}
-            {/*    <div>*/}
-            {/*        {messageThreads[message.messageId].map((messageThread) => (*/}
-            {/*            <MessageThread key={messageThread.threadId} messageThread={messageThread} />*/}
-            {/*        ))}*/}
-            {/*    </div>*/}
-            {/*)}*/}
         </div>
     );
 };
