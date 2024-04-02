@@ -1,25 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useStomp } from '../../context/StompContext';
-import { fetchUtil } from "../../utils/fetchUtil";
-import {MessageItem} from "./MessageItem";
-import {TopNavBar} from "./TopNavBar";
+import { useStomp } from '../../../context/StompContext';
+import { fetchUtil } from "../../../utils/fetchUtil";
+import {MessageItem} from "../MessageItem/MessageItem";
+import {TopNavBar} from "../TopNavBar/TopNavBar";
 import styles from './DebateRoom.module.css';
-import {BottomNavBar} from "./BottomNavBar";
+import {BottomNavBar} from "../BottomNavBar/BottomNavBar";
 
 export function DebateRoom() {
     const stompClient = useStomp();
     let { roomId } = useParams();
     const [yourMessage, setYourMessage] = useState('');
-    const [messages, setMessages] = useState([]);
-    const [messageThreads, setMessageThreads] = useState({}); // 객체로 초기화
+    const [messages, setMessages] = useState({});
+    const [messageThreads, setMessageThreads] = useState({});
+    const [agreeRatio, setAgreeRatio] = useState(0);
+    const [disagreeRatio, setDisagreeRatio] = useState(0);
 
     useEffect(() => {
         const fetchMessages = async () => {
-            const data = await fetchUtil(`/message/${roomId}`, {
+            const dataList = await fetchUtil(`/message/${roomId}`, {
                 method: 'GET'
-            });
-            setMessages(data.data); // 비동기 결과를 직접 상태에 할당
+            });// 비동기 결과를 직접 상태에 할당
+
+            const messagesObject = dataList.reduce((acc, cur) => {
+                acc[cur.messageId] = cur;
+                return acc;
+            }, {});
+
+            setMessages(messagesObject);
         };
         fetchMessages();
     }, [roomId]); // roomId를 의존성 배열에 추가
@@ -58,15 +66,46 @@ export function DebateRoom() {
             [messageId]: prevThreads.data
         }));
     }
+    // likesNum을 업데이트하는 함수
+    const updateLikesNum = (messageId, newLikesNum) => {
+        setMessages((prevMessages) => ({
+            ...prevMessages,
+            [messageId]: { ...prevMessages[messageId], likesNum: newLikesNum }
+        }));
+    };
 
+    async function handlePutPreference(messageId, position){
+        const isAgree = position !== 'DISAGREE';
+        const dto = await fetchUtil(`/message/preference/${messageId}`, {
+            method: 'PUT',
+            body: {
+                isAgree: isAgree
+            }
+        });
+
+        setAgreeRatio(dto.ratio)
+        if(dto.ratio === 0  && disagreeRatio ===0){
+            setDisagreeRatio(dto.ratio)
+        }else{
+            setDisagreeRatio(100 - dto.ratio)
+        }
+
+        let newLikesNum = messages[messageId].likesNum;
+        if(dto.isIncrease){
+            newLikesNum += 1;
+        }else{
+            newLikesNum -= 1;
+        }
+        updateLikesNum(messageId, newLikesNum);
+    }
     return (
         <div>
-            <TopNavBar roomNumber={roomId} participantCount={10} agreeRate={70} disagreeRate={30}/>
+            <TopNavBar roomNumber={roomId} participantCount={10} agreeRate={agreeRatio} disagreeRate={disagreeRatio}/>
 
             <div className={styles.topMargin}>
-                {messages.map((message) => (
+                {Object.values(messages).map((message) => (
                     <MessageItem key={message.messageId} message={message} handleShowComments={handleShowComments}
-                                 messageThreads={messageThreads}/>
+                                 messageThreads={messageThreads} handlePutPreference={handlePutPreference}/>
                 ))}
             </div>
 
