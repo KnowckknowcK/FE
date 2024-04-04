@@ -74,16 +74,24 @@ export function DebateRoom() {
                     </div>
                 ))}
             </div>
-            <MessageThread roomId={roomId} isOpen={isModalOpen} close={handleCloseMessageThread} message={currentMessage}>
+            <MessageThread
+                roomId={roomId}
+                isOpen={isModalOpen}
+                close={handleCloseMessageThread}
+                message={currentMessage}
+                handlePutPreference={handlePutPreference}
+            >
                 {/* 모달 내부에 들어갈 내용 */}
             </MessageThread>
-            <div className={styles.bottomMargin}>
-                <BottomNavBar roomNumber={roomId}
-                              onSendMessage={sendMessage}
-                              message={yourMessage}
-                              setMessage={setYourMessage}
-                />
-            </div>
+            {!isModalOpen && (
+                <div className={styles.bottomMargin}>
+                    <BottomNavBar roomNumber={roomId}
+                                  onSendMessage={sendMessage}
+                                  message={yourMessage}
+                                  setMessage={setYourMessage}
+                    />
+                </div>
+            )}
         </div>
-);
+    );
 }
