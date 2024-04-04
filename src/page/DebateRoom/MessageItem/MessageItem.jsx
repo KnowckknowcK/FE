@@ -6,11 +6,11 @@ export const MessageItem = ({ message, handlePutPreference, isThread }) => {
 
     const handleLikeClick = (e) => {
         e.stopPropagation();
-        handlePutPreference(message.messageId, message.position, message.likesNum)
+        handlePutPreference(message.messageId, message.position);
     };
 
     return (
-        <div className={styles.messageContainer} key={message.messageId}>
+        <div className={`${styles.messageContainer} ${isThread ? styles.thread: ""}`} key={message.messageId}>
             <div className={styles.header}>
                 <img src={message.profileImage} alt="" className={styles.profileImage}/>
                 <div className={styles.flexContainer}>
@@ -24,9 +24,7 @@ export const MessageItem = ({ message, handlePutPreference, isThread }) => {
                             {message.position}
                         </div>
                         <button onClick={(e) => handleLikeClick(e)}>👍</button>
-
-
-                        {!isThread && message.likesNum > 0 && (
+                        {message.likesNum > 0 && (
                             <div>{message.likesNum}</div>
                         )}
                         {!isThread && message.threadNum > 0 && (
