@@ -2,7 +2,12 @@
 import React from 'react';
 import styles from './MessageItem.module.css';
 
-export const MessageItem = ({ message, handlePutPreference }) => {
+export const MessageItem = ({ message, handlePutPreference, isThread }) => {
+
+    const handleLikeClick = (e) => {
+        e.stopPropagation();
+        handlePutPreference(message.messageId, message.position, message.likesNum)
+    };
 
     return (
         <div className={styles.messageContainer} key={message.messageId}>
@@ -15,15 +20,16 @@ export const MessageItem = ({ message, handlePutPreference }) => {
                     </div>
                     <p className={styles.content}>{message.content}</p>
                     <div className={styles.reactions}>
-                        <div className={`${styles.position} ${message.position === 'DISAGREE' ? styles.oppose : ''}`}>
+                        <div className={`${styles.position}`}>
                             {message.position}
                         </div>
-                        <button onClick={() => handlePutPreference(message.messageId, message.position, message.likesNum)}>👍</button>
+                        <button onClick={(e) => handleLikeClick(e)}>👍</button>
 
-                        {message.likesNum > 0 && (
+
+                        {!isThread && message.likesNum > 0 && (
                             <div>{message.likesNum}</div>
                         )}
-                        {message.threadNum > 0 && (
+                        {!isThread && message.threadNum > 0 && (
                             <div className={styles.replies}>답글 {message.threadNum}</div>
                         )}
                     </div>

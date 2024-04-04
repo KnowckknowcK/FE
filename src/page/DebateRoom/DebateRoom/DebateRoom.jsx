@@ -7,12 +7,18 @@ import {TopNavBar} from "../TopNavBar/TopNavBar";
 import styles from './DebateRoom.module.css';
 import {BottomNavBar} from "../BottomNavBar/BottomNavBar";
 import {useMessages} from "../utils/useMessages";
+import {MessageThread} from "../MessageThread/MessageThread";
+import { useNavigate } from 'react-router-dom';
 
 export function DebateRoom() {
     const stompClient = useStomp();
     let { roomId } = useParams();
     const [yourMessage, setYourMessage] = useState('');
-    const [messageThreads, setMessageThreads] = useState({});
+
+    const [currentMessage, setCurrentMessage] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const navigate = useNavigate();
+
     const { messages,
             agreeNum,
             disagreeNum,
@@ -29,39 +35,55 @@ export function DebateRoom() {
         }
     }
 
-    async function handleShowComments(messageId){
-        const prevThreads = await fetchUtil(`/message/thread/${messageId}`, {
-            method: 'GET'
-        });
-        setMessageThreads(prevThread => ({
-            ...prevThread,
-            [messageId]: prevThreads.data
-        }));
+
+    const handleOpenMessageThread = (message) => {
+        setCurrentMessage(message);
+        setIsModalOpen(true);
+    };
+
+    const handleCloseMessageThread = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleNavLeftOnClick = () =>{
+        navigate(-1)
     }
+    // async function handleShowComments(messageId){
+    //     const prevThreads = await fetchUtil(`/message/thread/${messageId}`, {
+    //         method: 'GET'
+    //     });
+    //     setMessageThreads(prevThread => ({
+    //         ...prevThread,
+    //         [messageId]: prevThreads.data
+    //     }));
+    // }
     return (
         <div>
-            <TopNavBar
-                roomNumber={roomId}
-                agreeNum={agreeNum}
-                disagreeNum={disagreeNum}
-                agreeRate={agreeRatio}
-                disagreeRate={disagreeRatio}
-            />
-
+            <TopNavBar handleOnClick={handleNavLeftOnClick}>
+                <div>{`${roomId}번 토론방`}</div>
+                <div className={styles.smallText}>{`찬성: ${agreeNum}명 반대: ${disagreeNum}`}</div>
+            </TopNavBar>
             <div className={styles.topMargin}>
                 {Object.values(messages).map((message) => (
-                    <MessageItem key={message.messageId} message={message}
-                                 handlePutPreference={handlePutPreference}/>
+                    <div key={message.messageId} onClick={() => handleOpenMessageThread(message)}>
+                        <MessageItem key={message.messageId}
+                                     message={message}
+                                     handlePutPreference={handlePutPreference}
+                                     isThread={false}
+                        />
+                    </div>
                 ))}
             </div>
-
+            <MessageThread roomId={roomId} isOpen={isModalOpen} close={handleCloseMessageThread} message={currentMessage}>
+                {/* 모달 내부에 들어갈 내용 */}
+            </MessageThread>
             <div className={styles.bottomMargin}>
                 <BottomNavBar roomNumber={roomId}
                               onSendMessage={sendMessage}
                               message={yourMessage}
-                              setMessage={setYourMessage}/>
+                              setMessage={setYourMessage}
+                />
             </div>
-
         </div>
-    );
+);
 }
