@@ -1,0 +1,27 @@
+/* TopNavBar.module.css */
+.navBarStyle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.itemStyle {
+    display: flex;
+    align-items: center;
+}
+
+.iconTextStyle {
+    margin-left: 10px;
+}
+
+.smallText {
+    font-size: small;
+}
