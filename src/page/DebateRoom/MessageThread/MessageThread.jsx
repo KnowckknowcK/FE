@@ -1,9 +1,25 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './MessageThread.module.css';
 import {TopNavBar} from "../TopNavBar/TopNavBar";
 import {MessageItem} from "../MessageItem/MessageItem";
+import {useThread} from "../utils/useThread";
+import {useStomp} from "../../../context/StompContext";
+import {BottomNavBar} from "../BottomNavBar/BottomNavBar";
+import {ThreadItem} from "./ThreadItem";
 
-export function MessageThread({ roomId, isOpen, close, message, handlePutPreference, children }){
+export function MessageThread({ roomId, isOpen, close, message, handlePutPreference}){
+    const stompClient = useStomp();
+    const threads = useThread(message? message.messageId:null, stompClient, isOpen)
+    const [yourMessage, setYourMessage] = useState('');
+
+    function sendMessage() {
+        if (stompClient) {
+            stompClient.send(`/pub/message/${message.messageId}`, {},
+                JSON.stringify({roomId: roomId, content: yourMessage}));
+            setYourMessage('');
+        }
+    }
+
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = 'hidden';
@@ -27,10 +43,26 @@ export function MessageThread({ roomId, isOpen, close, message, handlePutPrefere
                     handlePutPreference={handlePutPreference}
                 />
                 <div>
-                    #개의 답글
+                    {`${threads.length}개의 답글`}
+                </div>
+                <div>
+                    {threads.map((thread) => (
+                        <div key={thread.id}>
+                            <ThreadItem thread={thread}/>
+                        </div>
+                    ))}
                 </div>
 
+                <div className={styles.bottomMargin}>
+                    <BottomNavBar roomNumber={roomId}
+                                  onSendMessage={sendMessage}
+                                  message={yourMessage}
+                                  setMessage={setYourMessage}
+                    />
+                </div>
             </div>
+
+
             <div className={styles.modalOverlay}></div>
 
         </div>

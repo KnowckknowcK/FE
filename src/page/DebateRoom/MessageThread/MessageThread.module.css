@@ -23,3 +23,6 @@
     width: 100%; /* 너비를 화면 전체로 설정 */
     z-index: 1000; /* 다른 요소들 위에 나타나도록 z-index 설정 */
 }
+.bottomMargin {
+    margin-bottom: 70px; /* 네비게이션 바의 높이만큼 패딩 추가 */
+}
