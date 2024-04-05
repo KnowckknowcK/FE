@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { useStomp } from '../../../context/StompContext';
 import {MessageItem} from "../MessageItem/MessageItem";
@@ -25,6 +25,16 @@ export function DebateRoom() {
             disagreeRatio,
             handlePutPreference } = useMessages(roomId, stompClient);
 
+    const messagesEndRef = useRef(null);
+
+    const scrollToBottom = () => {
+        messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    };
+
+    useEffect(() => {
+        // 메시지 불러오는 로직 여기에 추가
+        scrollToBottom();
+    }, [messages]);
 
     function sendMessage() {
         if (stompClient) {
@@ -71,7 +81,7 @@ export function DebateRoom() {
                 message={currentMessage}
                 handlePutPreference={handlePutPreference}
             />
-
+            <div ref={messagesEndRef}/>
             {!isModalOpen && (
                 <div className={styles.bottomMargin}>
                     <BottomNavBar roomNumber={roomId}
