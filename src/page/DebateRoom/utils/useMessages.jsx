@@ -9,7 +9,7 @@ export const useMessages = (roomId, stompClient) => {
     const [agreeRatio, setAgreeRatio] = useState(0);
     const [disagreeRatio, setDisagreeRatio] = useState(0);
 
-    // 토론방 입장 시 찬/반 비율 보여줌 -> 수정 필요 현재 받고 있는 있는 ratio가 잘못됨(좋아요 비율이 바뀌는 중)
+    // 토론방 입장 시 찬/반 비율 보여줌
     useEffect(()=>{
         const getDebateRoomInfo = async () => {
             const dto = await fetchUtil(`/debate-room/${roomId}`, {
@@ -50,8 +50,6 @@ export const useMessages = (roomId, stompClient) => {
         const subscription = stompClient.subscribe(url, function (chat) {
             const message = JSON.parse(chat.body);
             setMessages((prevMessages) => {
-                // 메시지 객체에 새로운 메시지를 추가
-                // message.id를 키로 사용하여 메시지를 저장
                 return {
                     ...prevMessages,
                     [message.messageId]: message

@@ -2,7 +2,7 @@
 import React from 'react';
 import styles from './MessageItem.module.css';
 
-export const MessageItem = ({ message, handlePutPreference, isThread }) => {
+export const MessageItem = ({ message, handlePutPreference, isThread}) => {
 
     const handleLikeClick = (e) => {
         e.stopPropagation();
@@ -10,7 +10,7 @@ export const MessageItem = ({ message, handlePutPreference, isThread }) => {
     };
 
     return (
-        <div className={`${styles.messageContainer} ${isThread ? styles.thread: ""}`} key={message.messageId}>
+        <div className={`${styles.messageContainer}`} key={message.messageId}>
             <div className={styles.header}>
                 <img src={message.profileImage} alt="" className={styles.profileImage}/>
                 <div className={styles.flexContainer}>

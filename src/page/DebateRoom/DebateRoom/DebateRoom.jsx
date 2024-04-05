@@ -1,7 +1,6 @@
 import React, { useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { useStomp } from '../../../context/StompContext';
-import { fetchUtil } from "../../../utils/fetchUtil";
 import {MessageItem} from "../MessageItem/MessageItem";
 import {TopNavBar} from "../TopNavBar/TopNavBar";
 import styles from './DebateRoom.module.css';
@@ -35,7 +34,6 @@ export function DebateRoom() {
         }
     }
 
-
     const handleOpenMessageThread = (message) => {
         setCurrentMessage(message);
         setIsModalOpen(true);
@@ -48,15 +46,7 @@ export function DebateRoom() {
     const handleNavLeftOnClick = () =>{
         navigate(-1)
     }
-    // async function handleShowComments(messageId){
-    //     const prevThreads = await fetchUtil(`/message/thread/${messageId}`, {
-    //         method: 'GET'
-    //     });
-    //     setMessageThreads(prevThread => ({
-    //         ...prevThread,
-    //         [messageId]: prevThreads.data
-    //     }));
-    // }
+
     return (
         <div>
             <TopNavBar handleOnClick={handleNavLeftOnClick}>
@@ -80,9 +70,8 @@ export function DebateRoom() {
                 close={handleCloseMessageThread}
                 message={currentMessage}
                 handlePutPreference={handlePutPreference}
-            >
-                {/* 모달 내부에 들어갈 내용 */}
-            </MessageThread>
+            />
+
             {!isModalOpen && (
                 <div className={styles.bottomMargin}>
                     <BottomNavBar roomNumber={roomId}
