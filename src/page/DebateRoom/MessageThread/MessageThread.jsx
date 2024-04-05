@@ -7,7 +7,7 @@ import {useStomp} from "../../../context/StompContext";
 import {BottomNavBar} from "../BottomNavBar/BottomNavBar";
 import {ThreadItem} from "./ThreadItem";
 
-export function MessageThread({ roomId, isOpen, close, message, handlePutPreference}){
+export function MessageThread({ roomId, isOpen, close, message, handlePutPreference, forceRefresh}){
     const stompClient = useStomp();
     const threads = useThread(message? message.messageId:null, stompClient, isOpen)
     const [threadMessage, setThreadMessage] = useState('');
@@ -18,6 +18,18 @@ export function MessageThread({ roomId, isOpen, close, message, handlePutPrefere
                 JSON.stringify({roomId: roomId, content: threadMessage}));
             setThreadMessage('');
         }
+        forceRefresh();
+    }
+
+    async function handlePutPreferenceInThread(){
+        const dto = await handlePutPreference(message.messageId, message.position)
+        let newLikesNum = message.likesNum;
+        if(dto.isIncrease){
+            newLikesNum += 1;
+        }else{
+            newLikesNum -= 1;
+        }
+        message.likesNum = newLikesNum;
     }
 
     useEffect(() => {
@@ -37,10 +49,10 @@ export function MessageThread({ roomId, isOpen, close, message, handlePutPrefere
                 <div className={styles.smallText}>{`${roomId}번 토론방`}</div>
             </TopNavBar>
             <div className={styles.fixedModalBody}>
-                <MessageItem
+                <MessageItem key={message.messageId}
                     message={message}
                     isThread={true}
-                    handlePutPreference={handlePutPreference}
+                    handlePutPreference={handlePutPreferenceInThread}
                 />
                 <div>
                     {`${threads.length}개의 답글`}
