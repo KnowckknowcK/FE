@@ -10,13 +10,13 @@ import {ThreadItem} from "./ThreadItem";
 export function MessageThread({ roomId, isOpen, close, message, handlePutPreference}){
     const stompClient = useStomp();
     const threads = useThread(message? message.messageId:null, stompClient, isOpen)
-    const [yourMessage, setYourMessage] = useState('');
+    const [threadMessage, setThreadMessage] = useState('');
 
-    function sendMessage() {
+    function sendThreadMessage() {
         if (stompClient) {
             stompClient.send(`/pub/message/${message.messageId}`, {},
-                JSON.stringify({roomId: roomId, content: yourMessage}));
-            setYourMessage('');
+                JSON.stringify({roomId: roomId, content: threadMessage}));
+            setThreadMessage('');
         }
     }
 
@@ -36,7 +36,7 @@ export function MessageThread({ roomId, isOpen, close, message, handlePutPrefere
                 <div>답글</div>
                 <div className={styles.smallText}>{`${roomId}번 토론방`}</div>
             </TopNavBar>
-            <div className={styles.fixedMessageItem}>
+            <div className={styles.fixedModalBody}>
                 <MessageItem
                     message={message}
                     isThread={true}
@@ -55,9 +55,10 @@ export function MessageThread({ roomId, isOpen, close, message, handlePutPrefere
 
                 <div className={styles.bottomMargin}>
                     <BottomNavBar roomNumber={roomId}
-                                  onSendMessage={sendMessage}
-                                  message={yourMessage}
-                                  setMessage={setYourMessage}
+                                  onSendMessage={sendThreadMessage}
+                                  message={threadMessage}
+                                  setMessage={setThreadMessage}
+                                  isThread={true}
                     />
                 </div>
             </div>
