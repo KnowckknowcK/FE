@@ -8,6 +8,7 @@ export const useMessages = (roomId, stompClient) => {
     const [disagreeNum, setDisagreeNum] = useState(0)
     const [agreeRatio, setAgreeRatio] = useState(0);
     const [disagreeRatio, setDisagreeRatio] = useState(0);
+    const [refreshKey, setRefreshKey] = useState(0);
 
     // 토론방 입장 시 찬/반 비율 보여줌
     useEffect(()=>{
@@ -37,7 +38,7 @@ export const useMessages = (roomId, stompClient) => {
             setMessages(messagesObject);
         };
         fetchMessages();
-    }, []);
+    }, [refreshKey]);
 
     // 해당 메세지 구독 -> 실시간 채팅 제공
     useEffect(() => {
@@ -62,9 +63,6 @@ export const useMessages = (roomId, stompClient) => {
         };
     }, [roomId, stompClient]);
 
-
-
-
     // 좋아요 추가 로직
     async function handlePutPreference(messageId, position){
         const isAgree = position !== 'DISAGREE';
@@ -77,6 +75,7 @@ export const useMessages = (roomId, stompClient) => {
 
         updateRatio(dto.ratio);
         updateLikesNum(messageId, dto.isIncrease);
+        return dto;
     }
 
     function updateRatio(ratio){
@@ -100,5 +99,9 @@ export const useMessages = (roomId, stompClient) => {
             [messageId]: { ...prevMessages[messageId], likesNum: newLikesNum }
         }));
     }
-    return { messages, agreeNum, disagreeNum, agreeRatio, disagreeRatio, handlePutPreference };
+
+    const forceRefresh = () => {
+        setRefreshKey(prevKey => prevKey + 1);
+    }
+    return { messages, agreeNum, disagreeNum, agreeRatio, disagreeRatio, handlePutPreference, forceRefresh };
 };

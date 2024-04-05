@@ -18,12 +18,15 @@ export function DebateRoom() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
 
+
     const { messages,
             agreeNum,
             disagreeNum,
             agreeRatio,
             disagreeRatio,
-            handlePutPreference } = useMessages(roomId, stompClient);
+            handlePutPreference,
+            forceRefresh
+    } = useMessages(roomId, stompClient);
 
     const messagesEndRef = useRef(null);
 
@@ -74,12 +77,13 @@ export function DebateRoom() {
                     </div>
                 ))}
             </div>
-            <MessageThread
-                roomId={roomId}
-                isOpen={isModalOpen}
-                close={handleCloseMessageThread}
-                message={currentMessage}
-                handlePutPreference={handlePutPreference}
+            <MessageThread key={messages.messageId}
+                           roomId={roomId}
+                           isOpen={isModalOpen}
+                           close={handleCloseMessageThread}
+                           message={currentMessage}
+                           handlePutPreference={handlePutPreference}
+                           forceRefresh={forceRefresh}
             />
             <div ref={messagesEndRef}/>
             {!isModalOpen && (
