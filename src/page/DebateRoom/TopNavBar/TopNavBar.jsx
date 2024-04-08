@@ -1,9 +1,10 @@
 import React from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
-import styles from './TopNavBar.module.css'; // CSS 모듈 임포트
+import styles from './TopNavBar.module.css';
+import {GiHamburgerMenu} from "react-icons/gi"; // CSS 모듈 임포트
 
 
-export const TopNavBar = ({handleOnClick, children }) => {
+export const TopNavBar = ({handleOnClick, isMain, toggleDrawer, children }) => {
 
     return (
         <div className={styles.navBarStyle}>
@@ -12,10 +13,10 @@ export const TopNavBar = ({handleOnClick, children }) => {
                     <FaArrowLeft/>
                 </button>
                 <div className={styles.iconTextStyle}>
-
                     {children}
                 </div>
             </div>
+            {isMain && (<div onClick={toggleDrawer}><GiHamburgerMenu/></div>)}
         </div>
     );
 };

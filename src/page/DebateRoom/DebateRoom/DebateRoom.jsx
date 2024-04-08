@@ -9,13 +9,18 @@ import {useMessages} from "../utils/useMessages";
 import {MessageThread} from "../MessageThread/MessageThread";
 import { useNavigate } from 'react-router-dom';
 
+import {Drawer} from "../Drawer/Drawer";
+
 export function DebateRoom() {
     const stompClient = useStomp();
     let { roomId } = useParams();
     const [yourMessage, setYourMessage] = useState('');
 
     const [currentMessage, setCurrentMessage] = useState(null);
+
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
     const navigate = useNavigate();
 
 
@@ -37,7 +42,7 @@ export function DebateRoom() {
     useEffect(() => {
         // 메시지 불러오는 로직 여기에 추가
         scrollToBottom();
-    }, [messages]);
+    }, [    messages]);
 
     function sendMessage() {
         if (stompClient) {
@@ -60,12 +65,18 @@ export function DebateRoom() {
         navigate(-1)
     }
 
+    const toggleDrawer = () => {
+        setIsDrawerOpen(!isDrawerOpen);
+        console.log(isDrawerOpen);
+    };
+
     return (
         <div>
-            <TopNavBar handleOnClick={handleNavLeftOnClick}>
+            <TopNavBar handleOnClick={handleNavLeftOnClick} isMain={true} toggleDrawer={toggleDrawer}>
                 <div>{`${roomId}번 토론방`}</div>
                 <div className={styles.smallText}>{`찬성: ${agreeNum}명 반대: ${disagreeNum}`}</div>
             </TopNavBar>
+            <Drawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
             <div className={styles.topMargin}>
                 {Object.values(messages).map((message) => (
                     <div key={message.messageId} onClick={() => handleOpenMessageThread(message)}>
