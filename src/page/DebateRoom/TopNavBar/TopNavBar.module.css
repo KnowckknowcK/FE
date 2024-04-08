@@ -17,11 +17,6 @@
     display: flex;
     align-items: center;
 }
-
 .iconTextStyle {
     margin-left: 10px;
-}
-
-.smallText {
-    font-size: small;
 }

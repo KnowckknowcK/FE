@@ -8,8 +8,9 @@ export const useMessages = (roomId, stompClient) => {
     const [disagreeNum, setDisagreeNum] = useState(0)
     const [agreeRatio, setAgreeRatio] = useState(0);
     const [disagreeRatio, setDisagreeRatio] = useState(0);
+    const [refreshKey, setRefreshKey] = useState(0);
 
-    // 토론방 입장 시 찬/반 비율 보여줌 -> 수정 필요 현재 받고 있는 있는 ratio가 잘못됨(좋아요 비율이 바뀌는 중)
+    // 토론방 입장 시 찬/반 비율 보여줌
     useEffect(()=>{
         const getDebateRoomInfo = async () => {
             const dto = await fetchUtil(`/debate-room/${roomId}`, {
@@ -37,7 +38,7 @@ export const useMessages = (roomId, stompClient) => {
             setMessages(messagesObject);
         };
         fetchMessages();
-    }, []);
+    }, [refreshKey]);
 
     // 해당 메세지 구독 -> 실시간 채팅 제공
     useEffect(() => {
@@ -50,8 +51,6 @@ export const useMessages = (roomId, stompClient) => {
         const subscription = stompClient.subscribe(url, function (chat) {
             const message = JSON.parse(chat.body);
             setMessages((prevMessages) => {
-                // 메시지 객체에 새로운 메시지를 추가
-                // message.id를 키로 사용하여 메시지를 저장
                 return {
                     ...prevMessages,
                     [message.messageId]: message
@@ -63,9 +62,6 @@ export const useMessages = (roomId, stompClient) => {
             subscription.unsubscribe();
         };
     }, [roomId, stompClient]);
-
-
-
 
     // 좋아요 추가 로직
     async function handlePutPreference(messageId, position){
@@ -79,6 +75,7 @@ export const useMessages = (roomId, stompClient) => {
 
         updateRatio(dto.ratio);
         updateLikesNum(messageId, dto.isIncrease);
+        return dto;
     }
 
     function updateRatio(ratio){
@@ -102,5 +99,9 @@ export const useMessages = (roomId, stompClient) => {
             [messageId]: { ...prevMessages[messageId], likesNum: newLikesNum }
         }));
     }
-    return { messages, agreeNum, disagreeNum, agreeRatio, disagreeRatio, handlePutPreference };
+
+    const forceRefresh = () => {
+        setRefreshKey(prevKey => prevKey + 1);
+    }
+    return { messages, agreeNum, disagreeNum, agreeRatio, disagreeRatio, handlePutPreference, forceRefresh };
 };
