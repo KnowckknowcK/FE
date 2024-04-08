@@ -9,7 +9,7 @@ import {ThreadItem} from "./ThreadItem";
 
 export function MessageThread({ roomId, isOpen, close, message, handlePutPreference, forceRefresh}){
     const stompClient = useStomp();
-    const threads = useThread(message? message.messageId:null, stompClient, isOpen)
+    const threads = useThread(roomId, message? message.messageId:null, stompClient, isOpen)
     const [threadMessage, setThreadMessage] = useState('');
 
     function sendThreadMessage() {

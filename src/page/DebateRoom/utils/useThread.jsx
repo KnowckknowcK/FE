@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { fetchUtil } from "../../../utils/fetchUtil";
 
 
-export const useThread = (messageId, stompClient, isOpen) =>{
+export const useThread = (roomId, messageId, stompClient, isOpen) =>{
     const [thread, setThread] = useState([]);
 
     // 스레드 받아오기
@@ -24,7 +24,7 @@ export const useThread = (messageId, stompClient, isOpen) =>{
             console.log('Stomp client is not connected. Attempting to reconnect...');
             stompClient.connect();
         }
-        const url = `/sub/room/${messageId}`;
+        const url = `/sub/room/${roomId}/${messageId}`;
 
         const subscription = stompClient.subscribe(url, function (chat) {
             const message = JSON.parse(chat.body);
