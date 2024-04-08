@@ -1,0 +1,51 @@
+.articleList {
+    display: grid;
+    grid-template-columns: repeat(1,minmax(200px, 1fr));
+}
+
+.menuBtn {
+    margin: 20px 5px;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 32px;
+    gap: 8px;
+
+    width: 94px;
+    height: 50px;
+
+    background: #E3D5CA;
+    border-radius: 100px;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    /* 경제 */
+
+    width: 40px;
+    height: 20px;
+
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 110%;
+
+    color: #6B9080;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    margin: 10px;
+
+}
+
+
