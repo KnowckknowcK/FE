@@ -1,12 +1,12 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { useParams } from 'react-router-dom';
-import { useStomp } from '../../../context/StompContext';
-import {MessageItem} from "../MessageItem/MessageItem";
-import {TopNavBar} from "../TopNavBar/TopNavBar";
+import { useStomp } from '../../../../context/StompContext';
+import {MessageItem} from "../../Common/MessageItem/MessageItem";
+import {TopNavBar} from "../../Common/TopNavBar/TopNavBar";
 import styles from './DebateRoom.module.css';
-import {BottomNavBar} from "../BottomNavBar/BottomNavBar";
-import {useMessages} from "../utils/useMessages";
-import {MessageThread} from "../MessageThread/MessageThread";
+import {BottomNavBar} from "../../Common/BottomNavBar/BottomNavBar";
+import {useMessages} from "../../utils/useMessages";
+import {MessageThread} from "../Thread/MessageThread";
 import { useNavigate } from 'react-router-dom';
 
 import {Drawer} from "../Drawer/Drawer";
@@ -74,7 +74,7 @@ export function DebateRoom() {
         <div>
             <TopNavBar handleOnClick={handleNavLeftOnClick} isMain={true} toggleDrawer={toggleDrawer}>
                 <div>{`${roomId}번 토론방`}</div>
-                <div className={styles.smallText}>{`찬성: ${agreeNum}명 반대: ${disagreeNum}`}</div>
+                <div className={styles.smallText}>{`찬성: ${agreeNum}명 반대: ${disagreeNum}명`}</div>
             </TopNavBar>
             <Drawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
             <div className={styles.topMargin}>

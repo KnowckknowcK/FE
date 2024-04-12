@@ -1,6 +1,6 @@
 // Message.js 파일
 import React from 'react';
-import styles from '../MessageItem/MessageItem.module.css';
+import styles from './MessageItem.module.css';
 
 export const ThreadItem = ({ thread: thread}) => {
     return (
