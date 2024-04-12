@@ -76,7 +76,8 @@ export function DebateRoom() {
                 <div>{`${roomId}번 토론방`}</div>
                 <div className={styles.smallText}>{`찬성: ${agreeNum}명 반대: ${disagreeNum}명`}</div>
             </TopNavBar>
-            <Drawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
+            <Drawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer}
+            agreeRatio={agreeRatio} disagreeRatio={disagreeRatio}/>
             <div className={styles.topMargin}>
                 {Object.values(messages).map((message) => (
                     <div key={message.messageId} onClick={() => handleOpenMessageThread(message)}>
