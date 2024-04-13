@@ -18,3 +18,15 @@
     background-color: rgba(0, 0, 0, 0.5); /* 반투명한 검은색 */
     z-index: 1004; /* Drawer 보다 낮은 z-index 값을 설정 */
 }
+
+.memberListContainer {
+    height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.leaveBtn {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
