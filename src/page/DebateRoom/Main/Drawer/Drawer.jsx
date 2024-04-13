@@ -1,8 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './Drawer.module.css';
-import {PieChart} from "./PieChart"; // Drawer 스타일 파일
+import {PieChart} from "./PieChart";
+import axios from "axios";
+import {MemberItem} from "../../Common/MessageItem/MemberItem";
 
-export const Drawer = ({ isOpen, toggleDrawer, agreeRatio, disagreeRatio }) => {
+export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio }) => {
+    const [memberList, setMemberList] = useState([]);
+    useEffect(() => {
+        const loadMemberList = async() =>{
+            return await axios
+                .get(`http://localhost:8080/api/debate-room/${roomId}`)
+                .then((response) => {
+                    setMemberList(response.data.data)
+                })
+        }
+        loadMemberList();
+    })
+
     if(!isOpen){
         return null;
     }
@@ -32,7 +46,11 @@ export const Drawer = ({ isOpen, toggleDrawer, agreeRatio, disagreeRatio }) => {
                     토론 참여자
                 </div>
                 <div>
-                    토론 참여자 리스트
+                    {memberList.map((member) => (
+                        <div key={member.id}>
+                            <MemberItem member={member}/>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
