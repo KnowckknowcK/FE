@@ -1,5 +1,6 @@
 .topMargin {
     margin-top: 70px; /* 네비게이션 바의 높이만큼 패딩 추가 */
+    overflow-x: hidden;
 }
 
 .bottomMargin {

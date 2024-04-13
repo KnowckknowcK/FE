@@ -20,6 +20,7 @@
     bottom: 8%; /* 화면의 맨 아래까지의 거리도 설정하여 높이를 제한 */
     width: 100%; /* 너비를 화면 전체로 설정 */
     overflow-y: auto; /* 내부 스크롤 활성화 */
+    overflow-x: hidden;
     z-index: 1000; /* 다른 요소들 위에 나타나도록 z-index 설정 */
 }
 
