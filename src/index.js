@@ -6,11 +6,13 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import StompProvider from "./Provider/StompProvider";
+import GlobalStyle from './styles/GlobalStyle';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <StompProvider>
         <BrowserRouter>
+            <GlobalStyle />
             <App />
         </BrowserRouter>
     </StompProvider>
