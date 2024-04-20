@@ -31,7 +31,7 @@ export function DebateRoom() {
             disagreeRatio,
             handlePutPreference,
             forceRefresh
-    } = useMessages(roomId, stompClient);
+    } = useMessages(roomId);
 
     const messagesEndRef = useRef(null);
 
