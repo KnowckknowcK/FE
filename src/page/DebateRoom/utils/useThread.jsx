@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchUtil } from "../../../utils/fetchUtil";
+import { fetchUtil } from "./fetchUtil";
 
 
 export const useThread = (roomId, messageId, stompClient, isOpen) =>{

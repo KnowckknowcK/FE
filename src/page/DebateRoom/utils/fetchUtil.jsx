@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL } from "../config";
+import { BASE_URL } from "../../../config";
 
 // 비동기 함수로 변경
 export async function fetchUtil(endpoint, options = {}) {

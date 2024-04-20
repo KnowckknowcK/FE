@@ -1,5 +1,5 @@
 import { useNavigate} from 'react-router-dom';
-import {fetchUtil} from "../utils/fetchUtil";
+import {fetchUtil} from "./DebateRoom/utils/fetchUtil";
 
 export function RoomPage() {
     const navigate = useNavigate();

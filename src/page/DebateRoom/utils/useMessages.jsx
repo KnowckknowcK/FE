@@ -1,6 +1,6 @@
 // hooks/useMessages.js
 import { useState, useEffect } from 'react';
-import { fetchUtil } from "../../../utils/fetchUtil";
+import { fetchUtil } from "./fetchUtil";
 
 export const useMessages = (roomId, stompClient) => {
     const [messages, setMessages] = useState({});
