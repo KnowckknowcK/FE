@@ -43,7 +43,7 @@ export function MessageThread({ roomId, isOpen, close, message, handlePutPrefere
     if (!isOpen) return null;
 
     return (
-        <div>
+        <div className={styles.background}>
             <TopNavBar handleOnClick={close}>
                 <div>답글</div>
                 <div className={styles.smallText}>{`${roomId}번 토론방`}</div>
@@ -54,7 +54,7 @@ export function MessageThread({ roomId, isOpen, close, message, handlePutPrefere
                     isThread={true}
                     handlePutPreference={handlePutPreferenceInThread}
                 />
-                <div>
+                <div className={styles.numOfThread }>
                     {`${threads.length}개의 답글`}
                 </div>
                 <div>
@@ -65,7 +65,7 @@ export function MessageThread({ roomId, isOpen, close, message, handlePutPrefere
                     ))}
                 </div>
 
-                <div className={styles.bottomMargin}>
+                <div>
                     <BottomNavBar roomNumber={roomId}
                                   onSendMessage={sendThreadMessage}
                                   message={threadMessage}
