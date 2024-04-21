@@ -61,14 +61,14 @@ export const useMessages = (roomId) => {
             }));
         });
 
-        // 구독 해제 함수를 반환합니다. 컴포넌트가 언마운트 되거나 roomId가 변경될 때 호출됩니다.
+        // 구독 해제, 컴포넌트가 언마운트 되거나 roomId가 변경될 때 호출
         return () => {
             if (subscription) {
                 console.log(`Unsubscribing from room: ${roomId}`);
                 subscription.unsubscribe();
             }
         };
-    }, [stompClient, roomId]); // 의존성 배열에 stompClient 추가
+    }, [stompClient, roomId]);
 
     // 좋아요 추가 로직
     async function handlePutPreference(messageId, position){
