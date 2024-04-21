@@ -1,12 +1,19 @@
-.topMargin {
+.messageList {
     margin-top: 70px; /* 네비게이션 바의 높이만큼 패딩 추가 */
     overflow-x: hidden;
-}
 
+}
+&::-webkit-scrollbar {
+    display: none;
+}
 .bottomMargin {
-    margin-bottom: 70px; /* 네비게이션 바의 높이만큼 패딩 추가 */
+    margin-bottom: 60px; /* 네비게이션 바의 높이만큼 패딩 추가 */
 }
 
 .smallText {
     font-size: small;
+}
+
+.background {
+    background-color: #E3D5CA;
 }

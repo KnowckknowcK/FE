@@ -71,14 +71,16 @@ export function DebateRoom() {
     };
 
     return (
-        <div>
+        <div className={styles.background}>
             <TopNavBar handleOnClick={handleNavLeftOnClick} isMain={true} toggleDrawer={toggleDrawer}>
                 <div>{`${roomId}번 토론방`}</div>
                 <div className={styles.smallText}>{`찬성: ${agreeNum}명 반대: ${disagreeNum}명`}</div>
             </TopNavBar>
+
             <Drawer roomId={roomId} isOpen={isDrawerOpen} toggleDrawer={toggleDrawer}
             agreeRatio={agreeRatio} disagreeRatio={disagreeRatio}/>
-            <div className={styles.topMargin}>
+
+            <div className={styles.messageList}>
                 {Object.values(messages).map((message) => (
                     <div key={message.messageId} onClick={() => handleOpenMessageThread(message)}>
                         <MessageItem key={message.messageId}
@@ -89,6 +91,7 @@ export function DebateRoom() {
                     </div>
                 ))}
             </div>
+
             <MessageThread key={messages.messageId}
                            roomId={roomId}
                            isOpen={isModalOpen}
@@ -98,6 +101,7 @@ export function DebateRoom() {
                            forceRefresh={forceRefresh}
             />
             <div ref={messagesEndRef}/>
+
             {!isModalOpen && (
                 <div className={styles.bottomMargin}>
                     <BottomNavBar roomNumber={roomId}
