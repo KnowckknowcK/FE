@@ -40,10 +40,23 @@ export function DebateRoom() {
     };
 
     useEffect(() => {
-        // 메시지 불러오는 로직 여기에 추가
         scrollToBottom();
     }, [    messages]);
 
+    useEffect(() => {
+        if (isDrawerOpen) {
+            // Drawer가 열렸을 때 스크롤 비활성화
+            document.body.style.overflow = 'hidden';
+        } else {
+            // Drawer가 닫혔을 때 스크롤 활성화
+            document.body.style.overflow = 'auto';
+        }
+
+        // 컴포넌트가 언마운트될 때 스크롤을 활성화하기 위한 정리(clean-up) 함수
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [isDrawerOpen]); // isDrawerOpen이 변경될 때마다 실행
     function sendMessage() {
         if (stompClient) {
             stompClient.send(`/pub/message`, {},
