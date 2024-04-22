@@ -49,11 +49,14 @@ export function MessageThread({ roomId, isOpen, close, message, handlePutPrefere
                 <div className={styles.smallText}>{`${roomId}번 토론방`}</div>
             </TopNavBar>
             <div className={styles.fixedModalBody}>
-                <MessageItem key={message.messageId}
-                    message={message}
-                    isThread={true}
-                    handlePutPreference={handlePutPreferenceInThread}
-                />
+                <div>
+                    <MessageItem key={message.messageId}
+                                 message={message}
+                                 isThread={true}
+                                 handlePutPreference={handlePutPreferenceInThread}
+                    />
+                </div>
+
                 <div className={styles.numOfThread }>
                     {`${threads.length}개의 답글`}
                 </div>
