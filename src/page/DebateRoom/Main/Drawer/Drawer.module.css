@@ -6,7 +6,7 @@
     height: 100%;
     background-color: #f4f4f4;
     transition: transform 0.3s ease;
-    z-index: 1005;
+    z-index: 8;
 }
 
 .backdrop {
@@ -16,7 +16,7 @@
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.5); /* 반투명한 검은색 */
-    z-index: 1004; /* Drawer 보다 낮은 z-index 값을 설정 */
+    z-index: 7; /* Drawer 보다 낮은 z-index 값을 설정 */
 }
 
 .memberListContainer {
