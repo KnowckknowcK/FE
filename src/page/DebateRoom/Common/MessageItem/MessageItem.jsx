@@ -1,6 +1,8 @@
 // Message.js 파일
 import React from 'react';
 import styles from './MessageItem.module.css';
+import {FaThumbsUp} from "react-icons/fa6";
+import {timeSince} from "./TimeSince";
 
 export const MessageItem = ({ message, handlePutPreference, isThread}) => {
 
@@ -9,6 +11,7 @@ export const MessageItem = ({ message, handlePutPreference, isThread}) => {
         handlePutPreference(message.messageId, message.position);
     };
 
+
     return (
         <div className={`${styles.messageContainer}`} key={message.messageId}>
             <div className={styles.header}>
@@ -16,14 +19,16 @@ export const MessageItem = ({ message, handlePutPreference, isThread}) => {
                 <div className={styles.flexContainer}>
                     <div>
                         <p className={styles.name}>{message.writer}</p>
-                        <p className={styles.time}>{message.createdTime}</p>
+                        <p className={styles.time}>{timeSince(message.createdTime)}</p>
                     </div>
-                    <p className={styles.content}>{message.content}</p>
+                    <div className={styles.content}>{message.content}</div>
                     <div className={styles.reactions}>
                         <div className={`${styles.position}`}>
                             {message.position}
                         </div>
-                        <button onClick={(e) => handleLikeClick(e)}>👍</button>
+                        <div onClick={(e) => handleLikeClick(e)}>
+                            <FaThumbsUp style={{color:"#ffffff"}}/>
+                        </div>
                         {message.likesNum > 0 && (
                             <div>{message.likesNum}</div>
                         )}
