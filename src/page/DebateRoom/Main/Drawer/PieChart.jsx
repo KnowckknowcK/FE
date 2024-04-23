@@ -1,11 +1,12 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement} from 'chart.js';
+import { Chart as ChartJS, ArcElement, Legend} from 'chart.js';
 import styles from './PieChart.module.css';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 // 필요한 차트 요소 등록
-ChartJS.register(ArcElement, ChartDataLabels);
+ChartJS.register(ArcElement, ChartDataLabels, Legend);
+
 const options = {
     plugins: {
         datalabels: {
@@ -18,6 +19,7 @@ const options = {
         }
     }
 };
+
 export const PieChart = ({agreeRatio, disagreeRatio}) => {
     const data = {
         labels: ['찬성', '반대'],

@@ -1,12 +1,13 @@
 .drawer {
     position: fixed;
-    right: 0; /* 우측에서 시작 */
+    right: 0;
     top: 0;
-    width: 60%; /* 화면의 70% 차지 */
+    width: 60%;
     height: 100%;
-    background-color: #f4f4f4;
+    background-color: #E3D5CA;
     transition: transform 0.3s ease;
     z-index: 8;
+    padding: 10px;
 }
 
 .backdrop {
@@ -19,14 +20,33 @@
     z-index: 7; /* Drawer 보다 낮은 z-index 값을 설정 */
 }
 
+.drawerTop{
+    font-weight: bolder;
+
+}
+
+.drawerRatio {
+    margin-top: 15px;
+}
+
+.memberDebate {
+    margin-top: 15px;
+    /*border-top: 1px solid rgba(107, 144, 128);*/
+}
 .memberListContainer {
-    height: 200px;
+
     overflow-y: auto;
     overflow-x: hidden;
 }
 
 .leaveBtn {
+    width: 150%;
+    box-sizing: border-box;
     position: absolute;
-    left: 0;
-    bottom: 0;
+    left: 10px;
+    bottom: 20px;
+    padding: 10px;
+    margin-left: -10px;
+    margin-right: 10px;
+    /*border-top: 1px solid rgba(107, 144, 128);*/
 }
