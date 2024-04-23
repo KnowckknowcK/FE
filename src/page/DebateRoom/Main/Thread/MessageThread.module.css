@@ -21,7 +21,7 @@
 
 .fixedModalBody {
     position: fixed; /* 고정 위치 */
-    top: 9%; /* 화면의 맨 위부터 시작 */
+    top: 70px; /* 화면의 맨 위부터 시작 */
     bottom: 9%; /* 화면의 맨 아래까지의 거리도 설정하여 높이를 제한 */
     width: 100%; /* 너비를 화면 전체로 설정 */
     overflow-y: auto; /* 내부 스크롤 활성화 */
