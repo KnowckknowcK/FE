@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { BASE_URL } from "../../../config";
 
 // 비동기 함수로 변경
 export async function fetchUtil(endpoint, options = {}) {
+    const api = process.env.REACT_APP_API_URL;
+    console.log(api)
     try {
         const axiosInstance = axios.create({
-            baseURL: BASE_URL,
+            baseURL: `${api}/api`,
             headers: {
                 'Content-Type': 'application/json',
                 ...(options.headers || {}),

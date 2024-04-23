@@ -9,10 +9,11 @@ import {useNavigate} from "react-router-dom";
 export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio }) => {
     const [memberList, setMemberList] = useState([]);
     const navigate = useNavigate();
+    const api = process.env.REACT_APP_API_URL;
     useEffect(() => {
         const loadMemberList = async() =>{
             return await axios
-                .get(`http://localhost:8080/api/debate-room/${roomId}`)
+                .get(`${api}/api/debate-room/${roomId}`)
                 .then((response) => {
                     setMemberList(response.data.data)
                 })
@@ -32,7 +33,7 @@ export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio
     const handleLeaveRoom = () =>{
         const leaveRoom = async () => {
             await axios
-                .delete(`http://localhost:8080/api/debate-room/${roomId}`)
+                .delete(`${api}/api/debate-room/${roomId}`)
         }
         leaveRoom()
             .then(
@@ -45,19 +46,16 @@ export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio
         <div>
             <div className={styles.backdrop} onClick={(e) => (handleBackdropClick(e))}></div>
             <div className={styles.drawer}>
-                <div>
-                    토론방 정보
+                <div className={styles.drawerTop}>
+                    토론방 서랍
+                </div>
+                <div className={styles.drawerRatio}>
+                    토론방 찬/반 비율
                 </div>
                 <div>
-                    <div>
-                        <PieChart agreeRatio={agreeRatio} disagreeRatio={disagreeRatio}/>
-                    </div>
-                    <div>
-                        찬성 동의 수:
-                        반대 동의 수:
-                    </div>
+                    <PieChart agreeRatio={agreeRatio} disagreeRatio={disagreeRatio}/>
                 </div>
-                <div>
+                <div className={styles.memberDebate}>
                     토론 참여자
                 </div>
                 <div className={styles.memberListContainer}>
@@ -67,10 +65,13 @@ export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio
                         </div>
                     ))}
                 </div>
-                <div className={styles.leaveBtn} onClick={handleLeaveRoom}>
-                    <FiLogOut />
-                    토론방 나가기
+                <div>
+                    <div className={styles.leaveBtn} onClick={handleLeaveRoom}>
+                        <FiLogOut/>
+                        토론방 나가기
+                    </div>
                 </div>
+
             </div>
         </div>
     );
