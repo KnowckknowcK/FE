@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './BottomNavBar.module.css';
+import { IoSendSharp } from "react-icons/io5";
 
 export const BottomNavBar = ({ roomNumber, onSendMessage, message, setMessage, isThread }) => {
     const handleInputChange = (e) => {
@@ -25,7 +26,9 @@ export const BottomNavBar = ({ roomNumber, onSendMessage, message, setMessage, i
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
             />
-            <div className={styles.sendIcon} onClick={handleClick}>send</div>
+            <div className={styles.sendIcon} onClick={handleClick}>
+                <IoSendSharp style={{color: "white", height:"24px", width:"24px"}}/>
+            </div>
         </div>
     );
 };

@@ -1,8 +1,10 @@
 // hooks/useMessages.js
 import { useState, useEffect } from 'react';
-import { fetchUtil } from "../../../utils/fetchUtil";
+import { fetchUtil } from "./fetchUtil";
+import {useStomp} from "../../../context/StompContext";
 
-export const useMessages = (roomId, stompClient) => {
+export const useMessages = (roomId) => {
+    const stompClient = useStomp();
     const [messages, setMessages] = useState({});
     const [agreeNum, setAgreeNum] = useState(0)
     const [disagreeNum, setDisagreeNum] = useState(0)
@@ -42,26 +44,31 @@ export const useMessages = (roomId, stompClient) => {
 
     // 해당 메세지 구독 -> 실시간 채팅 제공
     useEffect(() => {
-        if (!stompClient || stompClient.connected === false) {
-            console.log('Stomp client is not connected. Attempting to reconnect...');
-            stompClient.connect();
+        if (!stompClient) {
+            console.log('Stomp client is not available yet.');
+            return;
         }
+
+        console.log(`Attempting to subscribe to room: ${roomId}`);
         const url = `/sub/room/${roomId}`;
-        console.log(`subscribe room: ${roomId}`);
-        const subscription = stompClient.subscribe(url, function (chat) {
+
+        // 구독 로직
+        const subscription = stompClient.subscribe(url, (chat) => {
             const message = JSON.parse(chat.body);
-            setMessages((prevMessages) => {
-                return {
-                    ...prevMessages,
-                    [message.messageId]: message
-                };
-            });
+            setMessages((prevMessages) => ({
+                ...prevMessages,
+                [message.messageId]: message,
+            }));
         });
 
+        // 구독 해제, 컴포넌트가 언마운트 되거나 roomId가 변경될 때 호출
         return () => {
-            subscription.unsubscribe();
+            if (subscription) {
+                console.log(`Unsubscribing from room: ${roomId}`);
+                subscription.unsubscribe();
+            }
         };
-    }, [roomId, stompClient]);
+    }, [stompClient, roomId]);
 
     // 좋아요 추가 로직
     async function handlePutPreference(messageId, position){

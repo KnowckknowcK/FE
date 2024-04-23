@@ -1,16 +1,16 @@
 /* TopNavBar.module.css */
-.navBarStyle {
+.topNavBarStyle {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #fff;
-    border-bottom: 1px solid #ccc;
+    background-color: #E3D5CA;
+    border-bottom: 1px solid #ffffff;
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 15px;
     box-sizing: border-box;
-    z-index: 1000;
+    z-index: 6;
 }
 
 .itemStyle {
@@ -19,4 +19,8 @@
 }
 .iconTextStyle {
     margin-left: 10px;
+}
+
+.drawer{
+    color: #ffffff;
 }
