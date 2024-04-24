@@ -1,0 +1,52 @@
+.drawer {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 60%;
+    height: 100%;
+    background-color: #E3D5CA;
+    transition: transform 0.3s ease;
+    z-index: 8;
+    padding: 10px;
+}
+
+.backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명한 검은색 */
+    z-index: 7; /* Drawer 보다 낮은 z-index 값을 설정 */
+}
+
+.drawerTop{
+    font-weight: bolder;
+
+}
+
+.drawerRatio {
+    margin-top: 15px;
+}
+
+.memberDebate {
+    margin-top: 15px;
+    /*border-top: 1px solid rgba(107, 144, 128);*/
+}
+.memberListContainer {
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.leaveBtn {
+    width: 150%;
+    box-sizing: border-box;
+    position: absolute;
+    left: 10px;
+    bottom: 20px;
+    padding: 10px;
+    margin-left: -10px;
+    margin-right: 10px;
+    /*border-top: 1px solid rgba(107, 144, 128);*/
+}

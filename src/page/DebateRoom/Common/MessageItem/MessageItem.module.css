@@ -5,6 +5,9 @@
     width: 100%;
     padding: 10px;
     min-width: 100px;
+    background-color: #E3D5CA;
+    /*background-color: rgba(227, 213, 202, 0.3);*/
+
 }
 
 .profileImage {
@@ -37,6 +40,7 @@
 .content {
     clear: both;
     margin-top: 5px;
+    margin-bottom: 5px;
     margin-right: 30px;
 
 }
@@ -53,6 +57,7 @@
 
 .replies {
     margin-left: 10px;
+    color: #6B9080;
 }
 
 .positionContentContainer {
@@ -67,8 +72,6 @@
     font-weight: bold;
 }
 
-.position.oppose {
-}
 .flexContainer {
     display: flex;
     flex-direction: column;

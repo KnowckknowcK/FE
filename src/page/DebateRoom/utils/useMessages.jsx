@@ -1,15 +1,18 @@
 // hooks/useMessages.js
 import { useState, useEffect } from 'react';
-import { fetchUtil } from "../../../utils/fetchUtil";
+import { fetchUtil } from "./fetchUtil";
+import {useStomp} from "../../../context/StompContext";
 
-export const useMessages = (roomId, stompClient) => {
+export const useMessages = (roomId) => {
+    const stompClient = useStomp();
     const [messages, setMessages] = useState({});
     const [agreeNum, setAgreeNum] = useState(0)
     const [disagreeNum, setDisagreeNum] = useState(0)
     const [agreeRatio, setAgreeRatio] = useState(0);
     const [disagreeRatio, setDisagreeRatio] = useState(0);
+    const [refreshKey, setRefreshKey] = useState(0);
 
-    // 토론방 입장 시 찬/반 비율 보여줌 -> 수정 필요 현재 받고 있는 있는 ratio가 잘못됨(좋아요 비율이 바뀌는 중)
+    // 토론방 입장 시 찬/반 비율 보여줌
     useEffect(()=>{
         const getDebateRoomInfo = async () => {
             const dto = await fetchUtil(`/debate-room/${roomId}`, {
@@ -37,35 +40,35 @@ export const useMessages = (roomId, stompClient) => {
             setMessages(messagesObject);
         };
         fetchMessages();
-    }, []);
+    }, [refreshKey]);
 
     // 해당 메세지 구독 -> 실시간 채팅 제공
     useEffect(() => {
-        if (!stompClient || stompClient.connected === false) {
-            console.log('Stomp client is not connected. Attempting to reconnect...');
-            stompClient.connect();
+        if (!stompClient) {
+            console.log('Stomp client is not available yet.');
+            return;
         }
+
+        console.log(`Attempting to subscribe to room: ${roomId}`);
         const url = `/sub/room/${roomId}`;
-        console.log(`subscribe room: ${roomId}`);
-        const subscription = stompClient.subscribe(url, function (chat) {
+
+        // 구독 로직
+        const subscription = stompClient.subscribe(url, (chat) => {
             const message = JSON.parse(chat.body);
-            setMessages((prevMessages) => {
-                // 메시지 객체에 새로운 메시지를 추가
-                // message.id를 키로 사용하여 메시지를 저장
-                return {
-                    ...prevMessages,
-                    [message.messageId]: message
-                };
-            });
+            setMessages((prevMessages) => ({
+                ...prevMessages,
+                [message.messageId]: message,
+            }));
         });
 
+        // 구독 해제, 컴포넌트가 언마운트 되거나 roomId가 변경될 때 호출
         return () => {
-            subscription.unsubscribe();
+            if (subscription) {
+                console.log(`Unsubscribing from room: ${roomId}`);
+                subscription.unsubscribe();
+            }
         };
-    }, [roomId, stompClient]);
-
-
-
+    }, [stompClient, roomId]);
 
     // 좋아요 추가 로직
     async function handlePutPreference(messageId, position){
@@ -79,6 +82,7 @@ export const useMessages = (roomId, stompClient) => {
 
         updateRatio(dto.ratio);
         updateLikesNum(messageId, dto.isIncrease);
+        return dto;
     }
 
     function updateRatio(ratio){
@@ -102,5 +106,9 @@ export const useMessages = (roomId, stompClient) => {
             [messageId]: { ...prevMessages[messageId], likesNum: newLikesNum }
         }));
     }
-    return { messages, agreeNum, disagreeNum, agreeRatio, disagreeRatio, handlePutPreference };
+
+    const forceRefresh = () => {
+        setRefreshKey(prevKey => prevKey + 1);
+    }
+    return { messages, agreeNum, disagreeNum, agreeRatio, disagreeRatio, handlePutPreference, forceRefresh };
 };

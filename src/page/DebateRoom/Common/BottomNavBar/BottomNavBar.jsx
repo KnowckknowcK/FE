@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './BottomNavBar.module.css';
+import { IoSendSharp } from "react-icons/io5";
 
-export const BottomNavBar = ({ roomNumber, onSendMessage, message, setMessage }) => {
+export const BottomNavBar = ({ roomNumber, onSendMessage, message, setMessage, isThread }) => {
     const handleInputChange = (e) => {
         setMessage(e.target.value);
     };
@@ -20,12 +21,14 @@ export const BottomNavBar = ({ roomNumber, onSendMessage, message, setMessage })
             <input
                 type="text"
                 className={styles.inputField}
-                placeholder={`${roomNumber}번 토론방에 메시지 보내기`}
+                placeholder={isThread ? '답글 추가하기':`${roomNumber}번 토론방에 메시지 보내기`}
                 value={message}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
             />
-            <div className={styles.sendIcon} onClick={handleClick}>send</div>
+            <div className={styles.sendIcon} onClick={handleClick}>
+                <IoSendSharp style={{color: "white", height:"24px", width:"24px"}}/>
+            </div>
         </div>
     );
 };
