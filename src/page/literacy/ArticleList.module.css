@@ -1,0 +1,46 @@
+.articleList {
+    display: grid;
+    grid-template-columns: repeat(1,minmax(200px, 1fr));
+}
+
+.menuBtn {
+    margin: 20px 0px;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    scrollbar-color: tra
+}
+
+.menuBtn::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px 30px;
+    gap: 8px;
+    border: none;
+
+    width: 100px;
+    height: 60px;
+
+    background: #E3D5CA;
+    border-radius: 100px;
+    white-space: nowrap;
+    /* 경제 */
+
+    font-weight: 700;
+    font-size: 18px;
+    color: #6B9080;
+    margin: 10px;
+
+}
+
+
+.page {
+    margin-bottom: 40px;
+    margin-left: 15%;
+}
+
