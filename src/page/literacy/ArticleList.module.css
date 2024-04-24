@@ -19,7 +19,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 20px 40px;
+    padding: 20px 30px;
     gap: 8px;
     border: none;
 
@@ -28,18 +28,19 @@
 
     background: #E3D5CA;
     border-radius: 100px;
-
+    white-space: nowrap;
     /* 경제 */
-
 
     font-weight: 700;
     font-size: 18px;
-    line-height: 110%;
-
     color: #6B9080;
-
     margin: 10px;
 
 }
 
+
+.page {
+    margin-bottom: 40px;
+    margin-left: 15%;
+}
 

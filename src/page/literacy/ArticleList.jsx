@@ -62,7 +62,7 @@ const ArticleList = () => {
                     <Article data = {article}/>
                 ))}
             </div>
-            <Pagination  count={5} shape="rounded" onChange={(e) => handlePageChange(e)}/>
+            <Pagination className={styles.page} count={3} shape="rounded" onChange={(e) => handlePageChange(e)}/>
         </div>
     )
 }

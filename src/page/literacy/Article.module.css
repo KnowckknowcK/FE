@@ -1,8 +1,8 @@
-h2 {
+.title {
     margin-bottom: 0px;
 }
 
-h4 {
+.category {
     margin: 0px;
     margin-top: 10px;
     color: rgb(29, 198, 130);
@@ -22,7 +22,7 @@ h4 {
     align-items: flex-start;
 }
 
-p {
+.content {
     width: 141px;
     font-weight: 400;
     font-size: 14px;
@@ -30,15 +30,15 @@ p {
     color: #6B9080;
 }
 
-btn {
+.startBtn {
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding: 12px 32px;
     gap: 8px;
     align-self: center;
-
-    width: 295px;
+border: none;
+    width: 200px;
     height: 39px;
 
     background: rgba(107, 144, 128, 0.1);
@@ -49,10 +49,7 @@ btn {
     order: 2;
     flex-grow: 0;
 
-    /* 문해력 진단 시작하기 */
 
-    width: 123px;
-    height: 15px;
 
     font-style: normal;
     font-weight: 700;
