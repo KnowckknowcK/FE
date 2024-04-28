@@ -31,9 +31,18 @@ function Main(props) {
                 <RecommendedItem title={item.title} category={item.category} />
             ))}
         </RecommandList>
-        <SelectButton>
-
-        </SelectButton>
+        <ButtonWrapper>
+            <SelectButton>
+                <ButtonText>
+                <span>카테고리별 기사 분류가 제공되요</span>
+                <span style={{fontSize: '1.25rem', fontWeight: 'bold'}}>기사 선택하기</span>
+                </ButtonText>
+                <div></div>
+                <div>
+                <img src="/img/buttonImg1.png" alt="Button Image" style={{ width: '50px', margin: '5px'}} />
+                </div>
+            </SelectButton>
+        </ButtonWrapper>
 
         </div>
     )
@@ -74,11 +83,29 @@ const RecommandList = styled.div`
     }
 `
 
-const SelectButton = styled.div`
+const ButtonWrapper = styled.div`
     display: flex;
-    flex-direction: row;
+    padding-top: 30px;
+    text-align: center;
+    padding: 10px;
+`
+
+const SelectButton = styled.button`
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+    align-items: center;
+    weight: 340px;
+    height: 100px;
+    border: none;
+    border-radius: 10px;
+    background-color: #D9D9D9;
+`
+
+const ButtonText = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: flex-start;
-    background-color: #E3D5CA;
 `
 
 export default Main;

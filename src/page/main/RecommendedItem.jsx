@@ -25,7 +25,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background-color: #6B9080;
+    background-color: #B5C9C0;
 `;
 
 const Category = styled.div`
