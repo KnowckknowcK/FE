@@ -15,13 +15,11 @@ import MyDebateRoom from "./page/user/MyDebateRoom";
 import OpinionHistory from "./page/user/OpinionHistory";
 import SummaryHistory from "./page/user/SummaryHistory";
 import UserInfo from "./page/user/UserInfo";
-import Main from "./page/main/Main";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Main />} />
-      <Route path='/dash-board' element={<Dashboard />} />
+      <Route path='/' element={<Dashboard />} />
       <Route path='article-list' element={<ArticleList />} />
       <Route path='/opinion-writing' element={<OpinionWriting />} />
       <Route path='/summary/:id' element={<SummaryWriting />} />
