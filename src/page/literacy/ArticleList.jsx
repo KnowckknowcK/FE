@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from "react";
 import styles from "./ArticleList.module.css";
 import Article from "../literacy/Article";
-import axios from "axios";
+import customAxios from "../../lib/customAxios";
 import Pagination from '@mui/material/Pagination';
 
-const api = process.env.REACT_APP_API_URL;
 
 const ArticleList = () => {
 
@@ -16,10 +15,10 @@ const ArticleList = () => {
 
     useEffect(() => {
         const loadArticle = async () => {
-            return await axios
-              .get(api + `/api/article/list/${category}/${pageNum}`)
+            return await customAxios
+              .get(`/article/list/${category}/${pageNum}`)
               .then((response) => {
-                setArticleList(response.data.content);
+                setArticleList(response.data.data.content);
               });
           };
       

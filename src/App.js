@@ -20,7 +20,7 @@ function App() {
   return (
     <Routes>
       <Route path='/' element={<Dashboard />} />
-      <Route path='article-list' element={<ArticleList />} />
+      <Route path='/article-list' element={<ArticleList />} />
       <Route path='/opinion-writing' element={<OpinionWriting />} />
       <Route path='/summary/:id' element={<SummaryWriting />} />
       <Route path='/feedback' element={<Feedback />} />
