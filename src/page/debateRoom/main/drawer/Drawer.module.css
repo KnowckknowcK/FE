@@ -17,7 +17,7 @@
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.5); /* 반투명한 검은색 */
-    z-index: 7; /* Drawer 보다 낮은 z-index 값을 설정 */
+    z-index: 7; /* drawer 보다 낮은 z-index 값을 설정 */
 }
 
 .drawerTop{

@@ -2,7 +2,7 @@
 
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { DebateRoom } from "./page/debateRoom/Main/DebateRoom/DebateRoom";
+import { DebateRoom } from "./page/debateRoom/main/debateRoom/DebateRoom";
 import { RoomPage } from "./page/RoomPage";
 import Dashboard from "./page/dashboard/Dashboard";
 import ArticleList from "./page/literacy/ArticleList";

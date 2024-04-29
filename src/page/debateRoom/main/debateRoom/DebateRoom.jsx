@@ -1,15 +1,15 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { useStomp } from '../../../../context/StompContext';
-import {MessageItem} from "../../Common/MessageItem/MessageItem";
-import {TopNavBar} from "../../Common/TopNavBar/TopNavBar";
+import {MessageItem} from "../../common/messageItem/MessageItem";
+import {TopNavBar} from "../../common/topNavBar/TopNavBar";
 import styles from './DebateRoom.module.css';
-import {BottomNavBar} from "../../Common/BottomNavBar/BottomNavBar";
+import {BottomNavBar} from "../../common/bottomNavBar/BottomNavBar";
 import {useMessages} from "../../utils/useMessages";
-import {MessageThread} from "../Thread/MessageThread";
+import {MessageThread} from "../thread/MessageThread";
 import { useNavigate } from 'react-router-dom';
 
-import {Drawer} from "../Drawer/Drawer";
+import {Drawer} from "../drawer/Drawer";
 
 export function DebateRoom() {
     const stompClient = useStomp();

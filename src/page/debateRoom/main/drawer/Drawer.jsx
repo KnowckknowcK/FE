@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styles from './Drawer.module.css';
 import {PieChart} from "./PieChart";
 import axios from "axios";
-import {MemberItem} from "../../Common/MessageItem/MemberItem";
+import {MemberItem} from "../../common/messageItem/MemberItem";
 import { FiLogOut } from "react-icons/fi";
 import {useNavigate} from "react-router-dom";
 
@@ -27,7 +27,7 @@ export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio
 
     const handleBackdropClick = (e) => {
         e.stopPropagation(); // 이벤트 버블링 방지
-        toggleDrawer(); // Drawer 닫기 함수 실행
+        toggleDrawer(); // drawer 닫기 함수 실행
     };
 
     const handleLeaveRoom = () =>{

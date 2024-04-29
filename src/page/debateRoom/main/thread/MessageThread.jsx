@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import styles from './MessageThread.module.css';
-import {TopNavBar} from "../../Common/TopNavBar/TopNavBar";
-import {MessageItem} from "../../Common/MessageItem/MessageItem";
+import {TopNavBar} from "../../common/topNavBar/TopNavBar";
+import {MessageItem} from "../../common/messageItem/MessageItem";
 import {useThread} from "../../utils/useThread";
 import {useStomp} from "../../../../context/StompContext";
-import {BottomNavBar} from "../../Common/BottomNavBar/BottomNavBar";
-import {ThreadItem} from "../../Common/MessageItem/ThreadItem";
+import {BottomNavBar} from "../../common/bottomNavBar/BottomNavBar";
+import {ThreadItem} from "../../common/messageItem/ThreadItem";
 
 export function MessageThread({ roomId, isOpen, close, message, handlePutPreference, forceRefresh}){
     const stompClient = useStomp();
