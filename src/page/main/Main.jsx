@@ -2,9 +2,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RecommendedItem from './RecommendedItem';
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 function Main(props) {
     const [data, setData] = useState([]);
+
+    const navigate = useNavigate();
+ 
+    const clickHandler = () => {
+        navigate("/article-list");
+    };
   	
   	useEffect(() => {
 		const fetchData = async() => {
@@ -32,7 +39,7 @@ function Main(props) {
             ))}
         </RecommandList>
         <ButtonWrapper>
-            <SelectButton>
+            <SelectButton onClick={clickHandler}>
                 <ButtonText>
                 <span>카테고리별 기사 분류가 제공되요</span>
                 <span style={{fontSize: '1.25rem', fontWeight: 'bold'}}>기사 선택하기</span>
