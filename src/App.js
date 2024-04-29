@@ -2,7 +2,7 @@
 
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { DebateRoom } from "./page/DebateRoom/Main/DebateRoom/DebateRoom";
+import { DebateRoom } from "./page/debateRoom/Main/DebateRoom/DebateRoom";
 import { RoomPage } from "./page/RoomPage";
 import Dashboard from "./page/dashboard/Dashboard";
 import ArticleList from "./page/literacy/ArticleList";
@@ -16,6 +16,7 @@ import OpinionHistory from "./page/user/OpinionHistory";
 import SummaryHistory from "./page/user/SummaryHistory";
 import UserInfo from "./page/user/UserInfo";
 import Main from "./page/main/Main";
+import StompProvider from "./Provider/StompProvider";
 
 function App() {
   return (
@@ -33,7 +34,11 @@ function App() {
       <Route path='summary-history' element={<SummaryHistory />} />
       <Route path='/user-info/:userId' element={<UserInfo />} />
       <Route path='/room' element={<RoomPage />} />
-      <Route path='/room/:roomId' element={<DebateRoom />} />
+      <Route path='/debate-room/:roomId' element={
+          <StompProvider>
+            <DebateRoom />
+          </StompProvider>
+      } />
     </Routes>
   );
 }

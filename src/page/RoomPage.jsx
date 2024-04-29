@@ -1,5 +1,5 @@
 import { useNavigate} from 'react-router-dom';
-import {fetchUtil} from "./DebateRoom/utils/fetchUtil";
+import {fetchUtil} from "./debateRoom/utils/fetchUtil";
 
 export function RoomPage() {
     const navigate = useNavigate();
@@ -7,7 +7,7 @@ export function RoomPage() {
         const dto = await fetchUtil(`/debate-room/${roomId}`, {
             method: 'PUT'
         });
-        navigate(`/room/${roomId}`);
+        navigate(`/debate-room/${roomId}`);
     }
     return (
         <>
