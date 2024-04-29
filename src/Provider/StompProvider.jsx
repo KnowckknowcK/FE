@@ -4,10 +4,11 @@ import Stomp from 'stompjs';
 import StompContext from "../context/StompContext";
 
 const StompProvider = ({ children }) => {
+    const api = process.env.REACT_APP_API_URL;
     const [stompClient, setStompClient] = useState(null);
     let interval;
     const connect = () => {
-        const socket = new SockJS('http://localhost:8080/api/ws');
+        const socket = new SockJS(`${api}/api/ws`);
         const stompClient = Stomp.over(socket);
 
         stompClient.connect({}, () => {
