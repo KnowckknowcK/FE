@@ -1,15 +1,23 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 
-function RecommendedItem(props) {
+const RecommendedItem = ({data}) => {
+
+    const navigate = useNavigate();
+
+    const clickHandler = (articleNum) => {
+        navigate(`/summary/${articleNum}`, {state: {data}});
+    }
+
     return (
         
         <div>
             <Wrapper>
-                <Category>{`${props.category}`}</Category>
-                <Title>{`${props.title}`}</Title>
-                <Button>문해력 진단 시작하기</Button>
+                <Category>{`${data.category}`}</Category>
+                <Title>{`${data.title}`}</Title>
+                <Button onClick={() => clickHandler(data.id)}>문해력 진단 시작하기</Button>
             </Wrapper>
         </div>
 
