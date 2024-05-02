@@ -34,8 +34,8 @@ function Main(props) {
         </Wrapper>
         <Subtitle1>오늘의 맞춤 추천 기사</Subtitle1>
         <RecommandList>
-            {data.map((item, index) =>(
-                <RecommendedItem title={item.title} category={item.category} />
+            {data.map((item) =>(
+                <RecommendedItem data = {item}/>
             ))}
         </RecommandList>
         <ButtonWrapper>
