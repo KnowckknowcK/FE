@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { css } from '@emotion/react';
 
 // fontSize 정의
 const fontSizeXl = '1.5rem'; // 24px
@@ -8,24 +8,30 @@ const fontSizeSm = '0.875rem'; // 14px
 const fontSizeXs = '0.75rem'; // 12px
 
 //color 정의
-const colorRevolver = '#1F1632';
-const colorPortGore = '#271C3E';
-const colorMartinique = '#2A2545';
-const colorMartiniNavy = '#2D294A';
-const colorSelectiveYellow = '#FBBC05';
 const colorWhite = '#FFFFFF';
-const colorFrenchGray = '#BDBBC2';
-const colorDoveGray = '#636363';
-const colorCornflowerBlue = '#4285F4';
+const colorBeige = '#E3D5CA';
+const colorWhiteGreen = '#E8EBEA';
+const colorLightGreen = '#B5C9C0';
+const colorDarkGreen = '#6B9080';
+const colorGray = '#D9D9D9';
 
 
-const GlobalStyle = createGlobalStyle`
-    h2 {
-        font-size: ${fontSizeXl};
-        font-weight: bold;
-        color: ${colorRevolver};
+
+
+export const GlobalStyle = css`
+    :root {
+        --font-size-xl: ${fontSizeXl};
+        --font-size-lg: ${fontSizeLg};
+        --font-size-md: ${fontSizeMd};
+        --font-size-sm: ${fontSizeSm};
+        --font-size-xs: ${fontSizeXs};
+
+        --color-white: ${colorWhite};
+        --color-beige: ${colorBeige};
+        --color-white-green: ${colorWhiteGreen};
+        --color-light-green: ${colorLightGreen};
+        --color-dark-green: ${colorDarkGreen};
+        --color-gray: ${colorGray};
+        
     }
 `;
-
-
-export default GlobalStyle;

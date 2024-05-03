@@ -17,9 +17,13 @@ import SummaryHistory from "./page/user/SummaryHistory";
 import UserInfo from "./page/user/UserInfo";
 import Main from "./page/main/Main";
 import StompProvider from "./Provider/StompProvider";
+import { GlobalStyle } from "./styles/GlobalStyle";
+import { Global } from '@emotion/react';
 
 function App() {
   return (
+    <>
+    <Global styles={ GlobalStyle } />
     <Routes>
       <Route path='/' element={<Main />} />
       <Route path='/dashboard' element={<Dashboard />} />
@@ -40,6 +44,7 @@ function App() {
           </StompProvider>
       } />
     </Routes>
+    </>
   );
 }
 
