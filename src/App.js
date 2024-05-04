@@ -19,8 +19,16 @@ import Main from "./page/main/Main";
 import StompProvider from "./Provider/StompProvider";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { Global } from '@emotion/react';
+import { useEffect } from "react";
 
 function App() {
+  function setScreenSize() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }
+  useEffect(() => {
+    setScreenSize();
+  });
   return (
     <>
     <Global styles={ GlobalStyle } />

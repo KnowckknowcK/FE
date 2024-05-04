@@ -10,16 +10,19 @@ const fontSizeXs = '0.75rem'; // 12px
 //color 정의
 const colorWhite = '#FFFFFF';
 const colorBeige = '#E3D5CA';
-const colorWhiteGreen = '#E8EBEA';
+const colorWhiteGreen = '#E9F0EE';
 const colorLightGreen = '#B5C9C0';
-const colorDarkGreen = '#6B9080';
-const colorGray = '#D9D9D9';
+const colorGreen = '#65B891';
+const colorGrey = '#D9D9D9';
+const colorDarkGrey = '#585858';
 
 
 
 
 export const GlobalStyle = css`
     :root {
+        --vh: 100%;
+
         --font-size-xl: ${fontSizeXl};
         --font-size-lg: ${fontSizeLg};
         --font-size-md: ${fontSizeMd};
@@ -30,8 +33,9 @@ export const GlobalStyle = css`
         --color-beige: ${colorBeige};
         --color-white-green: ${colorWhiteGreen};
         --color-light-green: ${colorLightGreen};
-        --color-dark-green: ${colorDarkGreen};
-        --color-gray: ${colorGray};
+        --color-green: ${colorGreen};
+        --color-grey: ${colorGrey};
+        --color-dark-grey: ${colorDarkGrey};
         
     }
 `;
