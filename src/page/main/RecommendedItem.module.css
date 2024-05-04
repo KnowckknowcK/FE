@@ -1,0 +1,36 @@
+.wrapper {
+    padding: 15px;
+    width: 200px;
+    height: 250px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--color-light-green);
+}
+
+.category {
+    position: relative;
+    top: 10px;
+    font-size: var(--font-size-xs);
+}
+
+.title {
+    position: relative;
+    top: 10px;
+    height: 80%;
+    font-weight: bold;
+    font-size: var(--font-size-md);
+}
+
+.startBtn {
+    margin: 0 auto;
+    padding: 10px;
+    border: none;
+    border-radius: 30px;
+    position: relative;
+    font-weight: bold;
+    font-size: var(--font-size-sm);
+    color: var(--color-dark-green);
+    background-color: var(--color-white-green);
+}
