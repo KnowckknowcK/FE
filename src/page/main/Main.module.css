@@ -1,0 +1,64 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background-color: var(--color-beige);
+}
+    
+
+.intro {
+    color: var(--color-white);
+    padding: 20px;
+}
+    
+.explain {
+    font-weight: bold;
+    font-size: var(--font-size-sm);
+    padding: 10px;
+}
+
+
+.recommendList {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    display: flex;
+    gap: 32px;
+    overflow-x: auto;
+    scrollbar-color: transparent transparent;
+    user-select: none;
+    &::-webkit-scrollbar {
+        height: 1px;
+        background-color: transparent;
+    }
+}
+
+.btnWrapper {
+    display: flex;
+    padding-top: 30px;
+    text-align: center;
+    padding: 10px;
+}
+
+.selectBtn {
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+    align-items: center;
+    width: 340px;
+    height: 100px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--color-gray);
+}
+
+.btnTextTitle {
+    font-size: var(--font-size-lg);
+    font-weight: bold;
+}
+
+.btnText {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
