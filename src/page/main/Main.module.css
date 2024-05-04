@@ -63,7 +63,20 @@
     padding: 20px;
     border: none;
     border-radius: 10px;
+    background-color: var(--color-white-green);
+    color: var(--color-black);
+}
+
+
+.selectBtn:hover {
     background-color: var(--color-green);
+    color: var(--color-white);
+}
+
+
+.selectBtn:active {
+    background-color: var(--color-green);
+    color: var(--color-white);
 }
 
 
@@ -78,5 +91,4 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    color: var(--color-white);
 }
