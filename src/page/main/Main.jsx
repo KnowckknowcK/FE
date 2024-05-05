@@ -3,7 +3,7 @@ import RecommendedItem from './RecommendedItem';
 import { useNavigate } from "react-router-dom";
 import customAxios from "../../lib/customAxios";
 import styles from "./Main.module.css";
-
+import BottomNavBar from '../../components/bottomNavBar/bottomNavBar';
 
 function Main(props) {
     const [data, setData] = useState([]);
@@ -34,6 +34,7 @@ function Main(props) {
                 똑똑과 함께 <br/> AI 피드백 받고, <br/> 문해력을 향상해보세요<br/> 
             </h2>
         </div>
+
         <div className={styles.explain}>오늘의 맞춤 추천 기사</div>
         <div className={styles.recommendList}>
             {data.map((item) =>(
@@ -52,7 +53,9 @@ function Main(props) {
             </div>
         </button>
 
+        <BottomNavBar user="1"></BottomNavBar>
         </div>
+        
     )
 }
 
