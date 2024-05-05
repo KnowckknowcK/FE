@@ -1,11 +1,14 @@
+
 .title {
     margin-bottom: 0px;
+    font-size: var(--font-size-lg);
 }
 
 .category {
     margin: 0px;
     margin-top: 10px;
     color: rgb(29, 198, 130);
+    font-size: var(--font-size-md);
 }
 
 
@@ -23,7 +26,7 @@
 }
 
 .content {
-    width: 141px;
+    width: max-content;
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
@@ -70,3 +73,21 @@ border: none;
     width: 290px;
     margin: 10px 0px;
   }
+
+.summaryDone {
+    font-size: var(--font-size-sm);
+    background-color: var(--color-dark-grey);
+    color: var(--color-white);
+    padding: 5px 10px;
+    border-radius: 10px;
+    align-self: center;
+}
+
+.summaryNotDone{
+    font-size: var(--font-size-sm);
+    background-color: var(--color-green);
+    color: var(--color-white);
+    padding: 5px 10px;
+    border-radius: 10px;
+    align-self: center;
+}

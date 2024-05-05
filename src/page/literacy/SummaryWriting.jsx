@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./SummaryWriting.module.css";
 import customAxios from "../../lib/customAxios";
 import { userId } from "../../util/userId";
+import formatDateTime from "../../util/FormatDateTime"
 
 const SummaryWriting = () => {
   const location = useLocation().state.data;
@@ -110,7 +111,7 @@ const SummaryWriting = () => {
 
     setIsWaitingFeedback(true); 
 
-    return await customAxios.post(`/summary/save`, {
+    return await customAxios.post(`/summary/submit`, {
       content: summary,
       articleId: location.id,
       writerId: userId,
@@ -137,16 +138,20 @@ const SummaryWriting = () => {
     if (isWaitingFeedback) return <p>피드백을 기다리는 중입니다.</p>
 
     return (
-        <div>
+        <div style={{overflow:"hidden"}}>
             <div className={styles.articleDiv}>
                 <h2 className={styles.title}>{location.title}</h2>
-                <h4>{location.createdTime}</h4>
+                <h4>{formatDateTime(location.createdTime)}</h4>
                 <p className={styles.content}>{location.content}</p>
             </div>
-            <time>
+
+            <div style={{display:"flex", justifyContent:"space-between"}}>
+            <p className={styles.takenTime}> 경과 시간 <time>
               {`0${Math.floor((time / 60000) % 60)}`.slice(-2)} : {`0${Math.floor((time / 1000) % 60)}`.slice(-2)}
-            </time>
+            </time></p>
             <p className={styles.summaryNotice}>요약 작성</p>
+            </div>
+
             <textarea className={styles.textarea} onChange={onChangeTextArea} value={summary}></textarea>
             <div className={styles.btnDiv}>
                 <button className={styles.summaryBtn} onClick={useSaveSummary}>요약 저장</button>
