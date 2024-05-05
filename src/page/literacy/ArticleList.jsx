@@ -3,6 +3,7 @@ import styles from "./ArticleList.module.css";
 import Article from "../literacy/Article";
 import customAxios from "../../lib/customAxios";
 import Pagination from '@mui/material/Pagination';
+import BottomNavBar from '../../components/bottomNavBar/bottomNavBar';
 
 
 const ArticleList = () => {
@@ -61,7 +62,8 @@ const ArticleList = () => {
                     <Article data = {article}/>
                 ))}
             </div>
-            <Pagination className={styles.page} count={3} shape="rounded" onChange={(e) => handlePageChange(e)}/>
+        <Pagination className={styles.page} count={3} shape="rounded" onChange={(e) => handlePageChange(e)}/>
+        <BottomNavBar user="1"></BottomNavBar>
         </div>
     )
 }

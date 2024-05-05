@@ -44,7 +44,7 @@ function Main(props) {
 
         <button className={styles.selectBtn} onClick={clickHandler}>
             <div className={styles.btnText}>
-                <span>카테고리별 기사 분류가 제공되요</span>
+                <span>카테고리별 기사 분류가 제공돼요</span>
                 <span className={styles.btnTextTitle}>기사 선택하기</span>
             </div>
             <div></div>
