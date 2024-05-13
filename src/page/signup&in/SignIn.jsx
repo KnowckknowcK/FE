@@ -8,6 +8,8 @@ const SignIn = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const navToMain = useNavigate();
     
     const signInBtn = async (e) => {
         e.preventDefault();
@@ -18,6 +20,7 @@ const SignIn = () => {
             });
             if (response.status === 200) {
                 console.log('로그인 성공:', response.data);
+                navToMain('/', {});
             } else {
                 console.error('로그인 실패');
             }
@@ -34,10 +37,10 @@ const SignIn = () => {
         }
     };
 
-    const navigate = useNavigate();
+    const navToSignUp = useNavigate();
 
     const signUpBtn = () => {
-        navigate(`/signup`);
+        navToSignUp(`/signup`);
     }
 
     return (
