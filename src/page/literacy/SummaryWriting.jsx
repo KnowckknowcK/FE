@@ -15,20 +15,20 @@ const SummaryWriting = () => {
   const [time, setTime] = useState(0)
   const [isRunning, setIsRunning] = useState(true)
 
+  const loadSummaryHistory = async () => {
+    return await customAxios
+    //   .get(`/summary/load?articleId=${location.id}&userId=${sessionStorage.getItem("userId")}`)
+    .get(`/summary/load?articleId=${location.id}&userId=1`)
+      .then((response) => {
+        setSummaryHistory(response.data.data);
+        if(response.data.data.status ===  "ING") {
+            setSummary(response.data.data.content);
+            setTime(response.data.data.takenTime);
+        }
+      });
+  };
+
   useEffect(() => {
-    const loadSummaryHistory = async () => {
-        return await customAxios
-        //   .get(`/summary/load?articleId=${location.id}&userId=${sessionStorage.getItem("userId")}`)
-        .get(`/summary/load?articleId=${location.id}&userId=1`)
-          .then((response) => {
-            setSummaryHistory(response.data.data);
-            if(response.data.data.status ===  "ING") {
-                setSummary(response.data.data.content);
-                setTime(response.data.data.takenTime);
-            }
-          });
-      };
-  
       const fetchData = async () => {
         await loadSummaryHistory();
         setIsLoading(false);
@@ -53,26 +53,26 @@ const SummaryWriting = () => {
       return () => clearInterval(interval)
     }, [isRunning])
 
-    useEffect(async() => {
-      if (summary.length === 0) {
-        return;
-      }
-      const interval = setInterval(async () =>{
-        return await customAxios
-          .post(`/summary/save`, {
-                  content: summary,
-                  articleId: location.id,
-                  writerId: userId,
-                  status: "ING",
-                  takenTime: time
-              }).then((response) => {
-                  if(response.data.code === 200) {
-                      console.log("자동 저장 완료");
-                  }
-              })
-      }, 5000);
-      return () => clearInterval(interval);
-    },[])
+    // useEffect(async() => {
+    //   if (summary.length === 0) {
+    //     return;
+    //   }
+    //   const interval = setInterval(async () =>{
+    //     return await customAxios
+    //       .post(`/summary/save`, {
+    //               content: summary,
+    //               articleId: location.id,
+    //               writerId: userId,
+    //               status: "ING",
+    //               takenTime: time
+    //           }).then((response) => {
+    //               if(response.data.code === 200) {
+    //                   console.log("자동 저장 완료");
+    //               }
+    //           })
+    //   }, 5000);
+    //   return () => clearInterval(interval);
+    // },[])
 
 
     const useSaveSummary = async () => {
@@ -120,7 +120,7 @@ const SummaryWriting = () => {
     }).then((response) => {
       if(response.data.code === 200) {
         alert("제출되었습니다.");
-        navigate("/feedback", {state: {summary: response.data.data, title : location.title, takenTime: time}});
+        navigate("/feedback", {state: {data: location, summary: response.data.data, title : location.title, takenTime: time, category: location.category}});
 
       } else {
         console.log(response.data);

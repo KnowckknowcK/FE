@@ -5,13 +5,12 @@ import BottomNavBar from '../../components/bottomNavBar/bottomNavBar';
 import { useNavigate } from "react-router-dom";
 
 
-const Feedback = ({state}) => {
+const OpinionFeedback = ({state}) => {
     const location = useLocation();
     const title = location.state?.title;
-    const summary = location.state?.summary;
-    const takenTime = location.state?.takenTime;
+    const opinion = location.state?.opinion;
+    const position = location.state?.position;
     const category = location.state?.category;
-    const data = location.state?.data;
 
   const navigate = useNavigate();
 
@@ -23,26 +22,23 @@ const Feedback = ({state}) => {
                 <h3><button className={styles.category}>{category}</button>  {title}</h3>
                 
                 <div style={{display:"flex"}}>
-                    <div className={styles.contentBox}>
-                        <p>피드백 점수</p>
-                        <h4>{summary.score}</h4>
+                    <div className={styles.positionDiv}>
+                        <p >입장</p>
+                        <p style={{fontWeight:"600"}}>{position}</p>
                     </div>
-                    <div  className={styles.contentBox}>
-                        <p>소요 시간</p>
-                        <p>{`0${Math.floor((takenTime / 60000) % 60)}`.slice(-2)} 분 {`0${Math.floor((takenTime / 1000) % 60)}`.slice(-2)} 초</p>
-                    </div>
+            
                 </div>
                 <div className={styles.feedbackBox}>
                     <p>피드백 내용</p>
-                    <p>{summary.content}</p>
+                    <p>{opinion.feedbackContent}</p>
                 </div>
             </div>
             <div style={{ display:"flex", margin: "5px", justifyContent:"center"}}>
-                <button className={styles.feedbackBtn} onClick={() => {navigate('/opinion-writing', {state: {data: data}})}}>견해 작성하기</button> <button className={styles.feedbackBtn} onClick={() => {navigate('/')}}>홈으로</button>
+                <button className={styles.feedbackBtn} onClick={() => {navigate('/')}}>홈으로</button>
             </div>
             <BottomNavBar user="1"></BottomNavBar>
         </div>
     )
 }
 
-export default Feedback;
+export default OpinionFeedback;

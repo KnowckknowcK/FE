@@ -40,7 +40,7 @@
     padding: 12px 32px;
     gap: 8px;
     align-self: center;
-border: none;
+    border: none;
     width: 200px;
     height: 39px;
 
@@ -51,8 +51,6 @@ border: none;
     flex: none;
     order: 2;
     flex-grow: 0;
-
-
 
     font-style: normal;
     font-weight: 700;

@@ -18,8 +18,9 @@ import UserInfo from "./page/user/UserInfo";
 import Main from "./page/main/Main";
 import StompProvider from "./Provider/StompProvider";
 import { GlobalStyle } from "./styles/GlobalStyle";
-import { Global } from '@emotion/react';
+import { Global } from "@emotion/react";
 import { useEffect } from "react";
+import OpinionFeedback from "./page/literacy/OpinionFeedback";
 
 function App() {
   function setScreenSize() {
@@ -31,27 +32,31 @@ function App() {
   });
   return (
     <>
-    <Global styles={ GlobalStyle } />
-    <Routes>
-      <Route path='/' element={<Main />} />
-      <Route path='/dashboard' element={<Dashboard />} />
-      <Route path='/article-list' element={<ArticleList />} />
-      <Route path='/opinion-writing' element={<OpinionWriting />} />
-      <Route path='/summary/:id' element={<SummaryWriting />} />
-      <Route path='/feedback' element={<Feedback />} />
-      <Route path='/signup' element={<SignUp />} />
-      <Route path='/signin' element={<SignIn />} />
-      <Route path='/debate-room' element={<MyDebateRoom />} />
-      <Route path='/opinion-history' element={<OpinionHistory />} />
-      <Route path='summary-history' element={<SummaryHistory />} />
-      <Route path='/user-info/:userId' element={<UserInfo />} />
-      <Route path='/room' element={<RoomPage />} />
-      <Route path='/debate-room/:roomId' element={
-          <StompProvider>
-            <DebateRoom />
-          </StompProvider>
-      } />
-    </Routes>
+      <Global styles={GlobalStyle} />
+      <Routes>
+        <Route path='/' element={<Main />} />
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/article-list' element={<ArticleList />} />
+        <Route path='/opinion-writing' element={<OpinionWriting />} />
+        <Route path='/summary/:id' element={<SummaryWriting />} />
+        <Route path='/feedback' element={<Feedback />} />
+        <Route path='/opinion-feedback' element={<OpinionFeedback />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/signin' element={<SignIn />} />
+        <Route path='/debate-room' element={<MyDebateRoom />} />
+        <Route path='/opinion-history' element={<OpinionHistory />} />
+        <Route path='summary-history' element={<SummaryHistory />} />
+        <Route path='/user-info/:userId' element={<UserInfo />} />
+        <Route path='/room' element={<RoomPage />} />
+        <Route
+          path='/debate-room/:roomId'
+          element={
+            <StompProvider>
+              <DebateRoom />
+            </StompProvider>
+          }
+        />
+      </Routes>
     </>
   );
 }

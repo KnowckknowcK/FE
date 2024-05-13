@@ -53,7 +53,6 @@ const ArticleList = () => {
                 <button className={styles.menu} onClick={() => onclickCategory("CULTURE")}>문화</button>
                 <button className={styles.menu} onClick={() => onclickCategory("WORLD")}>세계</button>
                 <button className={styles.menu} onClick={() => onclickCategory("IT")}>IT</button>
-                <button className={styles.menu} onClick={() => onclickCategory("IT")}>IT</button>
                 <button className={styles.menu} onClick={() => onclickCategory("ENTERTAINMENT")}>연예</button>
                 <button className={styles.menu} onClick={() => onclickCategory("SPORT")}>스포츠</button>
             </div>
