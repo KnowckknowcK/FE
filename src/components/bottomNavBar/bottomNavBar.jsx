@@ -24,12 +24,12 @@ const BottomNavBar = ({user}) => {
                 </NavLink>
             </div>
             <div>
-                <NavLink style={({isActive}) => (isActive ? activeStyle : inActiveStyle)} to="/article-list">
+                <NavLink style={({isActive}) => (isActive ? activeStyle : inActiveStyle)} to="/debate-room">
                     <FontAwesomeIcon icon={faMessage} size="lg" />
                 </NavLink>
             </div>
             <div>
-                <NavLink style={({isActive}) => (isActive ? activeStyle : inActiveStyle)} to="/debate-room">
+                <NavLink style={({isActive}) => (isActive ? activeStyle : inActiveStyle)} to="/article-list">
                     <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
                 </NavLink>
             </div>
