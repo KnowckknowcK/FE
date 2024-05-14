@@ -3,10 +3,9 @@ import styles from "./bottomNavBar.module.css";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faMessage } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-
+import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 
 const BottomNavBar = ({user}) => {
     const activeStyle = {
@@ -24,13 +23,13 @@ const BottomNavBar = ({user}) => {
                 </NavLink>
             </div>
             <div>
-                <NavLink style={({isActive}) => (isActive ? activeStyle : inActiveStyle)} to="/debate-room">
-                    <FontAwesomeIcon icon={faMessage} size="lg" />
+                <NavLink style={({isActive}) => (isActive ? activeStyle : inActiveStyle)} to="/article-list">
+                    <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
                 </NavLink>
             </div>
             <div>
-                <NavLink style={({isActive}) => (isActive ? activeStyle : inActiveStyle)} to="/article-list">
-                    <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
+                <NavLink style={({isActive}) => (isActive ? activeStyle : inActiveStyle)} to="/dashboard">
+                    <FontAwesomeIcon icon={faChartLine} size="lg" />
                 </NavLink>
             </div>
             <div>
