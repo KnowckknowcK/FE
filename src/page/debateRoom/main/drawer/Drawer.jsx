@@ -5,21 +5,21 @@ import axios from "axios";
 import {MemberItem} from "../../common/messageItem/MemberItem";
 import { FiLogOut } from "react-icons/fi";
 import {useNavigate} from "react-router-dom";
+import {fetchUtil} from "../../utils/fetchUtil";
 
-export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio }) => {
+export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio, updateRatio }) => {
     const [memberList, setMemberList] = useState([]);
     const navigate = useNavigate();
     const api = process.env.REACT_APP_API_URL;
     useEffect(() => {
         const loadMemberList = async() =>{
-            return await axios
-                .get(`${api}/api/debate-room/${roomId}`)
-                .then((response) => {
-                    setMemberList(response.data.data)
-                })
+            const memberList =  await fetchUtil(`/debate-room/${roomId}`, {
+                method: 'GET'
+            });
+            setMemberList(memberList)
         }
         loadMemberList();
-    })
+    }, [roomId])
 
     if(!isOpen){
         return null;
@@ -28,6 +28,7 @@ export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio
     const handleBackdropClick = (e) => {
         e.stopPropagation(); // 이벤트 버블링 방지
         toggleDrawer(); // drawer 닫기 함수 실행
+        updateRatio();
     };
 
     const handleLeaveRoom = () =>{
@@ -39,7 +40,6 @@ export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio
             .then(
                 navigate(-1)
             )
-
     }
 
     return (
