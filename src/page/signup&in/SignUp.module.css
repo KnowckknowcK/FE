@@ -15,7 +15,7 @@
     font-weight: 700;
     margin-bottom: 30px;
     text-align: center;
-    color: #6B9080;
+    color: var(--color-dark-green);
 }
 
 .emailInput{
@@ -46,7 +46,7 @@
     width: 100%;
     padding: 10px;
     margin-top: 10px;
-    background-color: #F7F7F7;
+    background-color: var(--color-light-grey);
     border-radius: 100px;
     border: none;
 }
@@ -57,7 +57,7 @@
     width: 100%;
     font-size: var(--font-size-md);
     font-weight: 400;
-    background-color: #F7F7F7;
+    background-color: var(--color-light-grey);
 }
 
 .input::placeholder {
@@ -70,7 +70,7 @@
     font-weight: 600;
     color: #6B9080;
     font-size: var(--font-size-sm);
-    background-color: #E3D5CA;
+    background-color: var(--color-beige);
     border-radius: 100px;
     border: none;
     cursor: pointer;
@@ -84,7 +84,7 @@
     font-weight: 600;
     color: #6B9080;
     font-size: var(--font-size-sm);
-    background-color: #E3D5CA;
+    background-color: var(--color-beige);
     border-radius: 100px;
     border: none;
     cursor: pointer;
