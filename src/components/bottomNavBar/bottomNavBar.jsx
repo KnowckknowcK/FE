@@ -33,7 +33,7 @@ const BottomNavBar = ({user}) => {
                 </NavLink>
             </div>
             <div>
-                <NavLink style={({isActive}) => (isActive ? activeStyle : inActiveStyle)} to={`/user-info/${user}`}>
+                <NavLink style={({isActive}) => (isActive ? activeStyle : inActiveStyle)} to={`/mypage`}>
                     <FontAwesomeIcon icon={faUser} size="lg" />
                 </NavLink>
             </div>
