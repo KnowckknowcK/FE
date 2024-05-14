@@ -19,12 +19,14 @@
 }
 
 .emailInput{
+    width: 100%;
     display: flex;
     align-items: center;
     margin-bottom: 15px;
 }
 
 .passwordInput{
+    width: 95%;
     display: flex;
     justify-content: center; 
     align-items: center; 
@@ -33,6 +35,7 @@
 }
 
 .userInput{
+    width: 100%;
     display: flex;
     margin-bottom: 15px;
 }
@@ -62,7 +65,7 @@
 }
 
 .authBtn{
-    width: 40%;
+    width: 30%;
     height: 40px;
     font-weight: 600;
     color: #6B9080;

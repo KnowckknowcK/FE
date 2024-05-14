@@ -16,7 +16,9 @@ const SignUp = () => {
     const isFormFilled = email && password && passwordCheck && name && pwMatch;
     
     const signUpBtn = async (e) => {
+
         e.preventDefault();
+                
         try {
             const response = await axios.post(REACT_APP_API_URL + '/api/account/sign-up', {
                 email, 
@@ -26,7 +28,7 @@ const SignUp = () => {
             });
             if (response.status === 200) {
                 alert('똑똑! 환영합니다. 로그인 페이지로 이동합니다.');
-                navigate('/signin'); // 로그인 페이지로 이동
+                navigate('/signin');
 
             } else {
                 console.error('회원가입 실패');
@@ -42,7 +44,7 @@ const SignUp = () => {
     }
 
     const fileAttach = (e) => {
-        setProfile_img(e.target.files[0]); // 파일을 state에 저장
+        setProfile_img(e.target.files[0]);
     };
 
     return (
@@ -91,7 +93,7 @@ const SignUp = () => {
             {!isFormFilled && (
                 <div className={styles.warningMessage}>
                     <span style={{color: 'red'}}>*</span>
-                    는 필수 항복 입니다.<br />
+                    는 필수 항목 입니다.<br />
                     모든 항목을 작성했는지 확인해주세요.
                 </div>
             )}
