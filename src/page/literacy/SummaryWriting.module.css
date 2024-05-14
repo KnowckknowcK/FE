@@ -16,6 +16,10 @@
 
 }
 
+.articleDiv::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
 .title {
     margin-bottom: 0px;
     font-size: var(--font-size-xl);

@@ -13,7 +13,7 @@ const Article = ({data}) => {
 
     return (
         <div className={styles.articleDiv}>
-            <h2 className={styles.title}>{data.title}</h2>
+            <h2 className={styles.title}>{data.title.length > 30 ? data.title.substr(0,30) + "..." : data.title}</h2>
             <p className={styles.category}>{data.category}</p>
             <div style={{display:"flex", width:"300px", justifyContent:"space-between"}}>
             <p className={styles.content}>{formatDateTime(data.createdTime)}</p>

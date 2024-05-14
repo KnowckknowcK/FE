@@ -43,11 +43,12 @@
     border: none;
     width: 200px;
     height: 39px;
+    margin-top: 10px;
+    margin-bottom: 15px;
 
     background: rgba(107, 144, 128, 0.1);
     border-radius: 100px;
 
-    /* Inside auto layout */
     flex: none;
     order: 2;
     flex-grow: 0;
@@ -56,11 +57,9 @@
     font-weight: 700;
     font-size: 14px;
     line-height: 110%;
-    /* or 15px */
 
     color: #6B9080;
 
-    /* Inside auto layout */
     flex: none;
     order: 0;
     flex-grow: 0;

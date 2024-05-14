@@ -10,7 +10,7 @@ const ArticleList = () => {
 
     const [articleList, setArticleList] = useState([]);
     const [isLoading, setIsLoading] = useState([true]);
-    const [category, setCategory] = useState("POLITICS");
+    const [category, setCategory] = useState("ECONOMICS");
     const [pageNum, setPageNum] = useState(0);
 
 

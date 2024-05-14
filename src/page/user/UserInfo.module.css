@@ -1,0 +1,64 @@
+h1 {
+    color: #000;
+}
+
+.bgroundDiv {
+    position: absolute;
+    width: 390px;
+    height: 180px;
+    left: 0px;
+    top: 0px;
+    background: var(--color-green);
+    color: var(--color-white);
+    justify-content: center;
+    display: flex;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.profileImg {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 122px;
+    height: 122px;
+    left: 132px;
+    top: 94px;
+
+    background: #C4C4C4;
+    border: 5px solid #FFFFFF;
+    border-radius: 122px;
+}
+
+.history{
+    width: 390px;
+    height: 29px;
+    align-content: center;
+    background: rgba(227, 213, 202, 0.4);
+    font-weight: 500;
+    margin-top: 50px;
+    padding-left: 10px;
+}
+
+.mywork {
+    width: 390px;
+    height: 29px;
+    align-content: center;
+    background: rgba(227, 213, 202, 0.4);
+    font-weight: 500;
+    margin-top: 30px;
+    padding-left: 10px;
+}
+
+.para {
+    margin: 20px;
+    margin-bottom: 20px;
+}
+
+.profileDiv {
+    margin-top: 210px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
