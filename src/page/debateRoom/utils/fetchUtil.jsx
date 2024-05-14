@@ -7,7 +7,7 @@ export async function fetchUtil(endpoint, options = {}) {
         const axiosInstance = axios.create({
             baseURL: `${api}/api`,
             headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
                 'Content-Type': 'application/json',
                 ...(options.headers || {}),
 

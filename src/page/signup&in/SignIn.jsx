@@ -2,7 +2,8 @@ import React, {useState } from "react";
 import { useNavigate } from "react-router-dom";
 import customAxios from "../../lib/customAxios";
 import styles from "./SignIn.module.css";
-
+import axios from "axios";
+const { REACT_APP_API_URL } = process.env;
 
 const SignIn = () => {
 
@@ -14,13 +15,13 @@ const SignIn = () => {
     const signInBtn = async (e) => {
         e.preventDefault();
         try {
-            const response = await customAxios.post('/account/sign-in', {
+            const response = await axios.post(REACT_APP_API_URL + '/api/account/sign-in', {
                 email, 
                 password,
             });
             if (response.status === 200) {
                 console.log('로그인 성공:', response.data);
-                localStorage.setItem('token', response.data.data.jwt)
+                localStorage.setItem('accessToken', response.data.data.jwt)
                 navToMain('/', {});
             } else {
                 console.error('로그인 실패');

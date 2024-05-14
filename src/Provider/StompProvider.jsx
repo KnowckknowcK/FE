@@ -11,7 +11,7 @@ const StompProvider = ({ children }) => {
         const socket = new SockJS(`${api}/api/ws`);
         const stompClient = Stomp.over(socket);
         const headers = {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
         };
         stompClient.connect(headers, () => {
             console.log('WebSocket Connected');
