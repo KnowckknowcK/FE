@@ -20,6 +20,7 @@ const SignIn = () => {
             });
             if (response.status === 200) {
                 console.log('로그인 성공:', response.data);
+                localStorage.setItem('token', response.data.data.jwt)
                 navToMain('/', {});
             } else {
                 console.error('로그인 실패');
