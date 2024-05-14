@@ -30,10 +30,14 @@ const SignUp = () => {
                 alert('똑똑! 환영합니다. 로그인 페이지로 이동합니다.');
                 navigate('/signin');
 
+            } else if (response.status === 409) {
+                alert('이미 가입된 회원정보(이메일) 입니다.')
             } else {
+                alert('회원가입에 실패했습니다. 관리자에게 문의하세요.')
                 console.error('회원가입 실패');
             }
         } catch (error) {
+            alert('회원가입에 실패했습니다. 관리자에게 문의하세요.')
             console.error('sign up error:', error);
         }
     };
