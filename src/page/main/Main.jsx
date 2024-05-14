@@ -21,7 +21,9 @@ function Main(props) {
         }	
         
         fetchData().then(
-            res => setData(res.data));
+            res => setData(res.data)
+        )
+            
     }, []);
 
 
