@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./SummaryWriting.module.css";
 import customAxios from "../../lib/customAxios";
-import { userId } from "../../util/userId";
 import formatDateTime from "../../util/FormatDateTime"
 
 const SummaryWriting = () => {
@@ -17,8 +16,7 @@ const SummaryWriting = () => {
 
   const loadSummaryHistory = async () => {
     return await customAxios
-    //   .get(`/summary/load?articleId=${location.id}&userId=${sessionStorage.getItem("userId")}`)
-    .get(`/summary/load?articleId=${location.id}&userId=1`)
+    .get(`/summary/load?articleId=${location.id}`)
       .then((response) => {
         setSummaryHistory(response.data.data);
         if(response.data.data.status ===  "ING") {
@@ -86,7 +84,6 @@ const SummaryWriting = () => {
         .post(`/summary/save`, {
                 content: summary,
                 articleId: location.id,
-                writerId: userId,
                 status: "ING",
                 takenTime: time
             }).then((response) => {
@@ -114,7 +111,6 @@ const SummaryWriting = () => {
     return await customAxios.post(`/summary/submit`, {
       content: summary,
       articleId: location.id,
-      writerId: userId,
       status: "DONE",
       takenTime: time
     }).then((response) => {

@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./SummaryWriting.module.css";
 import customAxios from "../../lib/customAxios";
-import { userId } from "../../util/userId";
 import formatDateTime from "../../util/FormatDateTime"
 
 const OpinionWriting = () => {
@@ -24,7 +23,6 @@ const OpinionWriting = () => {
     return await customAxios.post(`/opinion/submit`, {
       content: opinion,
       articleId: location.id,
-      writerId: userId,
       status: "DONE",
       position: position
 
