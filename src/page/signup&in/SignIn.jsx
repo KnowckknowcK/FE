@@ -1,6 +1,5 @@
 import React, {useState } from "react";
 import { useNavigate } from "react-router-dom";
-import customAxios from "../../lib/customAxios";
 import styles from "./SignIn.module.css";
 import axios from "axios";
 const { REACT_APP_API_URL } = process.env;
@@ -31,13 +30,9 @@ const SignIn = () => {
         }
     };
 
-    const continueWithGoogle = async () => {
-        try {
-        const response = await customAxios.get('/account/google', {});
-        } catch (error) {
-        console.error('continue with google', error);
-        }
-    };
+    function continueWithGoogle() {
+        window.location.href = REACT_APP_API_URL + '/api/account/google';
+    }
 
     const navToSignUp = useNavigate();
 
