@@ -10,8 +10,10 @@ const StompProvider = ({ children }) => {
     const connect = () => {
         const socket = new SockJS(`${api}/api/ws`);
         const stompClient = Stomp.over(socket);
-
-        stompClient.connect({}, () => {
+        const headers = {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        };
+        stompClient.connect(headers, () => {
             console.log('WebSocket Connected');
             setStompClient(stompClient);
         }, () => {

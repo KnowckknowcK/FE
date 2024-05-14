@@ -8,6 +8,8 @@ export const useMessages = (roomId) => {
     const [messages, setMessages] = useState({});
     const [agreeNum, setAgreeNum] = useState(0)
     const [disagreeNum, setDisagreeNum] = useState(0)
+    const [agreeLikesNum, setAgreeLikesNum] = useState(0)
+    const [disagreeLikesNum, setDisagreeLikesNum] = useState(0)
     const [agreeRatio, setAgreeRatio] = useState(0);
     const [disagreeRatio, setDisagreeRatio] = useState(0);
     const [refreshKey, setRefreshKey] = useState(0);
@@ -18,11 +20,13 @@ export const useMessages = (roomId) => {
             const dto = await fetchUtil(`/debate-room/${roomId}`, {
                 method: 'PUT'
             });
-            updateRatio(dto.ratio)
+            setAgreeLikesNum(dto.agreeLikesNum);
+            setDisagreeLikesNum(dto.disagreeLikesNum);
             setAgreeNum(dto.agreeNum);
             setDisagreeNum(dto.disagreeNum);
         }
         getDebateRoomInfo();
+        updateRatio()
     }, [])
 
     // 메세지 받아오기
@@ -79,18 +83,28 @@ export const useMessages = (roomId) => {
                 isAgree: isAgree
             }
         });
-
-        updateRatio(dto.ratio);
+        setAgreeLikesNum(dto.agreeLikesNum);
+        setDisagreeLikesNum(dto.disagreeLikesNum);
+        updateRatio();
         updateLikesNum(messageId, dto.isIncrease);
         return dto;
     }
 
-    function updateRatio(ratio){
-        setAgreeRatio(ratio);
-        if(ratio === 0  && disagreeRatio ===0){
-            setDisagreeRatio(ratio)
-        }else{
-            setDisagreeRatio(100 - ratio)
+    function updateRatio(){
+        if (agreeLikesNum === 0 && disagreeLikesNum === 0){
+            setAgreeRatio(0);
+            setDisagreeRatio(0);
+        } else {
+            let ratio;
+            if (agreeLikesNum >= disagreeLikesNum){
+                ratio = agreeLikesNum / (agreeLikesNum + disagreeLikesNum) * 100
+                setAgreeRatio(ratio);
+                setDisagreeRatio(100 - ratio);
+            } else{
+                ratio = disagreeLikesNum / (agreeLikesNum + disagreeLikesNum) * 100
+                setAgreeRatio(100 - ratio);
+                setDisagreeRatio(ratio);
+            }
         }
     }
 
@@ -110,5 +124,5 @@ export const useMessages = (roomId) => {
     const forceRefresh = () => {
         setRefreshKey(prevKey => prevKey + 1);
     }
-    return { messages, agreeNum, disagreeNum, agreeRatio, disagreeRatio, handlePutPreference, forceRefresh };
+    return { messages, agreeNum, disagreeNum, agreeRatio, disagreeRatio, handlePutPreference, forceRefresh, updateRatio };
 };

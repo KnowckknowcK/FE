@@ -14,7 +14,7 @@ const options = {
             anchor: 'end', // 레이블의 위치를 조각의 끝부분으로 설정
             align: 'start', // 레이블을 조각의 시작 부분으로 정렬
             formatter: (value) => {
-                return value + '%'; // 값을 받아서 뒤에 '%'를 붙여서 반환
+                return Math.round(value * 10) / 10 + '%'; // 값을 받아서 뒤에 '%'를 붙여서 반환
             }
         }
     }

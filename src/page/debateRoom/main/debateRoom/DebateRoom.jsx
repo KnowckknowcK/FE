@@ -30,7 +30,8 @@ export function DebateRoom() {
             agreeRatio,
             disagreeRatio,
             handlePutPreference,
-            forceRefresh
+            forceRefresh,
+            updateRatio
     } = useMessages(roomId);
 
     const messagesEndRef = useRef(null);
@@ -79,8 +80,9 @@ export function DebateRoom() {
     }
 
     const toggleDrawer = () => {
+        updateRatio()
         setIsDrawerOpen(!isDrawerOpen);
-        console.log(isDrawerOpen);
+
     };
 
     return (
@@ -90,8 +92,15 @@ export function DebateRoom() {
                 <div className={styles.smallText}>{`찬성: ${agreeNum}명 반대: ${disagreeNum}명`}</div>
             </TopNavBar>
 
-            <Drawer roomId={roomId} isOpen={isDrawerOpen} toggleDrawer={toggleDrawer}
-            agreeRatio={agreeRatio} disagreeRatio={disagreeRatio}/>
+            <Drawer
+                roomId={roomId}
+                isOpen={isDrawerOpen}
+                toggleDrawer={toggleDrawer}
+                agreeRatio={agreeRatio}
+                disagreeRatio={disagreeRatio}
+                updateRatio={updateRatio}
+
+            />
 
             <div className={styles.messageList}>
                 {Object.values(messages).map((message) => (
