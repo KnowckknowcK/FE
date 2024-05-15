@@ -30,14 +30,15 @@
 .input{
     outline: none;
     border: none;
-    width: 80%;
-    font-size: var(--font-size-md);
+    width: 90%;
+    height: 20px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
     background-color: var(--color-light-grey);
 }
 
 .input::placeholder {
-    color: #6B9080
+    color: var(--color-dark-green);
 }
 
 .btnsWrap{
@@ -51,12 +52,19 @@
     width: 50%;
     height: 35px;
     font-weight: 600;
-    color: #6B9080;
+    color: var(--color-dark-green);
     font-size: var(--font-size-sm);
-    background-color: var(--color-beige);
     border-radius: 100px;
     border: none;
     cursor: pointer;
     margin-top: 10px;
     margin-left: 8px;
+}
+
+.closeBtn {
+    background-color: var(--color-grey);
+}
+
+.checkBtn {
+    background-color: var(--color-beige);
 }

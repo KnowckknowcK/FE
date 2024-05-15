@@ -7,10 +7,11 @@ const { REACT_APP_API_URL } = process.env;
 const EmailCheck = ({ email, onClose, onVerified }) => {
     const [code, setCode] = useState('');
 
-    const verifyEmail = async () => {
+    const codeCheck = async () => {
         try {
             const response = await axios.post(`${REACT_APP_API_URL}/api/account/code-check`, { email, code });
-            if (response.status === 200) {
+            console.log(response.data)
+            if (response.data.code === 200) {
                 alert('이메일이 성공적으로 인증되었습니다.');
                 onVerified(); // 이메일 인증 성공
                 onClose(); // 모달 닫기
@@ -31,11 +32,11 @@ const EmailCheck = ({ email, onClose, onVerified }) => {
                     인증코드를 아래에 입력하세요.</span>
                 </div>
                 <div className={styles.inputWrap}>
-                    <input type="text" className={styles.input} placeholder="code" value={code} onChange={(e)=>setCode(e.target.value)}/>
+                    <input type="text" className={styles.input} placeholder="인증코드를 입력하세요." value={code} onChange={(e)=>setCode(e.target.value)}/>
                 </div>
                 <div className={styles.btnsWrap}>
-                    <button className={styles.btn} onClick={onClose}>닫기</button>
-                    <button className={styles.btn} onClick={verifyEmail}>인증하기</button>
+                    <button className={`${styles.btn} ${styles.closeBtn}`} onClick={onClose}>닫기</button>
+                    <button className={`${styles.btn} ${styles.checkBtn}`} onClick={codeCheck}>인증하기</button>
                 </div>
             </div>
         </div>
