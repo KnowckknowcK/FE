@@ -16,7 +16,7 @@ export const ThreadItem = ({ thread: thread}) => {
                     <p className={styles.content}>{thread.content}</p>
                     <div className={styles.reactions}>
                         <div className={`${styles.position}`}>
-                            {thread.position}
+                            {thread.position === 'AGREE' ? '찬성 입장' : thread.position === 'DISAGREE' ? '반대 입장' : ''}
                         </div>
                     </div>
                 </div>
