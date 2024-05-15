@@ -29,6 +29,7 @@ export function DebateRoom() {
             disagreeNum,
             agreeRatio,
             disagreeRatio,
+            title,
             handlePutPreference,
             forceRefresh,
             updateRatio
@@ -99,7 +100,7 @@ export function DebateRoom() {
                 agreeRatio={agreeRatio}
                 disagreeRatio={disagreeRatio}
                 updateRatio={updateRatio}
-
+                title={title}
             />
 
             <div className={styles.messageList}>
