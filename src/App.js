@@ -12,7 +12,7 @@ import SummaryWriting from "./page/literacy/SummaryWriting";
 import SignIn from "./page/signup&in/SignIn";
 import SignUp from "./page/signup&in/SignUp";
 import MyDebateRoom from "./page/user/MyDebateRoom";
-import OpinionHistory from "./page/user/OpinionHistory";
+import OpinionHistory from "./page/user/Opinion/OpinionHistory";
 import SummaryHistory from "./page/user/SummaryHistory";
 import UserInfo from "./page/user/UserInfo";
 import Main from "./page/main/Main";
@@ -21,6 +21,7 @@ import { GlobalStyle } from "./styles/GlobalStyle";
 import { Global } from "@emotion/react";
 import { useEffect } from "react";
 import OpinionFeedback from "./page/literacy/OpinionFeedback";
+import OpinionPage from "./page/user/Opinion/OpinionPage";
 
 function App() {
   function setScreenSize() {
@@ -45,6 +46,7 @@ function App() {
         <Route path='/signin' element={<SignIn />} />
         <Route path='/debate-room' element={<MyDebateRoom />} />
         <Route path='/opinion-history' element={<OpinionHistory />} />
+        <Route path="/opinion/:id" element={<OpinionPage />} />
         <Route path='/summary-history' element={<SummaryHistory />} />
         <Route path='/mypage' element={<UserInfo />} />
         <Route path='/room' element={<RoomPage />} />
@@ -57,7 +59,7 @@ function App() {
           }
         />
       </Routes>
-    </>
+      </>
   );
 }
 
