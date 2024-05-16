@@ -33,8 +33,10 @@ export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio
 
     const handleLeaveRoom = () =>{
         const leaveRoom = async () => {
-            await axios
-                .delete(`${api}/api/debate-room/${roomId}`)
+            await fetchUtil(`${api}/api/debate-room/${roomId}`,
+                {
+                    method: 'DELETE'
+                });
         }
         leaveRoom()
             .then(
