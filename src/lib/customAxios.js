@@ -4,39 +4,34 @@ import axios from "axios";
 const { REACT_APP_API_URL } = process.env;
 
 const getToken = () => {
-  return localStorage.getItem('accessToken');
+  return localStorage.getItem("accessToken");
 };
-
 
 const customAxios = axios.create({
   baseURL: REACT_APP_API_URL + "/api",
 });
 
-
-customAxios.interceptors.request.use(
-  (config) => {
-    const token = getToken();
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    } else {
-      config.headers.Authorization = null;
-    }
-    return config;
+customAxios.interceptors.request.use((config) => {
+  const token = getToken();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  } else {
+    config.headers.Authorization = null;
   }
-);
-
+  return config;
+});
 
 customAxios.interceptors.response.use(
-  response => response,
-  error => {
+  (response) => response,
+  (error) => {
     if (error.response && error.response.status === 401) {
       alert("로그인 후 시도해주세요.");
-      window.location.href = '/signin';
+      window.location.href = "/mypage";
       return new Promise(() => {});
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default customAxios;
