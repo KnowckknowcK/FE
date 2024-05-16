@@ -17,28 +17,32 @@ const Feedback = ({state}) => {
 
     
     return (
-        <div style={{overflowY:"hidden", overflowX:"hidden"}}>
-            <h3 style={{marginLeft:"10px", marginTop:"100px"}}> AI 피드백 </h3>
+        <div style={{overflowY:"hidden", overflowX:"hidden", padding:"20px"}}>
+            <h3 style={{marginTop:"80px"}}> AI 피드백 </h3>
             <div className={styles.divBox}>
-                <h3><button className={styles.category}>{category}</button>  {title}</h3>
-                
-                <div style={{display:"flex"}}>
+                <h3 style={{wordBreak:"keep-all", lineHeight:"140%"}}><button className={styles.category}>{category}</button>  {title > 30 ? title.substr(0,30) + "..." : title}</h3>
+                <div style={{display:"flex", gap:"10px", justifyContent:"space-around"}}>
                     <div className={styles.contentBox}>
-                        <p>피드백 점수</p>
-                        <h4>{summary.score}</h4>
+                        <h4>피드백 점수</h4>
+                        <p>{summary.score}</p>
                     </div>
                     <div  className={styles.contentBox}>
-                        <p>소요 시간</p>
+                        <h4>소요 시간</h4>
                         <p>{`0${Math.floor((takenTime / 60000) % 60)}`.slice(-2)} 분 {`0${Math.floor((takenTime / 1000) % 60)}`.slice(-2)} 초</p>
+                    </div>
+                    <div className={styles.contentBox}>
+                        <h4>레벨 포인트</h4>
+                        <p>5 점</p>
                     </div>
                 </div>
                 <div className={styles.feedbackBox}>
-                    <p>피드백 내용</p>
+                    <p style={{fontWeight:"700"}}>피드백 내용</p>
                     <p>{summary.content}</p>
                 </div>
             </div>
-            <div style={{ display:"flex", margin: "5px", justifyContent:"center"}}>
-                <button className={styles.feedbackBtn} onClick={() => {navigate('/opinion-writing', {state: {data: data}})}}>견해 작성하기</button> <button className={styles.feedbackBtn} onClick={() => {navigate('/')}}>홈으로</button>
+            <div style={{display:"flex", justifyContent:"space-around"}}>
+                <button className={styles.feedbackBtn} onClick={() => {navigate('/')}}>홈으로</button>
+                <button className={styles.feedbackBtn} onClick={() => {navigate('/opinion-writing', {state: {data: data}})}}>견해 작성하기</button>
             </div>
             <BottomNavBar/>
         </div>
