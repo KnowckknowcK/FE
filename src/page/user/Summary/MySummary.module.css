@@ -1,0 +1,43 @@
+.content {
+    place-items: center;
+    width: 343px;
+    height: 358px;
+    max-height: 358px;
+    position:relative;
+    overflow-y: auto;
+    background: #F6F6F6;
+    border-radius: 8px;
+}
+
+.title {
+    align-items: center;
+    height: auto;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    color: #000000;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    line-height: 1;
+}
+
+.bg {
+    margin-top: 5px;
+    margin-bottom: 80px;
+    margin-left: 5%;
+    flex-direction: column; /* 요소들을 세로 방향으로 정렬 */
+    align-items: center;
+}
+
+.img {
+    position: relative;
+    left: 2%;
+    width: 7%;
+    max-height: 7%;
+    margin-bottom: 3%;
+}
+.text {
+    width: 70%; /* 텍스트의 너비 조정 */
+    float: right;
+}

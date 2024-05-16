@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from "react";
 import customAxios from "../../../lib/customAxios";
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import OpinionPage from "./OpinionPage";
-import {OPINIONS} from "../data"
 import styles from "./OpinionHistory.module.css"
-import opinionStyles from "./MyOpinion.module.css"
+import BottomNavBar from "../../../components/bottomNavBar/bottomNavBar";
 
 const OpinionHistory = () => {
     const [opinionList, setOpinionList] = useState([]);
@@ -32,6 +31,7 @@ const OpinionHistory = () => {
         navigate(`/opinion/${opinion.opinionId}`, { state: { opinion } });
     };
 
+    //TODO 아무것도 안 썼을 때 디자인 개선 지금 너무 글만 달랑 있음
     const initContent = "작성된 견해가 없습니다! 견해를 작성해서 문해력을 키워보아요!"
 
     return (
@@ -45,11 +45,15 @@ const OpinionHistory = () => {
                         <div key={opinion.opinionId}
                             onClick={() => handleOpinionClick(opinion)}>
                             <p className={styles.title}>{opinion.article.title}</p>
+                            <div>
+                                <p>사진</p>
+                            </div>
                         </div>
                     ))}
                     {opinionList.length === 0 && initContent}
                 </div>
             </div>
+            <BottomNavBar user="1"></BottomNavBar>
         </div>
     )
 }
