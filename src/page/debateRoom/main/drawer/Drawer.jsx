@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from './Drawer.module.css';
 import {PieChart} from "./PieChart";
-import axios from "axios";
 import {MemberItem} from "../../common/messageItem/MemberItem";
 import { FiLogOut } from "react-icons/fi";
 import {useNavigate} from "react-router-dom";
