@@ -55,7 +55,7 @@ function Main(props) {
             </div>
         </button>
 
-        <BottomNavBar user="1"></BottomNavBar>
+        <BottomNavBar/>
         </div>
         
     )

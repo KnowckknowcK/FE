@@ -28,12 +28,12 @@ const UserInfo = () => {
     return (
         <div style={{overflowY:"hidden"}}>
             <div className= {styles.bgroundDiv}>
-                <p>Profile</p>
+                <p style={{marginTop:"50px"}}>Profile</p>
             </div>
          <img src= {userInfo&&userInfo.profileImage} className={styles.profileImg}/>
          <div className={styles.profileDiv}>
             <p style={{justifySelf:"center", fontWeight:"600"}}>{userInfo ? userInfo.name : "닉네임"}</p>
-            <Button variant="outlined">프로필 수정</Button>
+            <Button variant="outlined" style={{width:"100px"}} onClick={()=>{navigate('/profile-update', {state: {userInfo: userInfo}})}}>프로필 수정</Button>
          </div>
          <p className={styles.history}>MY HISTORY</p>
          <div>
@@ -45,7 +45,7 @@ const UserInfo = () => {
                 <p className={styles.para} onClick={()=>{navigate('/summary-history')}}>진행 중인 요약문 보기 <Button variant="text" endIcon={<ArrowForwardIosIcon />}/></p>
                 <p className={styles.para} onClick={()=>{navigate('/summary-history')}}>대시 보드 <Button variant="text" endIcon={<ArrowForwardIosIcon />}/></p>
             </div>
-        <BottomNavBar user="1"></BottomNavBar>
+        <BottomNavBar/>
         </div>
     )
 }

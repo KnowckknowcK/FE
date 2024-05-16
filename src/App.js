@@ -14,6 +14,7 @@ import SignUp from "./page/signup&in/SignUp";
 import MyDebateRoom from "./page/user/MyDebateRoom";
 import OpinionHistory from "./page/user/OpinionHistory";
 import SummaryHistory from "./page/user/SummaryHistory";
+import ProfileUpdate from "./page/user/ProfileUpdate";
 import UserInfo from "./page/user/UserInfo";
 import Main from "./page/main/Main";
 import StompProvider from "./Provider/StompProvider";
@@ -48,6 +49,7 @@ function App() {
         <Route path='/summary-history' element={<SummaryHistory />} />
         <Route path='/mypage' element={<UserInfo />} />
         <Route path='/room' element={<RoomPage />} />
+        <Route path='/profile-update' element={<ProfileUpdate />} />
         <Route
           path='/debate-room/:roomId'
           element={
