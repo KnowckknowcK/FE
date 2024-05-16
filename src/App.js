@@ -12,8 +12,7 @@ import SummaryWriting from "./page/literacy/SummaryWriting";
 import SignIn from "./page/signup&in/SignIn";
 import SignUp from "./page/signup&in/SignUp";
 import MyDebateRoom from "./page/user/MyDebateRoom";
-import OpinionHistory from "./page/user/OpinionHistory";
-import SummaryHistory from "./page/user/SummaryHistory";
+import OpinionHistory from "./page/user/Opinion/OpinionHistory";
 import ProfileUpdate from "./page/user/ProfileUpdate";
 import UserInfo from "./page/user/UserInfo";
 import Main from "./page/main/Main";
@@ -22,6 +21,9 @@ import { GlobalStyle } from "./styles/GlobalStyle";
 import { Global } from "@emotion/react";
 import { useEffect } from "react";
 import OpinionFeedback from "./page/literacy/OpinionFeedback";
+import SummaryHistoryIng from "./page/user/Summary/SummaryHistoryIng";
+import SummaryHistoryDone from "./page/user/Summary/SummaryHistoryDone";
+import SummaryPage from "./page/user/Summary/SummaryPage";
 import GoogleLoginSuccess from "./page/signup&in/GoogleLoginSuccess"
 
 function App() {
@@ -47,7 +49,10 @@ function App() {
         <Route path='/signin' element={<SignIn />} />
         <Route path='/debate-room' element={<MyDebateRoom />} />
         <Route path='/opinion-history' element={<OpinionHistory />} />
-        <Route path='/summary-history' element={<SummaryHistory />} />
+        <Route path="/opinion/:id" element={<OpinionPage/>}/>
+        <Route path='/summary-history/ing' element={<SummaryHistoryIng/>}/>
+        <Route path='/summary-history/done' element={<SummaryHistoryDone/>}/>
+        <Route path="/summary-detail/:id" element={<SummaryPage/>}/>
         <Route path='/mypage' element={<UserInfo />} />
         <Route path='/room' element={<RoomPage />} />
         <Route path='/profile-update' element={<ProfileUpdate />} />
