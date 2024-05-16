@@ -37,13 +37,14 @@ const UserInfo = () => {
          </div>
          <p className={styles.history}>MY HISTORY</p>
          <div>
-            <p className={styles.para} onClick={()=>{navigate('/summary-history')}}>작성한 요약문 목록 <Button variant="text" endIcon={<ArrowForwardIosIcon />}/></p>
+            <p className={styles.para} onClick={()=>{navigate('/summary-history/done')}}>작성한 요약문 목록 <Button variant="text" endIcon={<ArrowForwardIosIcon />}/></p>
             <p className={styles.para} onClick={()=>{navigate('/opinion-history')}}>작성한 견해 목록 <Button variant="text" endIcon={<ArrowForwardIosIcon />}/></p>
          </div>   
          <p className={styles.mywork}>MY WORK</p>
             <div>
-                <p className={styles.para} onClick={()=>{navigate('/summary-history')}}>진행 중인 요약문 보기 <Button variant="text" endIcon={<ArrowForwardIosIcon />}/></p>
+                <p className={styles.para} onClick={()=>{navigate('/summary-history/ing')}}>진행 중인 요약문 보기 <Button variant="text" endIcon={<ArrowForwardIosIcon />}/></p>
                 <p className={styles.para} onClick={()=>{navigate('/summary-history')}}>대시 보드 <Button variant="text" endIcon={<ArrowForwardIosIcon />}/></p>
+                <p className={styles.para} onClick={()=>{navigate('/debate-room')}}>참여 중인 토론방 보기 <Button variant="text" endIcon={<ArrowForwardIosIcon />}/></p>
             </div>
         <BottomNavBar user="1"></BottomNavBar>
         </div>
