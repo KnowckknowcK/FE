@@ -35,8 +35,6 @@ const SummaryHistoryDone = () => {
         <div className={styles.page}>
             <div className={styles.divUp}>
                 <p className={styles.pageTitle}>작성한 요약문</p>
-            </div>
-            <div className={styles.page}>
                 <div className={styles.myList}>
                     {summaryList.length !== 0 && summaryList.map(summary =>(
                         <div key={summary.summaryId}

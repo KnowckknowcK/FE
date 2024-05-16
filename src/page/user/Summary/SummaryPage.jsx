@@ -20,8 +20,6 @@ const SummaryPage = () => {
     // }
     // selectImg(summary.score)
     const imagePath = imageOptions[summary.score];
-    console.log(summary.score)
-    console.log(imagePath)
     return (
         <div>
             {summary ? (

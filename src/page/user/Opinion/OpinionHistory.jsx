@@ -38,21 +38,17 @@ const OpinionHistory = () => {
         <div className={styles.page}>
             <div className={styles.divUp}>
                 <p className={styles.pageTitle}>작성한 견해문</p>
-            </div>
-            <div className={styles.page}>
                 <div className={styles.list}>
                     {opinionList.length !== 0 && opinionList.map(opinion =>(
                         <div key={opinion.opinionId}
-                            onClick={() => handleOpinionClick(opinion)}>
+                             onClick={() => handleOpinionClick(opinion)}>
                             <p className={styles.title}>{opinion.article.title}</p>
-                            <div>
-                                <p>사진</p>
-                            </div>
                         </div>
                     ))}
                     {opinionList.length === 0 && initContent}
                 </div>
             </div>
+
             <BottomNavBar user="1"></BottomNavBar>
         </div>
     )
