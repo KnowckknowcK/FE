@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./SummaryWriting.module.css";
 import customAxios from "../../lib/customAxios";
 import formatDateTime from "../../util/FormatDateTime"
+import Swal from "sweetalert2";
 
 const OpinionWriting = () => {
   const location = useLocation().state.data;
@@ -28,14 +29,32 @@ const OpinionWriting = () => {
 
     }).then((response) => {
       if(response.data.code === 200) {
-        alert("제출되었습니다.");
-        navigate("/opinion-feedback", {state: {opinion: response.data.data, title : location.title, category: location.category, position: position}});
+        Swal.fire({
+          title: "AI 견해 피드백 완성",
+          text: "AI 견해 피드백이 완성됐어요 :)",
+          icon: "success",
+          timer: 2000,
+          html: "<b>2</b> 초 뒤에 피드백 확인하기",
+          width: "300px",
+          confirmButtonColor: "#B5C9C0",
+        }).then(() => {
+          navigate("/opinion-feedback", {state: {opinion: response.data.data, title : location.title, category: location.category, position: position}});
 
-      } else {
-        console.log(response.data);
-        alert("제출에 실패했습니다.");
+        })
       }
-    })
+    }).catch((error) => {
+      Swal.fire({
+        title: "AI 견해 피드백 생성 실패",
+        text: "AI 견해 피드백을 생성하는 도중에 오류가 발생했어요 :(",
+        icon: "error",
+        width: "350px",
+        confirmButtonColor: "#B5C9C0",
+      }).then((res) => {
+        if(res.isConfirmed) {
+          navigate("/article-list")
+        }
+      })})
+
   }
 
     const onChangeTextArea = (e) => {

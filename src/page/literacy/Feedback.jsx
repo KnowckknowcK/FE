@@ -40,7 +40,7 @@ const Feedback = ({state}) => {
             <div style={{ display:"flex", margin: "5px", justifyContent:"center"}}>
                 <button className={styles.feedbackBtn} onClick={() => {navigate('/opinion-writing', {state: {data: data}})}}>견해 작성하기</button> <button className={styles.feedbackBtn} onClick={() => {navigate('/')}}>홈으로</button>
             </div>
-            <BottomNavBar user="1"></BottomNavBar>
+            <BottomNavBar/>
         </div>
     )
 }

@@ -31,17 +31,15 @@ h1 {
 }
 
 .history{
-    width: 390px;
     height: 29px;
     align-content: center;
     background: rgba(227, 213, 202, 0.4);
     font-weight: 500;
-    margin-top: 50px;
+    margin-top: 20px;
     padding-left: 10px;
 }
 
 .mywork {
-    width: 390px;
     height: 29px;
     align-content: center;
     background: rgba(227, 213, 202, 0.4);
@@ -60,5 +58,39 @@ h1 {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    padding: 20px;
+    align-items: center;
+}
+
+.updateForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.formBtn {
+    background-color: var(--color-beige);
+    color: var(--color-white);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    margin: 10px;
+    width: 60%;
+}
+
+.submitBtn {
+    background-color: var(--color-green);
+    color: var(--color-white);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    margin: 10px;
+    width: 70px;
+    font-weight: 400;
+    font-size: var( --font-size-md);
 }
 

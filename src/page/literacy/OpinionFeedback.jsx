@@ -36,7 +36,7 @@ const OpinionFeedback = ({state}) => {
             <div style={{ display:"flex", margin: "5px", justifyContent:"center"}}>
                 <button className={styles.feedbackBtn} onClick={() => {navigate('/')}}>홈으로</button>
             </div>
-            <BottomNavBar user="1"></BottomNavBar>
+            <BottomNavBar/>
         </div>
     )
 }

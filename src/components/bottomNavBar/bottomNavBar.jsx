@@ -7,7 +7,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 
-const BottomNavBar = ({user}) => {
+const BottomNavBar = () => {
     const activeStyle = {
         color: 'var(--color-green)'
     };

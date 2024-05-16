@@ -62,7 +62,7 @@ const ArticleList = () => {
                 ))}
             </div>
         <Pagination className={styles.page} count={3} shape="rounded" onChange={(e) => handlePageChange(e)}/>
-        <BottomNavBar user="1"></BottomNavBar>
+        <BottomNavBar/>
         </div>
     )
 }
