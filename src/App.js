@@ -22,7 +22,6 @@ import { GlobalStyle } from "./styles/GlobalStyle";
 import { Global } from "@emotion/react";
 import { useEffect } from "react";
 import OpinionFeedback from "./page/literacy/OpinionFeedback";
-import Modal from "./components/modal/Modal";
 
 function App() {
   function setScreenSize() {
@@ -36,7 +35,6 @@ function App() {
     <>
       <Global styles={GlobalStyle} />
       <Routes>
-        <Route path="/modal" element={<Modal/>} />
         <Route path='/' element={<Main />} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/article-list' element={<ArticleList />} />
