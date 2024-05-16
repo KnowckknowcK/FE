@@ -30,6 +30,7 @@ export function DebateRoom() {
             agreeRatio,
             disagreeRatio,
             title,
+            position,
             handlePutPreference,
             forceRefresh,
             updateRatio
@@ -88,7 +89,12 @@ export function DebateRoom() {
 
     return (
         <div className={styles.background}>
-            <TopNavBar handleOnClick={handleNavLeftOnClick} isMain={true} toggleDrawer={toggleDrawer}>
+            <TopNavBar
+                handleOnClick={handleNavLeftOnClick}
+                isMain={true}
+                toggleDrawer={toggleDrawer}
+                position={position}
+            >
                 <div>{`${roomId}번 토론방`}</div>
                 <div className={styles.smallText}>{`찬성: ${agreeNum}명 반대: ${disagreeNum}명`}</div>
             </TopNavBar>

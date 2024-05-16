@@ -3,7 +3,7 @@ import styles from './TopNavBar.module.css';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FiChevronLeft } from "react-icons/fi";
 
-export const TopNavBar = ({handleOnClick, isMain, toggleDrawer, children }) => {
+export const TopNavBar = ({handleOnClick, isMain, toggleDrawer, children, position }) => {
 
     return (
         <div className={styles.topNavBarStyle}>
@@ -13,6 +13,9 @@ export const TopNavBar = ({handleOnClick, isMain, toggleDrawer, children }) => {
                 </div>
                 <div className={styles.iconTextStyle}>
                     {children}
+                </div>
+                <div className={styles.position}>
+                    {position === 'AGREE' ? '찬성 입장' : position === 'DISAGREE' ? '반대 입장' : ''}
                 </div>
             </div>
             {isMain &&
