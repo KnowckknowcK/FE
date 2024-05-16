@@ -11,7 +11,7 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [passwordCheck, setPasswordCheck] = useState('');
     const [name, setName] = useState('');
-    const [profile_img, setProfile_img] = useState('');
+    const [profileImg, setProfileImg] = useState('');
 
     const [showModal, setShowModal] = useState(false);
     const [emailVerified, setEmailVerified] = useState(false);
@@ -25,14 +25,25 @@ const SignUp = () => {
     const signUpBtn = async (e) => {
 
         e.preventDefault();
-                
+
+        const formData = new FormData();
+
+        // 사용자 정보 JSON 
+        const userInfo = JSON.stringify({ email, password, name });
+        formData.append('userInfo', userInfo);
+
+        // 프로필 이미지 파일 추가
+        if (profileImg) {
+            formData.append('profileImg', profileImg);
+        }
+
         try {
-            const response = await axios.post(REACT_APP_API_URL + '/api/account/sign-up', {
-                email, 
-                password,
-                name,
-                profile_img
+            const response = await axios.post(REACT_APP_API_URL + '/api/account/sign-up', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             });
+
             if (response.status === 200) {
                 alert('똑똑! 환영합니다. 로그인 페이지로 이동합니다.');
                 navigate('/signin');
@@ -76,7 +87,7 @@ const SignUp = () => {
     };
 
     const fileAttach = (e) => {
-        setProfile_img(e.target.files[0]);
+        setProfileImg(e.target.files[0]);
     };
 
     return (
@@ -128,11 +139,11 @@ const SignUp = () => {
             </div>
             <div className={styles.userInput}>
                 <div className={styles.inputWrap}>
-                    <input type="file" accept='image/*' onChange={fileAttach} onClick={()=>{console.log(profile_img)}}/>
+                    <input type="file" accept='image/*' onChange={fileAttach} onClick={()=>{console.log(profileImg)}}/>
                 </div>
             </div>
 
-            <button className={`${styles.signUpBtn} ${isFormFilled ? styles.signUpBtnEnabled : styles.signUpBtnDisabled}`} onClick={signUpBtn} disabled={!isFormFilled}>
+            <button className={`${styles.signUpBtn} ${isFormFilled && emailVerified ? styles.signUpBtnEnabled : styles.signUpBtnDisabled}`} onClick={signUpBtn} disabled={!isFormFilled || !emailVerified}>
                 Sign up
             </button>
 
