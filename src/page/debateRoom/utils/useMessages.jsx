@@ -13,7 +13,7 @@ export const useMessages = (roomId) => {
     const [agreeRatio, setAgreeRatio] = useState(0);
     const [disagreeRatio, setDisagreeRatio] = useState(0);
     const [refreshKey, setRefreshKey] = useState(0);
-
+    const [title, setTitle] = useState("")
     // 토론방 입장 시 찬/반 비율 보여줌
     useEffect(()=>{
         const getDebateRoomInfo = async () => {
@@ -24,6 +24,7 @@ export const useMessages = (roomId) => {
             setDisagreeLikesNum(dto.disagreeLikesNum);
             setAgreeNum(dto.agreeNum);
             setDisagreeNum(dto.disagreeNum);
+            setTitle(dto.title);
         }
         getDebateRoomInfo();
         updateRatio()
@@ -124,5 +125,5 @@ export const useMessages = (roomId) => {
     const forceRefresh = () => {
         setRefreshKey(prevKey => prevKey + 1);
     }
-    return { messages, agreeNum, disagreeNum, agreeRatio, disagreeRatio, handlePutPreference, forceRefresh, updateRatio };
+    return { messages, agreeNum, disagreeNum, agreeRatio, disagreeRatio, title,handlePutPreference, forceRefresh, updateRatio };
 };
