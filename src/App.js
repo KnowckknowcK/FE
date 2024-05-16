@@ -25,6 +25,7 @@ import SummaryHistoryIng from "./page/user/Summary/SummaryHistoryIng";
 import SummaryHistoryDone from "./page/user/Summary/SummaryHistoryDone";
 import SummaryPage from "./page/user/Summary/SummaryPage";
 import GoogleLoginSuccess from "./page/signup&in/GoogleLoginSuccess"
+import OpinionPage from "./page/user/Opinion/OpinionPage";
 
 function App() {
   function setScreenSize() {
