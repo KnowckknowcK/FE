@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './UserInfo.module.css';
+import './ProfileUpdate.css';
 import BottomNavBar from "../../components/bottomNavBar/bottomNavBar";
 import axios from 'axios';
 import {TextField,OutlinedInput,InputAdornment,IconButton, Input} from '@mui/material';
@@ -59,11 +60,11 @@ const ProfileUpdate = () => {
           formData.append("profileImg", profileImg);
 
           const json = JSON.stringify({ name: name, password: password });
-          //const blob = new Blob([json], {type: 'application/json'})
+          const blob = new Blob([json], {type: 'application/json'})
           formData.append("requestDto", json);
   
           await axios
-            .patch(REACT_APP_API_URL + "/profile/info", formData, {
+            .patch(REACT_APP_API_URL + "/api/profile/info", formData, {
               headers: {
                 "Content-Type": "multipart/form-data",
                 Authorization: "Bearer " + storedJwtToken,
@@ -99,8 +100,8 @@ const ProfileUpdate = () => {
         <div style={{overflowY:"hidden"}}>
         <div className= {styles.bgroundDiv}>
             <p style={{marginTop:"50px"}}>Profile Update</p>
+            <img src= {profileImg} className={styles.profileImg}/>
         </div>
-     <img src= {profileImg} className={styles.profileImg}/>
      <div className={styles.profileDiv}>
       <p style={{fontWeight: "600"}}>이름 변경</p>
         <form onSubmit={onSubmit} method='PATCH' id='editForm' className={styles.updateForm}>
@@ -112,7 +113,7 @@ const ProfileUpdate = () => {
           type="text"
           value={name}
           onChange={handleNameChange}
-          style={{marginBottom: "20px", width: "70%"}}
+          style={{marginBottom: "20px", width: "80%"}}
           />
 
         <OutlinedInput
@@ -133,18 +134,19 @@ const ProfileUpdate = () => {
             placeholder="새로운 비밀번호 입력"
             onChange={handlePasswordChange}
             value={password}
-            style={{marginBottom: "20px", width: "70%"}}
+            style={{marginBottom: "20px", width: "80%"}}
           />
 
-        <Input
-            type='file'
-            accept='image/*'
-            onChange={handleFileChange}
-
-            className= {styles.formBtn}
-          />
+        <label htmlFor='profileImg' className={styles.fileLabel}>프로필 사진 선택
+          <Input
+              type='file'
+              accept='image/*'
+              onChange={handleFileChange}
+              id='profileImg'
+            />
+          </label>
           <span>
-          <input type='submit' value='변경' className= {styles.submitBtn} />
+          <input type='submit' value='변경 저장' className= {styles.submitBtn} />
         </span>
         </form>
      </div>

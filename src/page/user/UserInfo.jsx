@@ -29,8 +29,8 @@ const UserInfo = () => {
         <div style={{overflowY:"hidden"}}>
             <div className= {styles.bgroundDiv}>
                 <p style={{marginTop:"50px"}}>Profile</p>
-            </div>
          <img src= {userInfo&&userInfo.profileImage} className={styles.profileImg}/>
+            </div>
          <div className={styles.profileDiv}>
             <p style={{justifySelf:"center", fontWeight:"600"}}>{userInfo ? userInfo.name : "닉네임"}</p>
             <Button variant="outlined" style={{width:"100px"}} onClick={()=>{navigate('/profile-update', {state: {userInfo: userInfo}})}}>프로필 수정</Button>
