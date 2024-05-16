@@ -143,7 +143,7 @@ const SignUp = () => {
                 </div>
             </div>
 
-            <button className={`${styles.signUpBtn} ${isFormFilled ? styles.signUpBtnEnabled : styles.signUpBtnDisabled}`} onClick={signUpBtn} disabled={!isFormFilled}>
+            <button className={`${styles.signUpBtn} ${isFormFilled && emailVerified ? styles.signUpBtnEnabled : styles.signUpBtnDisabled}`} onClick={signUpBtn} disabled={!isFormFilled || !emailVerified}>
                 Sign up
             </button>
 
