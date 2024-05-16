@@ -1,35 +1,35 @@
 .divBox {
+    display: flex;
+    flex-direction: column;
     background-color: var(--color-beige);
-    margin: 10px;
-    padding: 5px;
+    padding: 12px;
     border-radius: 5px;
+    gap: 10px;
 }
 
 .feedbackBox {
-    background-color: var(--color-white);
-    margin: 5px;
-    padding: 5px;
+    background-color: var(--color-middle-grey);
+    padding: 8px;
     border-radius: 5px;
+    word-break: keep-all;
 }
 
 .contentBox {
-    background-color: var(--color-white);
-    margin: 10px;
+    background-color: var(--color-middle-grey);
     padding: 10px;
     border-radius: 5px;
+    width: 100%;
 }
 
 .category {
-    margin: 5px;
-    margin-top: 10px;
-    color: rgb(29, 198, 130);
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-xs);
     color: var(--color-white);
     background-color: var(--color-dark-grey);
     border-radius: 12px;
     pointer-events: none;
     border: none;
     padding: 8px;
+    margin-right: 10px;
 }
 
 .feedbackBtn {
@@ -39,13 +39,10 @@
     border-radius: 5px;
     padding: 10px;
     cursor: pointer;
-    margin: 10px;
+    margin-bottom: 20%;
+    width: 40%;
+    min-width:fit-content;
+    margin-top: 15px;
+    
 }
 
-.positionDiv {
-    background-color: var(--color-white);
-    margin: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    justify-content: center;
-}
