@@ -1,0 +1,70 @@
+.modalContainer{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column;
+    text-align: center;
+}
+
+.highlight {
+    color: var(--color-dark-green);
+    font-weight: 600;
+}
+
+.textInfo {
+    font-size: var(--font-size-sm);
+}
+
+.inputWrap {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    background-color: var(--color-light-grey);
+    border-radius: 100px;
+    border: none;
+}
+
+.input{
+    outline: none;
+    border: none;
+    width: 90%;
+    height: 20px;
+    font-size: var(--font-size-xs);
+    font-weight: 400;
+    background-color: var(--color-light-grey);
+}
+
+.input::placeholder {
+    color: var(--color-dark-green);
+}
+
+.btnsWrap{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.btn{
+    width: 50%;
+    height: 35px;
+    font-weight: 600;
+    color: var(--color-dark-green);
+    font-size: var(--font-size-sm);
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 8px;
+}
+
+.closeBtn {
+    background-color: var(--color-grey);
+}
+
+.checkBtn {
+    background-color: var(--color-beige);
+}

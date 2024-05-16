@@ -9,7 +9,7 @@ export const MemberItem = ({ member: member}) => {
                 <div className={styles.flexContainer}>
                     <div>
                         <p className={styles.name}>{member.name}</p>
-                        <p className={styles.time}>{member.position}</p>
+                        <p className={styles.time}>{member.position === 'AGREE' ? '찬성 입장' : member.position === 'DISAGREE' ? '반대 입장' : ''}</p>
                     </div>
                 </div>
             </div>

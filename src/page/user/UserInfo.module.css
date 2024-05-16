@@ -4,9 +4,8 @@ h1 {
 
 .bgroundDiv {
     position: absolute;
-    width: 390px;
+    width: 100%;
     height: 180px;
-    left: 0px;
     top: 0px;
     background: var(--color-green);
     color: var(--color-white);
@@ -22,31 +21,27 @@ h1 {
     position: absolute;
     width: 122px;
     height: 122px;
-    left: 132px;
     top: 94px;
-
     background: #C4C4C4;
     border: 5px solid #FFFFFF;
     border-radius: 122px;
 }
 
 .history{
-    width: 390px;
     height: 29px;
     align-content: center;
     background: rgba(227, 213, 202, 0.4);
     font-weight: 500;
-    margin-top: 50px;
+    margin-top: 10px;
     padding-left: 10px;
 }
 
 .mywork {
-    width: 390px;
     height: 29px;
     align-content: center;
     background: rgba(227, 213, 202, 0.4);
     font-weight: 500;
-    margin-top: 30px;
+    margin-top: 20px;
     padding-left: 10px;
 }
 
@@ -56,9 +51,55 @@ h1 {
 }
 
 .profileDiv {
-    margin-top: 210px;
+    margin-top: 190px;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    padding: 20px;
+    align-items: center;
 }
 
+.updateForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.formBtn {
+    all: unset;
+    padding: 10px; /*padding를 주어 텍스트를 바탕으로 주변이 10px만큼 떨어지도록 설정*/
+    text-align: center; /*버튼에서 텍스트가 가운데 있도록 설정*/
+    background-color: royalblue; /*배경 색을 설정(원하는 걸로 바꿔도 됨)*/
+    color: white; /*글자 색*/
+    font-weight: 500; /*폰트 사이즈를 500으로 바꿈*/
+    cursor: pointer; 
+    border-radius: 10px; /*버튼의 둥근 정도를 설정*/
+    transition: opacity linear 0.1s;
+}
+
+.submitBtn {
+    background-color: var(--color-green);
+    color: var(--color-white);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    margin: 10px;
+    width: 120px;
+    font-weight: 400;
+    font-size: var( --font-size-md);
+}
+
+.fileLabel{
+    all: unset;
+    padding: 10px; /*padding를 주어 텍스트를 바탕으로 주변이 10px만큼 떨어지도록 설정*/
+    text-align: center; /*버튼에서 텍스트가 가운데 있도록 설정*/
+    background-color: salmon; /*배경 색을 설정(원하는 걸로 바꿔도 됨)*/
+    color: white; /*글자 색*/
+    font-weight: 500; /*폰트 사이즈를 500으로 바꿈*/
+    cursor: pointer; 
+    border-radius: 10px; /*버튼의 둥근 정도를 설정*/
+    transition: opacity linear 0.1s;
+}

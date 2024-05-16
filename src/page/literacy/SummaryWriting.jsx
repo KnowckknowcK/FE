@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./SummaryWriting.module.css";
 import customAxios from "../../lib/customAxios";
 import formatDateTime from "../../util/FormatDateTime"
+import Swal from "sweetalert2";
 
 const SummaryWriting = () => {
   const location = useLocation().state.data;
@@ -89,14 +90,30 @@ const SummaryWriting = () => {
             }).then((response) => {
               console.log(response.data);
                 if(response.data.code === 200) {
-                    alert("저장되었습니다.");
-                }else { 
-                    alert("저장에 실패했습니다.");
+                    Swal.fire({
+                      title: "요약 임시 저장 완료",
+                      text: "요약 임시 저장이 완료됐어요 :)",
+                      icon: "success",
+                      timer: 2000,
+                      html: "<b>2</b> 초 뒤에 메인페이지로 이동",
+                      width: "300px",
+                      confirmButtonColor: "#B5C9C0",
+                    }).then(() => {
+                      navigate("/article-list");})
                 }
-                navigate("/article-list");
-                setIsRunning(false);
-                  
-            })
+                setIsRunning(false); 
+            }).catch((error) => {
+              Swal.fire({
+                title: "요약 임시 저장 실패",
+                text: "요약을 임시저장하는 도중에 오류가 발생했어요 :(",
+                icon: "error",
+                width: "350px",
+                confirmButtonColor: "#B5C9C0",
+              }).then((res) => {
+                if(res.isConfirmed) {
+                  navigate("/article-list")
+                }
+              })})
   }
 
   const submitSummary = async () => {
@@ -115,14 +132,30 @@ const SummaryWriting = () => {
       takenTime: time
     }).then((response) => {
       if(response.data.code === 200) {
-        alert("제출되었습니다.");
-        navigate("/feedback", {state: {data: location, summary: response.data.data, title : location.title, takenTime: time, category: location.category}});
-
-      } else {
-        console.log(response.data);
-        alert("제출에 실패했습니다.");
-      }
-    })
+        Swal.fire({
+          title: "AI 요약 피드백 완성",
+          text: "AI 요약 피드백이 완성됐어요 :)",
+          icon: "success",
+          timer: 2000,
+          html: "<b>2</b> 초 뒤에 피드백 확인하기",
+          width: "300px",
+          confirmButtonColor: "#B5C9C0",
+        }).then(() => {
+          navigate("/feedback", {state: {data: location, summary: response.data.data, title : location.title, takenTime: time, category: location.category}});
+        })
+      } 
+    }).catch((error) => {
+      Swal.fire({
+        title: "AI 요약 피드백 생성 실패",
+        text: "AI 요약 피드백을 생성하는 도중에 오류가 발생했어요 :(",
+        icon: "error",
+        width: "350px",
+        confirmButtonColor: "#B5C9C0",
+      }).then((res) => {
+        if(res.isConfirmed) {
+          navigate("/article-list")
+        }
+      })})
   }
 
     const onChangeTextArea = (e) => {

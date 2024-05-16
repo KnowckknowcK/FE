@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import styles from './Drawer.module.css';
 import {PieChart} from "./PieChart";
-import axios from "axios";
 import {MemberItem} from "../../common/messageItem/MemberItem";
 import { FiLogOut } from "react-icons/fi";
 import {useNavigate} from "react-router-dom";
 import {fetchUtil} from "../../utils/fetchUtil";
 
-export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio, updateRatio }) => {
+export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio, updateRatio, title }) => {
     const [memberList, setMemberList] = useState([]);
     const navigate = useNavigate();
     const api = process.env.REACT_APP_API_URL;
@@ -33,8 +32,10 @@ export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio
 
     const handleLeaveRoom = () =>{
         const leaveRoom = async () => {
-            await axios
-                .delete(`${api}/api/debate-room/${roomId}`)
+            await fetchUtil(`${api}/api/debate-room/${roomId}`,
+                {
+                    method: 'DELETE'
+                });
         }
         leaveRoom()
             .then(
@@ -48,6 +49,9 @@ export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio
             <div className={styles.drawer}>
                 <div className={styles.drawerTop}>
                     토론방 서랍
+                </div>
+                <div>
+                    토론방 제목:{title}
                 </div>
                 <div className={styles.drawerRatio}>
                     토론방 찬/반 비율

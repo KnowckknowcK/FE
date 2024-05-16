@@ -24,7 +24,7 @@ export const MessageItem = ({ message, handlePutPreference, isThread}) => {
                     <div className={styles.content}>{message.content}</div>
                     <div className={styles.reactions}>
                         <div className={`${styles.position}`}>
-                            {message.position}
+                            {message.position === 'AGREE' ? '찬성 입장' : message.position === 'DISAGREE' ? '반대 입장' : ''}
                         </div>
                         <div onClick={(e) => handleLikeClick(e)}>
                             <FaThumbsUp style={{color:"#ffffff"}}/>

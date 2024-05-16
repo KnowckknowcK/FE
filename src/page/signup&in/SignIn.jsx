@@ -8,8 +8,6 @@ const SignIn = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    const navToMain = useNavigate();
     
     const signInBtn = async (e) => {
         e.preventDefault();
@@ -21,7 +19,7 @@ const SignIn = () => {
             if (response.status === 200) {
                 console.log('로그인 성공:', response.data);
                 localStorage.setItem('accessToken', response.data.data.jwt)
-                navToMain('/', {});
+                window.location.replace("/");
             } else {
                 console.error('로그인 실패');
             }

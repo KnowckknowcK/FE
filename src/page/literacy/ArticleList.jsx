@@ -2,24 +2,27 @@ import React, {useState, useEffect} from "react";
 import styles from "./ArticleList.module.css";
 import Article from "../literacy/Article";
 import customAxios from "../../lib/customAxios";
-import Pagination from '@mui/material/Pagination';
+import {Pagination} from '@mui/material';
 import BottomNavBar from '../../components/bottomNavBar/bottomNavBar';
 
 
 const ArticleList = () => {
 
     const [articleList, setArticleList] = useState([]);
+    const [articleCnt, setArticleCnt] = useState(0);
     const [isLoading, setIsLoading] = useState([true]);
     const [category, setCategory] = useState("ECONOMICS");
-    const [pageNum, setPageNum] = useState(0);
+    const [pageNum, setPageNum] = useState(1);
 
 
     useEffect(() => {
+        setPageNum(1);
         const loadArticle = async () => {
             return await customAxios
               .get(`/article/list/${category}/${pageNum}`)
               .then((response) => {
                 setArticleList(response.data.data.content);
+                setArticleCnt(response.data.data.totalElements);
               });
           };
       
@@ -32,9 +35,9 @@ const ArticleList = () => {
           
     },[category, pageNum])
 
-    const handlePageChange = (e) => {
-        const nowPageInt = parseInt(e.target.outerText);
-        setPageNum(nowPageInt-1);
+    const handlePageChange = (event, page) => {
+        setPageNum(page);
+        console.log(page);
       };
 
       const onclickCategory = (category) => {
@@ -60,9 +63,9 @@ const ArticleList = () => {
                 {articleList.length !== 0  && articleList.map((article) => (
                     <Article data = {article}/>
                 ))}
+            <Pagination activePage={pageNum} count={10} variant="outlined" style={{marginBottom:"40px"}} onChange={handlePageChange}/>
             </div>
-        <Pagination className={styles.page} count={3} shape="rounded" onChange={(e) => handlePageChange(e)}/>
-        <BottomNavBar user="1"></BottomNavBar>
+        <BottomNavBar/>
         </div>
     )
 }

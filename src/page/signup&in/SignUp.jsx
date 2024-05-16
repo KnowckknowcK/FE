@@ -1,6 +1,7 @@
 import React, {useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./SignUp.module.css";
+import EmailCheck from "./EmailCheck";
 import axios from "axios";
 const { REACT_APP_API_URL } = process.env;
 
@@ -10,22 +11,39 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [passwordCheck, setPasswordCheck] = useState('');
     const [name, setName] = useState('');
-    const [profile_img, setProfile_img] = useState('');
+    const [profileImg, setProfileImg] = useState('');
+
+    const [showModal, setShowModal] = useState(false);
+    const [emailVerified, setEmailVerified] = useState(false);
+
 
     const pwMatch = password && passwordCheck && password === passwordCheck;
     const isFormFilled = email && password && passwordCheck && name && pwMatch;
-    
+
+    const navigate = useNavigate();
+
     const signUpBtn = async (e) => {
 
         e.preventDefault();
-                
+
+        const formData = new FormData();
+
+        // 사용자 정보 JSON 
+        const userInfo = JSON.stringify({ email, password, name });
+        formData.append('userInfo', userInfo);
+
+        // 프로필 이미지 파일 추가
+        if (profileImg) {
+            formData.append('profileImg', profileImg);
+        }
+
         try {
-            const response = await axios.post(REACT_APP_API_URL + '/api/account/sign-up', {
-                email, 
-                password,
-                name,
-                profile_img
+            const response = await axios.post(REACT_APP_API_URL + '/api/account/sign-up', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             });
+
             if (response.status === 200) {
                 alert('똑똑! 환영합니다. 로그인 페이지로 이동합니다.');
                 navigate('/signin');
@@ -42,29 +60,62 @@ const SignUp = () => {
         }
     };
 
-    const navigate = useNavigate();
-    const authBtn = () => {
-        navigate(`/signup`);
-    }
+    const validateEmail = (email) => {
+        const re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    };
+
+    const authBtn = async () => {
+    
+        try {
+            const response = await axios.post(REACT_APP_API_URL + '/api/account/email-check', {
+                email: email,
+            });
+            
+            if (response.status === 200) {
+                //인증코드 발송 성공 시 모달창 열기
+                setShowModal(true); 
+            }
+        } catch (error) {
+            console.error('이메일 인증 요청 에러:', error);
+            alert('인증코드 발송 실패. 관리자에게 문의하세요.')
+        }
+    };
+
+    const handleEmailVerified = () => {
+        setEmailVerified(true);
+    };
 
     const fileAttach = (e) => {
-        setProfile_img(e.target.files[0]);
+        setProfileImg(e.target.files[0]);
     };
 
     return (
         <div className={styles.page}>
+
             <div className={styles.titleWrap}>
                 Sign up
             </div>
+            
             <div className={styles.emailInput}>
                 <div className={styles.inputWrap}>
                     <span style={{color: 'red'}}>*</span>
-                    <input type="text" className={styles.input} placeholder="Email"value={email}onChange={(e)=>setEmail(e.target.value)}/>
+                    <input type="text" className={styles.input} placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)} disabled={showModal || emailVerified}/>
+                    {emailVerified ? (
+                        <img src="/check_icon.png" alt="이메일 인증됨" className={styles.icon} />) 
+                        : (<img src="/warning_icon.png" alt="이메일 인증안됨" className={styles.icon} />)
+                    }
                 </div>
-                <button className={styles.authBtn} onClick={authBtn}>
+                <button className={`${styles.authBtn} ${validateEmail(email) && !showModal && !emailVerified ? styles.authBtnEnabled : styles.authBtnDisabled}`} onClick={authBtn} disabled={!validateEmail(email) || showModal || emailVerified}>
                     인증하기
                 </button>
             </div>
+            {showModal && (
+                <div className={styles.modalBackdrop}>
+                    <EmailCheck email={email} onClose={() => setShowModal(false)} onVerified={handleEmailVerified}/>
+                </div>
+            )}
+
             <div className={styles.passwordInput}>
                 <div className={styles.inputWrap}>
                     <span style={{color: 'red'}}>*</span>
@@ -79,6 +130,7 @@ const SignUp = () => {
                     ))}
                 </div>
             </div>
+
             <div className={styles.userInput}>
                 <div className={styles.inputWrap}>
                     <span style={{color: 'red'}}>*</span>
@@ -87,10 +139,11 @@ const SignUp = () => {
             </div>
             <div className={styles.userInput}>
                 <div className={styles.inputWrap}>
-                    <input type="file" accept='image/*' onChange={fileAttach} onClick={()=>{console.log(profile_img)}}/>
+                    <input type="file" accept='image/*' onChange={fileAttach} onClick={()=>{console.log(profileImg)}}/>
                 </div>
             </div>
-            <button className={styles.signUpBtn} onClick={signUpBtn} disabled={!isFormFilled}>
+
+            <button className={`${styles.signUpBtn} ${isFormFilled && emailVerified ? styles.signUpBtnEnabled : styles.signUpBtnDisabled}`} onClick={signUpBtn} disabled={!isFormFilled || !emailVerified}>
                 Sign up
             </button>
 

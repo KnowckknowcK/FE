@@ -1,6 +1,8 @@
 .articleList {
     display: grid;
     grid-template-columns: repeat(1,minmax(200px, 1fr));
+    margin-bottom: 30px;
+    justify-items: center;
 }
 
 .menuBtn {
@@ -22,15 +24,15 @@
     gap: 8px;
     border: none;
 
-    width: 80px;
-    height: 55px;
+    width: 70px;
+    height: 50px;
 
     background: var(--color-beige);
     border-radius: 20px;
     white-space: nowrap;
 
     font-weight: 700;
-    font-size: 18px;
+    font-size: 17px;
     color: #6B9080;
     margin: 10px;
 }
@@ -44,8 +46,7 @@
 
 
 .page {
-    margin-top: 5px;
+    margin-top: 10px;
     margin-bottom: 80px;
-    margin-left: 26%;
 }
 
