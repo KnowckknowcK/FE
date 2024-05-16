@@ -22,6 +22,7 @@ import { GlobalStyle } from "./styles/GlobalStyle";
 import { Global } from "@emotion/react";
 import { useEffect } from "react";
 import OpinionFeedback from "./page/literacy/OpinionFeedback";
+import GoogleLoginSuccess from "./page/signup&in/GoogleLoginSuccess"
 
 function App() {
   function setScreenSize() {
@@ -58,6 +59,7 @@ function App() {
             </StompProvider>
           }
         />
+        <Route path='/google-login' element={<GoogleLoginSuccess />} />
       </Routes>
     </>
   );
