@@ -1,12 +1,15 @@
 import React from 'react';
 import styles from "./MyDebateRoom.module.css";
 import {useNavigate} from "react-router-dom";
+import {fetchUtil} from "../debateRoom/utils/fetchUtil";
 
 const MyDebateRoom = ({data}) => {
     const navigate = useNavigate();
-
-    const handleRoomClick = (id) => {
-        navigate(`/debate-room/${id}`)
+    const getDebateRoomInfo = async (roomId) => {
+        const dto = await fetchUtil(`/debate-room/${roomId}`, {
+            method: 'PUT'
+        });
+        navigate(`/debate-room/${roomId}`);
     }
     const imageOptions = {
         AGREE: require('./Position/agree.png'),
@@ -15,7 +18,7 @@ const MyDebateRoom = ({data}) => {
     const imagePath = imageOptions[data.position];
     return (
         <div className={styles.block}
-            onClick={() => handleRoomClick(data.id)}>
+            onClick={() => getDebateRoomInfo(data.id)}>
             <p>{data.title}</p>
             <p className={styles.vector}></p>
             <div className={styles.line}>
