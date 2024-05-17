@@ -7,7 +7,7 @@ import {ThreadItem} from "../../common/messageItem/ThreadItem";
 import {useThreads} from "../../hooks/useThreads";
 
 export function MessageThread({ roomId, isOpen, close, message, handlePutPreference, refreshKey}){
-    const threads = useThreads(message? message.messageId:null)
+    const threads = useThreads(roomId, message? message.messageId:null, isOpen)
 
     async function handlePutPreferenceInThread(){
         const dto = await handlePutPreference(message.messageId, message.position)

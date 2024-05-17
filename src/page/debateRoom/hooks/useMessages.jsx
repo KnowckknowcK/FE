@@ -32,5 +32,12 @@ export function useMessages(id, refreshKey){
         }));
     }
 
-    return { messages, setMessages, updateLikesNum};
+    const updateMessage = (newMessage) => {
+        setMessages((prevMessages) => ({
+            ...prevMessages,
+            [newMessage.messageId]: newMessage,
+            })
+        );
+    }
+    return { messages, updateMessage, updateLikesNum};
 }
