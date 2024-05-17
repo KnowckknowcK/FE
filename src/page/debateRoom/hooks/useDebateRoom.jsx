@@ -18,36 +18,35 @@ export function useDebateRoom(roomId) {
             }
         };
         getDebateRoomInfo();
+
     }, [roomId]);
 
-    function updateRatio(){
+    useEffect(() => {
+        if (debateRoomInfo) {
+            updateRatio(debateRoomInfo.agreeLikesNum, debateRoomInfo.disagreeLikesNum);
+        }
+    }, [debateRoomInfo]);
+
+    function updateRatio(agreeLikesNum, disagreeLikesNum){
+        debateRoomInfo.agreeLikesNum = agreeLikesNum
+        debateRoomInfo.disagreeLikesNum = disagreeLikesNum
         if (debateRoomInfo.agreeLikesNum === 0
             && debateRoomInfo.disagreeLikesNum === 0){
             setAgreeRatio(0);
             setDisagreeRatio(0);
         } else {
             let ratio;
-            const likesSum = (debateRoomInfo.agreeLikesNum + debateRoomInfo.disagreeLikesNum) * 100
+            const likesSum = (debateRoomInfo.agreeLikesNum + debateRoomInfo.disagreeLikesNum)
             if (debateRoomInfo.agreeLikesNum >= debateRoomInfo.disagreeLikesNum){
-                ratio = debateRoomInfo.agreeLikesNum / likesSum
+                ratio = debateRoomInfo.agreeLikesNum / likesSum * 100
                 setAgreeRatio(ratio);
                 setDisagreeRatio(100 - ratio);
             } else{
-                ratio = debateRoomInfo.disagreeLikesNum / likesSum
+                ratio = debateRoomInfo.disagreeLikesNum / likesSum * 100
                 setAgreeRatio(100 - ratio);
                 setDisagreeRatio(ratio);
             }
         }
     }
-    async function handlePutPreference(messageId, position){
-        const isAgree = position !== 'DISAGREE';
-        const dto = await customAxios.put(`/message/preference/${messageId}`,
-            {
-                isAgree: isAgree
-            }
-        );
-        updateRatio();
-        return dto;
-    }
-    return {debateRoomInfo, agreeRatio, disagreeRatio, updateRatio, handlePutPreference};
+    return {debateRoomInfo, agreeRatio, disagreeRatio, updateRatio};
 }

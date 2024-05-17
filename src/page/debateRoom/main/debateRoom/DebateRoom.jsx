@@ -16,6 +16,7 @@ import {useEndRef} from "../../hooks/useEndRef";
 import {useDrawer} from "../../hooks/useDrawer";
 import {useModal} from "../../hooks/useModal";
 import {useDebateRoom} from "../../hooks/useDebateRoom";
+import {usePreference} from "../../hooks/usePreference";
 
 export function DebateRoom() {
     let { roomId } = useParams();
@@ -25,11 +26,11 @@ export function DebateRoom() {
         debateRoomInfo,
         agreeRatio,
         disagreeRatio,
-        handlePutPreference
+        updateRatio
     } = useDebateRoom(roomId)
 
     const { refreshKey, refresh } = useRefresh();
-    const { messages, updateMessage} = useMessages(roomId, refreshKey);
+    const { messages, updateMessage, updateLikesNum} = useMessages(roomId, refreshKey);
     useSubscribe(roomId, updateMessage);
 
     const messagesEndRef = useEndRef(messages);
@@ -41,6 +42,7 @@ export function DebateRoom() {
         handleOpenMessageThread
     } = useModal()
 
+    const handlePutPreference = usePreference( messages, updateRatio, updateLikesNum )
 
     const handleNavLeftOnClick = () =>{
         navigate(-1)
