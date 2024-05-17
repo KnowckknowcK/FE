@@ -1,15 +1,15 @@
 import {useEffect, useState} from "react";
-import CustomAxios from "../../../lib/customAxios";
+import customAxios from "../../../lib/customAxios";
 
 export function useDebateRoom(roomId) {
-    const [debateRoomInfo, setDebateRoomInfo] = useState(null)
+    const [debateRoomInfo, setDebateRoomInfo] = useState({})
     const [agreeRatio, setAgreeRatio] = useState(0)
     const [disagreeRatio, setDisagreeRatio] = useState(0);
 
     useEffect(() => {
         const getDebateRoomInfo = async () => {
             try {
-                const response = await CustomAxios.put(`/debate-room/${roomId}`, null);
+                const response = await customAxios.put(`/debate-room/${roomId}`, null);
                 // response에서 원하는 데이터 추출하여 상태 업데이트
                 const dto = response.data.data;
                 setDebateRoomInfo(dto);
@@ -41,7 +41,7 @@ export function useDebateRoom(roomId) {
     }
     async function handlePutPreference(messageId, position){
         const isAgree = position !== 'DISAGREE';
-        const dto = await CustomAxios.put(`/message/preference/${messageId}`,
+        const dto = await customAxios.put(`/message/preference/${messageId}`,
             {
                 isAgree: isAgree
             }

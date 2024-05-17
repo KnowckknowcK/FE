@@ -29,14 +29,13 @@ export function DebateRoom() {
     } = useDebateRoom(roomId)
 
     const { refreshKey, refresh } = useRefresh();
-    const { messages, setMessages } = useMessages(roomId, refreshKey)
+    const { messages, setMessages} = useMessages(roomId, refreshKey)
     useSubscribe(roomId, (newMessage) => {
         setMessages((prevMessages) => ({
             ...prevMessages,
             [newMessage.messageId]: newMessage,
         }));
     });
-
 
     const messagesEndRef = useEndRef(messages);
     const {isDrawerOpen, toggleDrawer} = useDrawer()
@@ -81,7 +80,6 @@ export function DebateRoom() {
                         <MessageItem key={message.messageId}
                                      message={message}
                                      handlePutPreference={handlePutPreference}
-                                     isThread={false}
                         />
                     </div>
                 ))}

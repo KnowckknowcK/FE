@@ -5,9 +5,10 @@ import {MessageItem} from "../../common/messageItem/MessageItem";
 import {BottomNavBar} from "../../common/bottomNavBar/BottomNavBar";
 import {ThreadItem} from "../../common/messageItem/ThreadItem";
 import {useMessages} from "../../hooks/useMessages";
+import {useThreads} from "../../hooks/useThreads";
 
 export function MessageThread({ roomId, isOpen, close, message, handlePutPreference, refreshKey}){
-    const threads = useMessages(message? message.messageId:null, refreshKey, true)
+    const threads = useThreads(message? message.messageId:null)
 
     async function handlePutPreferenceInThread(){
         const dto = await handlePutPreference(message.messageId, message.position)
