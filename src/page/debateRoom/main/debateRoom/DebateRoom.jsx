@@ -38,7 +38,7 @@ export function DebateRoom() {
     });
 
     const messagesEndRef = useEndRef(messages);
-    const {isDrawerOpen, toggleDrawer} = useDrawer()
+    const {isDrawerOpen, toggleDrawer} = useDrawer();
     const {
         isModalOpen,
         currentMessage,

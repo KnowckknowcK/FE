@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 
 export function useDrawer() {
-    const {isDrawerOpen, setIsDrawerOpen} = useState(false);
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     useEffect(() => {
         if (isDrawerOpen) {
             // Drawer가 열렸을 때 스크롤 비활성화
@@ -19,7 +19,6 @@ export function useDrawer() {
 
     const toggleDrawer = () => {
         setIsDrawerOpen(!isDrawerOpen);
-
     };
     return {isDrawerOpen, toggleDrawer};
 }

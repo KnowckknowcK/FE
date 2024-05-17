@@ -13,9 +13,10 @@ export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio
 
     useEffect(() => {
         const loadMemberList = async() =>{
-            return await CustomAxios.get(`/debate-room/${roomId}`);
+            const response = await CustomAxios.get(`/debate-room/${roomId}`);
+            setMemberList(response.data.data)
         }
-        setMemberList(loadMemberList())
+        loadMemberList();
     }, [roomId])
 
     const handleBackdropClick = (e) => {
