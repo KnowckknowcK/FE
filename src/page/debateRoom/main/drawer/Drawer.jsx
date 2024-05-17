@@ -4,45 +4,36 @@ import {PieChart} from "./PieChart";
 import {MemberItem} from "../../common/messageItem/MemberItem";
 import { FiLogOut } from "react-icons/fi";
 import {useNavigate} from "react-router-dom";
-import {fetchUtil} from "../../utils/fetchUtil";
+import CustomAxios from "../../../../lib/customAxios";
 
-export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio, updateRatio, title }) => {
+export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio, title }) => {
     const [memberList, setMemberList] = useState([]);
     const navigate = useNavigate();
     const api = process.env.REACT_APP_API_URL;
+
     useEffect(() => {
         const loadMemberList = async() =>{
-            const memberList =  await fetchUtil(`/debate-room/${roomId}`, {
-                method: 'GET'
-            });
-            setMemberList(memberList)
+            return await CustomAxios.get(`/debate-room/${roomId}`);
         }
-        loadMemberList();
+        setMemberList(loadMemberList())
     }, [roomId])
-
-    if(!isOpen){
-        return null;
-    }
 
     const handleBackdropClick = (e) => {
         e.stopPropagation(); // 이벤트 버블링 방지
         toggleDrawer(); // drawer 닫기 함수 실행
-        updateRatio();
     };
 
     const handleLeaveRoom = () =>{
         const leaveRoom = async () => {
-            await fetchUtil(`${api}/api/debate-room/${roomId}`,
-                {
-                    method: 'DELETE'
-                });
+            await CustomAxios.delete(`${api}/api/debate-room/${roomId}`)
         }
         leaveRoom()
-            .then(
-                navigate(-1)
-            )
+        navigate(-1)
     }
 
+    if(!isOpen){
+        return null;
+    }
     return (
         <div>
             <div className={styles.backdrop} onClick={(e) => (handleBackdropClick(e))}></div>

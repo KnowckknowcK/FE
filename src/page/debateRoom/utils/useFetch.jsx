@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export async function fetchUtil(endpoint, options = {}) {
+export async function useFetch(endpoint, options = {}) {
     const api = process.env.REACT_APP_API_URL;
 
     try {
