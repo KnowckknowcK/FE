@@ -9,16 +9,13 @@ export function useDebateRoom(roomId) {
     useEffect(() => {
         const getDebateRoomInfo = async () => {
             try {
-                // const response = await CustomAxios.put(`/debate-room/${roomId}`, null);
-                const response = await ()
+                const response = await CustomAxios.put(`/debate-room/${roomId}`, null);
+                // response에서 원하는 데이터 추출하여 상태 업데이트
                 setDebateRoomInfo(response.data.data);
-
-                console.log(debateRoomInfo)
             } catch (error) {
                 console.error('Debate room 정보를 가져오는 중 오류가 발생했습니다.', error);
             }
         };
-
         getDebateRoomInfo();
     }, [roomId]);
 
