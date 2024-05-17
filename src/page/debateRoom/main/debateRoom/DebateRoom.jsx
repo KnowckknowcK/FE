@@ -77,6 +77,7 @@ export function DebateRoom() {
                         <MessageItem key={message.messageId}
                                      message={message}
                                      handlePutPreference={handlePutPreference}
+                                     curTime={debateRoomInfo.now}
                         />
                     </div>
                 ))}
@@ -88,7 +89,7 @@ export function DebateRoom() {
                            close={handleCloseMessageThread}
                            message={currentMessage}
                            handlePutPreference={handlePutPreference}
-                           forceRefresh={refresh}
+                           curTime={debateRoomInfo.now}
             />
             <div ref={messagesEndRef}/>
 

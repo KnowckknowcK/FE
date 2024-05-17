@@ -6,7 +6,13 @@ import {BottomNavBar} from "../../common/bottomNavBar/BottomNavBar";
 import {ThreadItem} from "../../common/messageItem/ThreadItem";
 import {useThreads} from "../../hooks/useThreads";
 
-export function MessageThread({ roomId, isOpen, close, message, handlePutPreference, refreshKey}){
+export function MessageThread({
+                                  roomId,
+                                  isOpen,
+                                  close,
+                                  message,
+                                  handlePutPreference,
+                                  curTime}){
     const threads = useThreads(roomId, message? message.messageId:null, isOpen)
 
     async function handlePutPreferenceInThread(){
@@ -42,6 +48,7 @@ export function MessageThread({ roomId, isOpen, close, message, handlePutPrefere
                                  message={message}
                                  isThread={true}
                                  handlePutPreference={handlePutPreferenceInThread}
+                                 curTime={curTime}
                     />
                 </div>
 
@@ -51,7 +58,9 @@ export function MessageThread({ roomId, isOpen, close, message, handlePutPrefere
                 <div>
                     {threads.map((thread) => (
                         <div key={thread.id}>
-                            <ThreadItem thread={thread}/>
+                            <ThreadItem thread={thread}
+                                        curTime={curTime}
+                            />
                         </div>
                     ))}
                 </div>

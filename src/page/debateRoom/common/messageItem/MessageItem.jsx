@@ -4,7 +4,7 @@ import styles from './MessageItem.module.css';
 import {FaThumbsUp} from "react-icons/fa6";
 import {timeSince} from "./TimeSince";
 
-export const MessageItem = ({ message, handlePutPreference, isThread}) => {
+export const MessageItem = ({ message, handlePutPreference, curTime, isThread}) => {
     const handleLikeClick = (e) => {
         e.stopPropagation();
         handlePutPreference(message.messageId, message.position);
@@ -17,7 +17,7 @@ export const MessageItem = ({ message, handlePutPreference, isThread}) => {
                 <div className={styles.flexContainer}>
                     <div>
                         <p className={styles.name}>{message.writer}</p>
-                        <p className={styles.time}>{timeSince(message.createdTime)}</p>
+                        <p className={styles.time}>{timeSince(message.createdTime, curTime)}</p>
                     </div>
                     <div className={styles.content}>{message.content}</div>
                     <div className={styles.reactions}>
