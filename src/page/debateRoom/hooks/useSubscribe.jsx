@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useStomp} from "../../../context/StompContext";
 
 export function useSubscribe(roomId, setMessages, isThread, messageId) {
