@@ -24,7 +24,6 @@ const OpinionWriting = () => {
     return await customAxios.post(`/opinion/submit`, {
       content: opinion,
       articleId: location.id,
-      status: "DONE",
       position: position
 
     }).then((response) => {
