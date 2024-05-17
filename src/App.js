@@ -11,7 +11,7 @@ import OpinionWriting from "./page/literacy/OpinionWriting";
 import SummaryWriting from "./page/literacy/SummaryWriting";
 import SignIn from "./page/signup&in/SignIn";
 import SignUp from "./page/signup&in/SignUp";
-import MyDebateRoom from "./page/user/MyDebateRoom";
+import MyDebateRoomList from "./page/user/MyDebateRoomList";
 import OpinionHistory from "./page/user/Opinion/OpinionHistory";
 import ProfileUpdate from "./page/user/ProfileUpdate";
 import UserInfo from "./page/user/UserInfo";
@@ -25,6 +25,7 @@ import SummaryHistoryIng from "./page/user/Summary/SummaryHistoryIng";
 import SummaryHistoryDone from "./page/user/Summary/SummaryHistoryDone";
 import SummaryPage from "./page/user/Summary/SummaryPage";
 import GoogleLoginSuccess from "./page/signup&in/GoogleLoginSuccess"
+import OpinionPage from "./page/user/Opinion/OpinionPage";
 
 function App() {
   function setScreenSize() {
@@ -47,7 +48,7 @@ function App() {
         <Route path='/opinion-feedback' element={<OpinionFeedback />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/signin' element={<SignIn />} />
-        <Route path='/debate-room' element={<MyDebateRoom />} />
+        <Route path='/debate-room' element={<MyDebateRoomList />} />
         <Route path='/opinion-history' element={<OpinionHistory />} />
         <Route path="/opinion/:id" element={<OpinionPage/>}/>
         <Route path='/summary-history/ing' element={<SummaryHistoryIng/>}/>
