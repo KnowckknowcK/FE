@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import customAxios from "../../../lib/customAxios";
+import Swal from "sweetalert2";
 
 export function useDebateRoom(roomId) {
     const [debateRoomInfo, setDebateRoomInfo] = useState({})
@@ -27,6 +28,17 @@ export function useDebateRoom(roomId) {
         }
     }, [debateRoomInfo]);
 
+    useEffect(() => {
+        Swal.fire({
+            title: `${roomId}번 토론방 입장`,
+            text: `${debateRoomInfo.position === 'AGREE' ? '찬성 입장' : '반대 입장'}이에요.`,
+            icon: "info",
+            timer: 1000,
+            html: `${debateRoomInfo.position === 'AGREE' ? '찬성 입장' : '반대 입장'}이에요.`,
+            width: "300px",
+            confirmButtonColor: "#B5C9C0",
+        });
+    }, [debateRoomInfo, roomId]);
     function updateRatio(agreeLikesNum, disagreeLikesNum){
         debateRoomInfo.agreeLikesNum = agreeLikesNum
         debateRoomInfo.disagreeLikesNum = disagreeLikesNum

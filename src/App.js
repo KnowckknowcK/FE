@@ -16,7 +16,7 @@ import OpinionHistory from "./page/user/Opinion/OpinionHistory";
 import ProfileUpdate from "./page/user/ProfileUpdate";
 import UserInfo from "./page/user/UserInfo";
 import Main from "./page/main/Main";
-import StompProvider from "./Provider/StompProvider";
+import StompProvider from "./provider/StompProvider";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { Global } from "@emotion/react";
 import { useEffect } from "react";
