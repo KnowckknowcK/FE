@@ -33,7 +33,7 @@ export const BottomNavBar = ({ roomId, isThread, messageId }) => {
                 onKeyDown={handleKeyDown}
             />
             <div className={styles.sendIcon} onClick={handleClick}>
-                <IoSendSharp style={{color: "white", height:"24px", width:"24px"}}/>
+                <IoSendSharp style={{color: "#56A76E", height:"24px", width:"24px"}}/>
             </div>
         </div>
     );

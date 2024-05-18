@@ -1,27 +1,26 @@
 /* bottomNavBar.module.css */
 .navBar {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #E3D5CA;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-top: 1px solid #ffffff;
+    bottom: 20px;
+    left: 5%;
+    width: 92%;
+
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+
+
     padding: 15px;
     box-sizing: border-box;
+
+    border-radius: 10px;
+
+    background-color: white;
 }
 
 .inputField {
-    flex-grow: 1;
-    margin-right: 10px;
-    padding: 10px;
-    border: none
-;
+    border: none;
+    background-color: transparent;
     outline: none;
-    background-color: #E3D5CA;
 }
 
 .sendIcon {
