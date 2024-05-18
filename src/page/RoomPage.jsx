@@ -1,12 +1,10 @@
 import { useNavigate} from 'react-router-dom';
-import {fetchUtil} from "./debateRoom/utils/fetchUtil";
+import CustomAxios from "../lib/customAxios";
 
 export function RoomPage() {
     const navigate = useNavigate();
     const getDebateRoomInfo = async (roomId) => {
-        const dto = await fetchUtil(`/debate-room/${roomId}`, {
-            method: 'PUT'
-        });
+        await CustomAxios.put(`/debate-room/${roomId}`, null)
         navigate(`/debate-room/${roomId}`);
     }
     return (

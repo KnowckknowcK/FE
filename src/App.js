@@ -16,7 +16,7 @@ import OpinionHistory from "./page/user/Opinion/OpinionHistory";
 import ProfileUpdate from "./page/user/ProfileUpdate";
 import UserInfo from "./page/user/UserInfo";
 import Main from "./page/main/Main";
-import StompProvider from "./Provider/StompProvider";
+import StompProvider from "./provider/StompProvider";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { Global } from "@emotion/react";
 import { useEffect } from "react";
@@ -24,7 +24,7 @@ import OpinionFeedback from "./page/literacy/OpinionFeedback";
 import SummaryHistoryIng from "./page/user/Summary/SummaryHistoryIng";
 import SummaryHistoryDone from "./page/user/Summary/SummaryHistoryDone";
 import SummaryPage from "./page/user/Summary/SummaryPage";
-import GoogleLoginSuccess from "./page/signup&in/GoogleLoginSuccess"
+import GoogleLoginSuccess from "./page/signup&in/GoogleLoginSuccess";
 import OpinionPage from "./page/user/Opinion/OpinionPage";
 
 function App() {
@@ -43,17 +43,17 @@ function App() {
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/article-list' element={<ArticleList />} />
         <Route path='/opinion-writing' element={<OpinionWriting />} />
-        <Route path='/summary/:id' element={<SummaryWriting />} />
+        <Route path='/summary' element={<SummaryWriting />} />
         <Route path='/feedback' element={<Feedback />} />
         <Route path='/opinion-feedback' element={<OpinionFeedback />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/signin' element={<SignIn />} />
         <Route path='/debate-room' element={<MyDebateRoomList />} />
         <Route path='/opinion-history' element={<OpinionHistory />} />
-        <Route path="/opinion/:id" element={<OpinionPage/>}/>
-        <Route path='/summary-history/ing' element={<SummaryHistoryIng/>}/>
-        <Route path='/summary-history/done' element={<SummaryHistoryDone/>}/>
-        <Route path="/summary-detail/:id" element={<SummaryPage/>}/>
+        <Route path='/opinion/:id' element={<OpinionPage />} />
+        <Route path='/summary-history/ing' element={<SummaryHistoryIng />} />
+        <Route path='/summary-history/done' element={<SummaryHistoryDone />} />
+        <Route path='/summary-detail/:id' element={<SummaryPage />} />
         <Route path='/mypage' element={<UserInfo />} />
         <Route path='/room' element={<RoomPage />} />
         <Route path='/profile-update' element={<ProfileUpdate />} />

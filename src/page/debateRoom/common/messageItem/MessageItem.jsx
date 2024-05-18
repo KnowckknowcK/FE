@@ -4,13 +4,11 @@ import styles from './MessageItem.module.css';
 import {FaThumbsUp} from "react-icons/fa6";
 import {timeSince} from "./TimeSince";
 
-export const MessageItem = ({ message, handlePutPreference, isThread}) => {
-
+export const MessageItem = ({ message, handlePutPreference, curTime, isThread}) => {
     const handleLikeClick = (e) => {
         e.stopPropagation();
         handlePutPreference(message.messageId, message.position);
     };
-
 
     return (
         <div className={`${styles.messageContainer}`} key={message.messageId}>
@@ -19,7 +17,7 @@ export const MessageItem = ({ message, handlePutPreference, isThread}) => {
                 <div className={styles.flexContainer}>
                     <div>
                         <p className={styles.name}>{message.writer}</p>
-                        <p className={styles.time}>{timeSince(message.createdTime)}</p>
+                        <p className={styles.time}>{timeSince(message.createdTime, curTime)}</p>
                     </div>
                     <div className={styles.content}>{message.content}</div>
                     <div className={styles.reactions}>
@@ -27,7 +25,7 @@ export const MessageItem = ({ message, handlePutPreference, isThread}) => {
                             {message.position === 'AGREE' ? '찬성 입장' : message.position === 'DISAGREE' ? '반대 입장' : ''}
                         </div>
                         <div onClick={(e) => handleLikeClick(e)}>
-                            <FaThumbsUp style={{color:"#ffffff"}}/>
+                            <FaThumbsUp style={{color:"#56A76E"}}/>
                         </div>
                         {message.likesNum > 0 && (
                             <div>{message.likesNum}</div>

@@ -1,91 +1,52 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {} from 'react';
 import { useParams } from 'react-router-dom';
-import { useStomp } from '../../../../context/StompContext';
+
 import {MessageItem} from "../../common/messageItem/MessageItem";
 import {TopNavBar} from "../../common/topNavBar/TopNavBar";
 import styles from './DebateRoom.module.css';
 import {BottomNavBar} from "../../common/bottomNavBar/BottomNavBar";
-import {useMessages} from "../../utils/useMessages";
 import {MessageThread} from "../thread/MessageThread";
 import { useNavigate } from 'react-router-dom';
 
 import {Drawer} from "../drawer/Drawer";
+import {useMessages} from "../../hooks/useMessages";
+import {useRefresh} from "../../hooks/useRefresh";
+import {useSubscribe} from "../../hooks/useSubscribe";
+import {useEndRef} from "../../hooks/useEndRef";
+import {useDrawer} from "../../hooks/useDrawer";
+import {useModal} from "../../hooks/useModal";
+import {useDebateRoom} from "../../hooks/useDebateRoom";
+import {usePreference} from "../../hooks/usePreference";
 
 export function DebateRoom() {
-    const stompClient = useStomp();
     let { roomId } = useParams();
-    const [yourMessage, setYourMessage] = useState('');
-
-    const [currentMessage, setCurrentMessage] = useState(null);
-
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
     const navigate = useNavigate();
 
+    const {
+        debateRoomInfo,
+        agreeRatio,
+        disagreeRatio,
+        updateRatio
+    } = useDebateRoom(roomId)
 
-    const { messages,
-            agreeNum,
-            disagreeNum,
-            agreeRatio,
-            disagreeRatio,
-            title,
-            position,
-            handlePutPreference,
-            forceRefresh,
-            updateRatio
-    } = useMessages(roomId);
+    const { refreshKey, refresh } = useRefresh();
+    const { messages, updateMessage, updateLikesNum} = useMessages(roomId, refreshKey);
+    useSubscribe(roomId, updateMessage);
 
-    const messagesEndRef = useRef(null);
+    const messagesEndRef = useEndRef(messages);
+    const {isDrawerOpen, toggleDrawer} = useDrawer();
+    const {
+        isModalOpen,
+        currentMessage,
+        handleCloseMessageThread,
+        handleOpenMessageThread
+    } = useModal()
 
-    const scrollToBottom = () => {
-        messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-    };
-
-    useEffect(() => {
-        scrollToBottom();
-    }, [    messages]);
-
-    useEffect(() => {
-        if (isDrawerOpen) {
-            // Drawer가 열렸을 때 스크롤 비활성화
-            document.body.style.overflow = 'hidden';
-        } else {
-            // Drawer가 닫혔을 때 스크롤 활성화
-            document.body.style.overflow = 'auto';
-        }
-
-        // 컴포넌트가 언마운트될 때 스크롤을 활성화하기 위한 정리(clean-up) 함수
-        return () => {
-            document.body.style.overflow = 'auto';
-        };
-    }, [isDrawerOpen]); // isDrawerOpen이 변경될 때마다 실행
-    function sendMessage() {
-        if (stompClient) {
-            stompClient.send(`/pub/message`, {},
-                JSON.stringify({roomId: roomId, content: yourMessage}));
-            setYourMessage('');
-        }
-    }
-
-    const handleOpenMessageThread = (message) => {
-        setCurrentMessage(message);
-        setIsModalOpen(true);
-    };
-
-    const handleCloseMessageThread = () => {
-        setIsModalOpen(false);
-    };
+    const handlePutPreference = usePreference( messages, updateRatio, updateLikesNum )
 
     const handleNavLeftOnClick = () =>{
         navigate(-1)
     }
-
-    const toggleDrawer = () => {
-        updateRatio()
-        setIsDrawerOpen(!isDrawerOpen);
-
-    };
 
     return (
         <div className={styles.background}>
@@ -93,10 +54,12 @@ export function DebateRoom() {
                 handleOnClick={handleNavLeftOnClick}
                 isMain={true}
                 toggleDrawer={toggleDrawer}
-                position={position}
+                position={debateRoomInfo.position}
             >
                 <div>{`${roomId}번 토론방`}</div>
-                <div className={styles.smallText}>{`찬성: ${agreeNum}명 반대: ${disagreeNum}명`}</div>
+                <div className={styles.smallText}>
+                    {`찬성: ${debateRoomInfo.agreeNum}명 반대: ${debateRoomInfo.disagreeNum}명`}
+                </div>
             </TopNavBar>
 
             <Drawer
@@ -105,8 +68,7 @@ export function DebateRoom() {
                 toggleDrawer={toggleDrawer}
                 agreeRatio={agreeRatio}
                 disagreeRatio={disagreeRatio}
-                updateRatio={updateRatio}
-                title={title}
+                title={debateRoomInfo.title}
             />
 
             <div className={styles.messageList}>
@@ -115,7 +77,7 @@ export function DebateRoom() {
                         <MessageItem key={message.messageId}
                                      message={message}
                                      handlePutPreference={handlePutPreference}
-                                     isThread={false}
+                                     curTime={debateRoomInfo.now}
                         />
                     </div>
                 ))}
@@ -127,16 +89,13 @@ export function DebateRoom() {
                            close={handleCloseMessageThread}
                            message={currentMessage}
                            handlePutPreference={handlePutPreference}
-                           forceRefresh={forceRefresh}
+                           curTime={debateRoomInfo.now}
             />
             <div ref={messagesEndRef}/>
 
             {!isModalOpen && (
                 <div className={styles.bottomMargin}>
-                    <BottomNavBar roomNumber={roomId}
-                                  onSendMessage={sendMessage}
-                                  message={yourMessage}
-                                  setMessage={setYourMessage}
+                    <BottomNavBar roomId={roomId}
                     />
                 </div>
             )}

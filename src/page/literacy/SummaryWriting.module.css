@@ -22,7 +22,7 @@
 
 .title {
     margin-bottom: 0px;
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
 }
 
 .category {
@@ -32,7 +32,7 @@
 }
 
 .content {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     line-height: 24px;
     color: #537768;
 }

@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './MessageItem.module.css';
 import {timeSince} from "./TimeSince";
 
-export const ThreadItem = ({ thread: thread}) => {
+export const ThreadItem = ({ thread, curTime }) => {
     return (
         <div className={`${styles.messageContainer}`} key={thread.id}>
             <div className={styles.header}>
@@ -11,7 +11,7 @@ export const ThreadItem = ({ thread: thread}) => {
                 <div className={styles.flexContainer}>
                     <div>
                         <p className={styles.name}>{thread.writer}</p>
-                        <p className={styles.time}>{timeSince(thread.createdTime)}</p>
+                        <p className={styles.time}>{timeSince(thread.createdTime, curTime)}</p>
                     </div>
                     <p className={styles.content}>{thread.content}</p>
                     <div className={styles.reactions}>

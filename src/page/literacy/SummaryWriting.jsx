@@ -8,8 +8,8 @@ import Swal from "sweetalert2";
 const SummaryWriting = () => {
   const location = useLocation().state.data;
   const navigate = useNavigate();
-  const [summaryHistory, setSummaryHistory] = useState([]);
-  const [summary, setSummary] = useState([]);
+  const [summaryHistory, setSummaryHistory] = useState(null);
+  const [summary, setSummary] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isWaitingFeedback, setIsWaitingFeedback] = useState(false);
   const [time, setTime] = useState(0)
@@ -167,7 +167,7 @@ const SummaryWriting = () => {
     if (isWaitingFeedback) return <p>피드백을 기다리는 중입니다.</p>
 
     return (
-        <div style={{overflow:"hidden"}}>
+        <div style={{overflow:"hidden", display:"flex", flexDirection:"column", gap:"10px",padding:"20px"}}>
             <div className={styles.articleDiv}>
                 <h2 className={styles.title}>{location.title}</h2>
                 <h4>{formatDateTime(location.createdTime)}</h4>

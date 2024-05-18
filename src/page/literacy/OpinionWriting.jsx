@@ -24,7 +24,6 @@ const OpinionWriting = () => {
     return await customAxios.post(`/opinion/submit`, {
       content: opinion,
       articleId: location.id,
-      status: "DONE",
       position: position
 
     }).then((response) => {
@@ -38,7 +37,7 @@ const OpinionWriting = () => {
           width: "300px",
           confirmButtonColor: "#B5C9C0",
         }).then(() => {
-          navigate("/opinion-feedback", {state: {opinion: response.data.data, title : location.title, category: location.category, position: position}});
+          navigate("/opinion-feedback", {state: {opinion: response.data.data, title : location.title, category: location.category, position: position, articleId: location.id}});
 
         })
       }
@@ -65,7 +64,7 @@ const OpinionWriting = () => {
     if (isWaitingOpinion) return <p>피드백을 기다리는 중입니다.</p>
 
     return (
-        <div style={{overflow:"hidden"}}>
+        <div style={{overflow:"hidden", display:"flex", flexDirection:"column", gap:"10px",padding:"20px"}}>
             <div className={styles.articleDiv}>
                 <h2 className={styles.title}>{location.title}</h2>
                 <h4>{formatDateTime(location.createdTime)}</h4>

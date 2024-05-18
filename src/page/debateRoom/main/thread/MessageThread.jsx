@@ -1,25 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import styles from './MessageThread.module.css';
 import {TopNavBar} from "../../common/topNavBar/TopNavBar";
 import {MessageItem} from "../../common/messageItem/MessageItem";
-import {useThread} from "../../utils/useThread";
-import {useStomp} from "../../../../context/StompContext";
 import {BottomNavBar} from "../../common/bottomNavBar/BottomNavBar";
 import {ThreadItem} from "../../common/messageItem/ThreadItem";
+import {useThreads} from "../../hooks/useThreads";
 
-export function MessageThread({ roomId, isOpen, close, message, handlePutPreference, forceRefresh}){
-    const stompClient = useStomp();
-    const threads = useThread(roomId, message? message.messageId:null, stompClient, isOpen)
-    const [threadMessage, setThreadMessage] = useState('');
-
-    function sendThreadMessage() {
-        if (stompClient) {
-            stompClient.send(`/pub/message/${message.messageId}`, {},
-                JSON.stringify({roomId: roomId, content: threadMessage}));
-            setThreadMessage('');
-        }
-        forceRefresh();
-    }
+export function MessageThread({
+                                  roomId,
+                                  isOpen,
+                                  close,
+                                  message,
+                                  handlePutPreference,
+                                  curTime}){
+    const threads = useThreads(roomId, message? message.messageId:null, isOpen)
 
     async function handlePutPreferenceInThread(){
         const dto = await handlePutPreference(message.messageId, message.position)
@@ -43,7 +37,7 @@ export function MessageThread({ roomId, isOpen, close, message, handlePutPrefere
     if (!isOpen) return null;
 
     return (
-        <div className={styles.background}>
+        <div>
             <TopNavBar handleOnClick={close}>
                 <div>답글</div>
                 <div className={styles.smallText}>{`${roomId}번 토론방`}</div>
@@ -54,6 +48,7 @@ export function MessageThread({ roomId, isOpen, close, message, handlePutPrefere
                                  message={message}
                                  isThread={true}
                                  handlePutPreference={handlePutPreferenceInThread}
+                                 curTime={curTime}
                     />
                 </div>
 
@@ -63,17 +58,17 @@ export function MessageThread({ roomId, isOpen, close, message, handlePutPrefere
                 <div>
                     {threads.map((thread) => (
                         <div key={thread.id}>
-                            <ThreadItem thread={thread}/>
+                            <ThreadItem thread={thread}
+                                        curTime={curTime}
+                            />
                         </div>
                     ))}
                 </div>
 
                 <div>
-                    <BottomNavBar roomNumber={roomId}
-                                  onSendMessage={sendThreadMessage}
-                                  message={threadMessage}
-                                  setMessage={setThreadMessage}
+                    <BottomNavBar roomId={roomId}
                                   isThread={true}
+                                  messageId={message.messageId}
                     />
                 </div>
             </div>

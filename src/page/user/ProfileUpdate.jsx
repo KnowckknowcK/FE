@@ -7,6 +7,7 @@ import axios from 'axios';
 import {TextField,OutlinedInput,InputAdornment,IconButton, Input} from '@mui/material';
 import {Visibility,VisibilityOff} from '@mui/icons-material';
 import Swal from "sweetalert2";
+import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 const { REACT_APP_API_URL } = process.env;
 
 const ProfileUpdate = () => {
@@ -14,6 +15,7 @@ const ProfileUpdate = () => {
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [profileImg, setProfileImg] = useState(userInfo.profileImage);
+    const [nowImg, setNowImg] = useState(userInfo.profileImage);
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = React.useState(false);
 
@@ -26,7 +28,6 @@ const ProfileUpdate = () => {
       event.preventDefault();
     };
 
-
     const handleNameChange = (e) => {
         setName(e.target.value);
     };
@@ -36,32 +37,33 @@ const ProfileUpdate = () => {
     };
 
     const handleFileChange = (e) => {
-        const selectedFile = e.target.files[0];
-        setProfileImg(selectedFile);
-        const reader = new FileReader();
-    
-        reader.onload = (event) => {
-          const imageUrl = event.target.result;
-          console.log(imageUrl);
-          setProfileImg(imageUrl);
-        };
-    
-        reader.readAsDataURL(selectedFile);
-      };
+      const selectedFile = e.target.files[0];
+      setProfileImg(selectedFile);
 
+      const reader = new FileReader();
+  
+      reader.onload = (event) => {
+        const imageUrl = event.target.result;
+        console.log(imageUrl);
+        setNowImg(imageUrl);
+      };
+  
+      reader.readAsDataURL(selectedFile);
+
+    };
 
 
 
     const onSubmit = async(e) => {
         e.preventDefault();
-        
         try {
           const formData = new FormData();
           formData.append("profileImg", profileImg);
 
-          const json = JSON.stringify({ name: name, password: password });
-          const blob = new Blob([json], {type: 'application/json'})
+          const json = JSON.stringify({ name, password });
+
           formData.append("requestDto", json);
+          
   
           await axios
             .patch(REACT_APP_API_URL + "/api/profile/info", formData, {
@@ -100,12 +102,11 @@ const ProfileUpdate = () => {
         <div style={{overflowY:"hidden"}}>
         <div className= {styles.bgroundDiv}>
             <p style={{marginTop:"50px"}}>Profile Update</p>
-            <img src= {profileImg} className={styles.profileImg}/>
+            <img src= {nowImg} className={styles.profileImg}/>
         </div>
      <div className={styles.profileDiv}>
-      <p style={{fontWeight: "600"}}>이름 변경</p>
-        <form onSubmit={onSubmit} method='PATCH' id='editForm' className={styles.updateForm}>
-
+     <p style={{justifySelf:"center", fontWeight:"600", fontSize:"1.3rem"}}>{userInfo ? userInfo.name : "닉네임"}</p>
+        <form onSubmit={onSubmit} method='PATCH' id='editForm' encType='multipart/form-data' className={styles.updateForm}>
         <TextField
           id="outlined-basic"
           label="새로운 닉네임 입력"
@@ -137,17 +138,17 @@ const ProfileUpdate = () => {
             style={{marginBottom: "20px", width: "80%"}}
           />
 
-        <label htmlFor='profileImg' className={styles.fileLabel}>프로필 사진 선택
-          <Input
-              type='file'
-              accept='image/*'
-              onChange={handleFileChange}
-              id='profileImg'
-            />
-          </label>
-          <span>
-          <input type='submit' value='변경 저장' className= {styles.submitBtn} />
-        </span>
+        <div className={styles.btnBox}>
+          <label htmlFor='profileImg' className={styles.fileLabel}><PhotoCameraBackIcon/> 프로필 사진 선택
+            <Input
+                type='file'
+                accept='image/*'
+                onChange={handleFileChange}
+                id='profileImg'
+              />
+            </label>
+            <input type='submit' value='변경 저장' className= {styles.submitBtn} />
+        </div>
         </form>
      </div>
 

@@ -1,6 +1,6 @@
-export function timeSince(dateString) {
+export function timeSince(dateString, curTime) {
     const date = new Date(dateString);
-    const now = new Date();
+    const now = new Date(curTime);
     const seconds = Math.floor((now - date) / 1000);
 
     let interval = seconds / 31536000; // 년 단위
@@ -23,5 +23,5 @@ export function timeSince(dateString) {
     if (interval > 1) {
         return Math.floor(interval) + "분 전";
     }
-    return Math.floor(seconds) + "초 전";
+    return Math.max(0, Math.floor(seconds)) + "초 전";
 }
