@@ -58,6 +58,7 @@
     margin-bottom: 8px;
     margin-left: 10px;
     margin-right: 30px;
+    white-space: pre-wrap;
 }
 
 .reactions {
