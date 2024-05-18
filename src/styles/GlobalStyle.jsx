@@ -18,6 +18,7 @@ const colorDarkGrey = '#585858';
 const colorDarkGreen = '#6B9080';
 const colorLightGrey = '#F7F7F7';
 const colorMiddleGrey = '#F2F2F2';
+const colorBlue = '#569CA2';
 
 
 
@@ -42,6 +43,7 @@ export const GlobalStyle = css`
         --color-dark-green: ${colorDarkGreen};
         --color-light-grey: ${colorLightGrey};
         --color-middle-grey: ${colorMiddleGrey};
+        --color-bule: ${colorBlue};
         
     }
 `;
