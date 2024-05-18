@@ -14,9 +14,9 @@ export const TopNavBar = ({handleOnClick, isMain, toggleDrawer, children, positi
                 <div className={styles.iconTextStyle}>
                     {children}
                 </div>
-                <div className={styles.position}>
-                    {position === 'AGREE' ? '찬성 입장' : position === 'DISAGREE' ? '반대 입장' : ''}
-                </div>
+                {/*<div className={styles.position}>*/}
+                {/*    {position === 'AGREE' ? '찬성 입장' : position === 'DISAGREE' ? '반대 입장' : ''}*/}
+                {/*</div>*/}
             </div>
             {isMain &&
                 (<div className={styles.drawer} onClick={toggleDrawer}>
