@@ -35,7 +35,7 @@ export const MessageItem = ({ message, handlePutPreference, curTime, isThread}) 
                         {message.likesNum > 0 && (
                             <div style={{fontSize: '0.75rem', color:'#7A7A7A'}}>{message.likesNum}</div>
                         )}
-                        {!isThread && message.threadNum > 0 
+                        {message.threadNum > 0 
                             ? <div className={styles.replies}>답글 {message.threadNum}</div>
                             : <div className={styles.replies}>답글 달기</div>
                         }

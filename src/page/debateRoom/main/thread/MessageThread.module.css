@@ -33,8 +33,10 @@
 
 .numOfThread{
     background-color: #F5F5F5;
-    font-size: 16px;
-    padding: 15px;
+    font-size: var(--font-size-md);
+    padding: 10px;
+    padding-left: 15px;
+    color: var(--color-dark-grey);
     /*border-top: 1px solid #56A76E;*/
     /*border-bottom: 1px solid #56A76E;*/
 }
