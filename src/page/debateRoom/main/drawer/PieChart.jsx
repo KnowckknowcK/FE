@@ -8,11 +8,19 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 ChartJS.register(ArcElement, ChartDataLabels, Legend);
 
 const options = {
+    
     plugins: {
+        legend: {
+            display: true,
+            position: 'right',
+            labels: {
+                useLineStyle: true,
+                usePointStyle: true
+            }
+        },
+        
         datalabels: {
-            color: '#000', // 레이블의 색상을 검은색으로 설정
-            anchor: 'end', // 레이블의 위치를 조각의 끝부분으로 설정
-            align: 'start', // 레이블을 조각의 시작 부분으로 정렬
+            color: '#FFFFFF', 
             formatter: (value) => {
                 return Math.round(value * 10) / 10 + '%'; // 값을 받아서 뒤에 '%'를 붙여서 반환
             }
@@ -25,19 +33,20 @@ export const PieChart = ({agreeRatio, disagreeRatio}) => {
         labels: ['찬성', '반대'],
         datasets: [
             {
-                label: '# of Votes',
                 data: [agreeRatio, disagreeRatio],
+                
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
+                    '#569CA2',
+                    '#CD6E6E',
                 ],
+                
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
+                    'white'
                 ],
                 borderWidth: 1,
             },
         ],
+        
     }
     return(
         <div className={styles.pieChart}>

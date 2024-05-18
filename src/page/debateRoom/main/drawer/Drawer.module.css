@@ -21,16 +21,34 @@
 }
 
 .drawerTop{
-    font-weight: bolder;
+    font-size: var(--font-size-sm);
+    color:#777777;
+    padding-bottom: 20px;
+    border-bottom: 0.5px solid #B8B8B8;
 
+}
+
+.title {
+    font-weight: bolder;
+    font-size: var(--font-size-md);
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom: 0.5px solid #B8B8B8;
 }
 
 .drawerRatio {
-    margin-top: 15px;
+    margin-top: 5px;
+    color:#7A7A7A;
+    font-size: var(--font-size-sm);
 }
 
 .memberDebate {
-    margin-top: 15px;
+    color:#7A7A7A;
+    font-size: var(--font-size-sm);
+    margin-top: 20px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    border-top: 0.5px solid #B8B8B8;
     /*border-top: 1px solid rgba(107, 144, 128);*/
 }
 .memberListContainer {
@@ -43,10 +61,14 @@
     width: 150%;
     box-sizing: border-box;
     position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     left: 10px;
-    bottom: 20px;
+    bottom: 10px;
     padding: 10px;
     margin-left: -10px;
     margin-right: 10px;
+    font-size: var(--font-size-md);
     /*border-top: 1px solid rgba(107, 144, 128);*/
 }

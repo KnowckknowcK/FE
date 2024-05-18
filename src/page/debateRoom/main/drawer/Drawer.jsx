@@ -42,12 +42,13 @@ export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio
                 <div className={styles.drawerTop}>
                     토론방 서랍
                 </div>
-                <div>
-                    토론방 제목:{title}
+                <div className={styles.title}>
+                    {title}
                 </div>
                 <div className={styles.drawerRatio}>
                     토론방 찬/반 비율
                 </div>
+                <br/>
                 <div>
                     <PieChart agreeRatio={agreeRatio} disagreeRatio={disagreeRatio}/>
                 </div>
@@ -64,7 +65,7 @@ export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio
                 <div>
                     <div className={styles.leaveBtn} onClick={handleLeaveRoom}>
                         <FiLogOut/>
-                        토론방 나가기
+                        <p style={{paddingLeft: '7px'}}>토론방 나가기</p>
                     </div>
                 </div>
 
