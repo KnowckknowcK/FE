@@ -37,7 +37,7 @@ export function MessageThread({
     if (!isOpen) return null;
 
     return (
-        <div className={styles.background}>
+        <div>
             <TopNavBar handleOnClick={close}>
                 <div>답글</div>
                 <div className={styles.smallText}>{`${roomId}번 토론방`}</div>

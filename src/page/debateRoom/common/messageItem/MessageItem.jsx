@@ -25,7 +25,7 @@ export const MessageItem = ({ message, handlePutPreference, curTime, isThread}) 
                             {message.position === 'AGREE' ? '찬성 입장' : message.position === 'DISAGREE' ? '반대 입장' : ''}
                         </div>
                         <div onClick={(e) => handleLikeClick(e)}>
-                            <FaThumbsUp style={{color:"#ffffff"}}/>
+                            <FaThumbsUp style={{color:"#56A76E"}}/>
                         </div>
                         {message.likesNum > 0 && (
                             <div>{message.likesNum}</div>

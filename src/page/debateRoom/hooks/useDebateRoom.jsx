@@ -33,7 +33,7 @@ export function useDebateRoom(roomId) {
             title: `${roomId}번 토론방 입장`,
             text: `${debateRoomInfo.position === 'AGREE' ? '찬성 입장' : '반대 입장'}이에요.`,
             icon: "info",
-            timer: 1000,
+            timer: 2000,
             html: `${debateRoomInfo.position === 'AGREE' ? '찬성 입장' : '반대 입장'}이에요.`,
             width: "300px",
             confirmButtonColor: "#B5C9C0",

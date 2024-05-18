@@ -4,13 +4,15 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #E3D5CA;
+    background-color: #56A76E;
     border-bottom: 1px solid #ffffff;
     display: flex;
     justify-content: space-between;
     padding: 15px;
     box-sizing: border-box;
     z-index: 6;
+
+    color: white;
 }
 
 .itemStyle {
