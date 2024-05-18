@@ -19,11 +19,11 @@ const MyDebateRoom = ({data}) => {
     return (
         <div className={styles.block}
             onClick={() => getDebateRoomInfo(data.id)}>
-            <p>{data.title}</p>
+            <p style={{fontWeight : "bold"}}>{data.title}</p>
             <p className={styles.vector}></p>
             <div className={styles.line}>
-                <img src={imagePath} alt="이미지" />
-                {data.position=== "AGREE" ? <p>찬성</p> : <p>반대</p>}
+                <img src={imagePath} alt="이미지" style={{weight:"40%", height:"40%"}} />
+                {data.position=== "AGREE" ? <p className={styles.position}>찬성</p> : <p className={styles.position}>반대</p>}
             </div>
         </div>
     );

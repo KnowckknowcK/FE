@@ -25,9 +25,11 @@ const MyDebateRoomList = () => {
         <div>
             <div className={styles.container}>
                 <div className= {styles.divUp}>
-                <p className={styles.pageTitle}>참여 중인 토론방</p>
+                    <p className={styles.pageTitle}>참여 중인 토론방</p>
+                </div>
+                <div>
                     {myDebateRoom.length !== 0 && myDebateRoom.map(room => (
-                        <div key={room.id}>
+                        <div key={room.id} className={styles.wrapper}>
                             <MyDebateRoom data = {room}/>
                         </div>
                     ))}
