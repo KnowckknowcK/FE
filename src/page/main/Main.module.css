@@ -51,6 +51,7 @@
     &::-webkit-scrollbar {
         height: 1px;
         background-color: transparent;
+        display: none;
     };
     margin-bottom: 20px;
 }
