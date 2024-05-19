@@ -12,6 +12,11 @@
     padding: 8px;
     border-radius: 5px;
     word-break: keep-all;
+    overflow-y: scroll;
+}
+
+.feedbackBox::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
 }
 
 .contentBox {
@@ -45,4 +50,17 @@
     margin-top: 15px;
     
 }
+
+
+.feedbackDiv {
+    overflow: hidden;
+    padding: 30px;
+}
+
+
+
+.feedbackDiv::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
 

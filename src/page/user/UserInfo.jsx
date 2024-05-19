@@ -26,7 +26,7 @@ const UserInfo = () => {
     },[]);
 
     return (
-        <div style={{overflowY:"hidden"}}>
+        <div style={{display:"flex", flexDirection:"column", marginBottom:"60px"}}>
             <div className= {styles.bgroundDiv}>
                 <p style={{marginTop:"50px"}}>Profile</p>
          <img src= {userInfo&&userInfo.profileImage} className={styles.profileImg}/>
