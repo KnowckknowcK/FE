@@ -1,14 +1,13 @@
 import React from 'react';
 import styles from "./MyDebateRoom.module.css";
 import {useNavigate} from "react-router-dom";
-import {fetchUtil} from "../debateRoom/utils/fetchUtil";
+import customAxios from "../../lib/customAxios";
+
 
 const MyDebateRoom = ({data}) => {
     const navigate = useNavigate();
     const getDebateRoomInfo = async (roomId) => {
-        const dto = await fetchUtil(`/debate-room/${roomId}`, {
-            method: 'PUT'
-        });
+        await customAxios.put(`/debate-room/${roomId}`, null);
         navigate(`/debate-room/${roomId}`);
     }
     const imageOptions = {
