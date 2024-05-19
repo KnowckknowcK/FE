@@ -34,3 +34,7 @@
     cursor: pointer;
     align-self: flex-end;
 }
+.disabled {
+    pointer-events: none; /* 클릭 이벤트 비활성화 */
+    opacity: 0.5; /* 버튼을 흐리게 표시 */
+}

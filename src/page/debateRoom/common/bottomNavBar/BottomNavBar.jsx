@@ -15,31 +15,25 @@ export const BottomNavBar = ({ roomId, isThread, messageId }) => {
         setMessage(e.target.value);
     };
 
-    const handleKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter') {
-            sendMessage(); // 작성한 댓글 post 요청하는 함수
-            setMessage('')
-        }
-    };
     const handleClick = () => {
         sendMessage();
     };
 
     return (
         <div className={styles.navWrapper} >
-        <div className={styles.navBar}>
-            <TextareaAutosize
-                type="text"
-                className={styles.inputField}
-                placeholder={isThread ? '답글 추가하기':`${roomId}번 토론방에 메시지 보내기`}
-                value={message}
-                onChange={handleInputChange}
-                onKeyDown={handleKeyDown}
-            />
-            <div className={styles.sendIcon} onClick={handleClick}>
-                <IoSendSharp style={{color: "#56A76E", height:"24px", width:"24px"}}/>
+            <div className={styles.navBar}>
+                <TextareaAutosize
+                    type="text"
+                    className={styles.inputField}
+                    placeholder={isThread ? '답글 추가하기':`${roomId}번 토론방에 메시지 보내기`}
+                    value={message}
+                    onChange={handleInputChange}
+                />
+                <div className={`${styles.sendIcon} ${!message.trim() && styles.disabled}`}
+                     onClick={handleClick}>
+                    <IoSendSharp style={{color: "#56A76E", height:"24px", width:"24px"}}/>
+                </div>
             </div>
-        </div>
         </div>
     );
 };
