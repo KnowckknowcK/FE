@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import customAxios from "../../lib/customAxios";
 import styles from "./Dashboard.module.css";
+import Donut from "./Donut";
 
 const Dashboard = () => {
     const [dashInfo, setMyDashInfo] = useState(null);
@@ -27,8 +28,18 @@ const Dashboard = () => {
     return (
         <div>
             <div className={styles.page}>
-                <div style={{marginBottom:"10%",width:"95%",justifyContent:"center"}}>
-                    <img src='./dashTemp.png' alt={"임시사진"}/>
+                <div className={styles.box}>
+                    <div style={{width:"45%",marginTop:"4%"}}>
+                        <Donut value = "80"/>
+                    </div>
+                    <div className={styles.boxContent}>
+                        <p style={{color:"#FFFFFF"}}>{dashInfo.strikes ? dashInfo.strikes : 0}일 연속 참여 중이에요</p>
+                        <div className={styles.boxLine}>
+                            <img src = './score/silver.png' alt = "메달"/>
+                            <p style={{fontWeight:"bold",color:"#FFFFFF"}}>EXP.80</p>
+                        </div>
+                        <p style={{color:"#FFFFFF"}}>level3까지 -exp57</p>
+                    </div>
                 </div>
                 <div className={styles.para}>
                     <div className={styles.container}>
@@ -41,7 +52,7 @@ const Dashboard = () => {
                     <div className={styles.container}>
                         <div className={styles.line}>
                             <img src='./small.png' alt={"아이콘"}/>
-                            <p>도전 횟수</p>
+                            <p>오늘 도전 횟수</p>
                         </div>
                         <p style={{fontWeight:"bold"}}>{dashInfo.todayWorks}회</p>
                     </div>

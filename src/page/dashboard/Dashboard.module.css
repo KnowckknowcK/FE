@@ -2,16 +2,35 @@
 .page {
     display: flex;
     flex-direction: column;
-    gap:10%;
     row-gap: 6%;
 }
 
 .box {
+    margin-top: 5%;
+    margin-left: 5%;
     background: #65B891;
     border-radius: 10px;
+    width: 90%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10%;
+}
+.boxContent {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
 }
 
+.boxLine {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-start;
+    justify-content: space-between;
+    align-items: center;
+}
 
 .container {
     display: flex;
