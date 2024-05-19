@@ -163,8 +163,22 @@ const SummaryWriting = () => {
     }   
 
 
-    if (isLoading) return <p>로딩중...</p>
-    if (isWaitingFeedback) return <p>피드백을 기다리는 중입니다.</p>
+    if (isLoading) {
+        return (
+        <div className={styles.spinnerContainer}>
+            <div className={styles.spinner}></div>
+            <div className={styles.text}>로딩중...</div>
+        </div>
+    );
+    } 
+    if (isWaitingFeedback) {
+      return (
+        <div className={styles.spinnerContainer}>
+            <div className={styles.spinner}></div>
+            <div className={styles.text}>피드백을 기다리는 중입니다...</div>
+        </div>
+    );
+    }
 
     return (
         <div style={{overflow:"hidden", display:"flex", flexDirection:"column", gap:"10px",padding:"20px"}}>

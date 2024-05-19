@@ -8,7 +8,7 @@ const RecommendedItem = ({data, show}) => {
     const navigate = useNavigate();
 
     const clickHandler = (articleNum) => {
-        navigate(`/summary/${articleNum}`, {state: {data}});
+        navigate(`/summary`, {state: {data}});
     }
 
     return (
