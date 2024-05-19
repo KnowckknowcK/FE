@@ -1,17 +1,13 @@
 import React from 'react';
-import styles from './MessageItem.module.css';
+import styles from './MemberItem.module.css';
 
 export const MemberItem = ({ member: member}) => {
     return (
         <div className={`${styles.messageContainer}`} key={member.id}>
-            <div className={styles.header}>
-                <img src={member.profileImage} alt="" className={styles.profileImage}/>
-                <div className={styles.flexContainer}>
-                    <div>
-                        <p className={styles.name}>{member.name}</p>
-                        <p className={styles.time}>{member.position === 'AGREE' ? '찬성 입장' : member.position === 'DISAGREE' ? '반대 입장' : ''}</p>
-                    </div>
-                </div>
+            <img src={member.profileImage} alt="" className={styles.profileImage}/>
+            <p className={styles.name}>{member.name}</p>
+            <div className={`${styles.position}`} style={{backgroundColor: member.position === 'AGREE'? '#65B891' : '#569CA2'}}>
+                {member.position === 'AGREE' ? '찬성' : member.position === 'DISAGREE' ? '반대' : ''}
             </div>
         </div>
     );
