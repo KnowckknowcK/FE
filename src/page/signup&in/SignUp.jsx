@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./SignUp.module.css";
 import EmailCheck from "./EmailCheck";
@@ -15,7 +15,7 @@ const SignUp = () => {
 
     const [showModal, setShowModal] = useState(false);
     const [emailVerified, setEmailVerified] = useState(false);
-
+    const [sending, setSending] = useState(false);
 
     const pwMatch = password && passwordCheck && password === passwordCheck;
     const isFormFilled = email && password && passwordCheck && name && pwMatch;
@@ -23,7 +23,6 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     const signUpBtn = async (e) => {
-
         e.preventDefault();
 
         const formData = new FormData();
@@ -66,6 +65,7 @@ const SignUp = () => {
     };
 
     const authBtn = async () => {
+        setSending(true);
     
         try {
             const response = await axios.post(REACT_APP_API_URL + '/api/account/email-check', {
@@ -79,6 +79,8 @@ const SignUp = () => {
         } catch (error) {
             console.error('이메일 인증 요청 에러:', error);
             alert('인증코드 발송 실패. 관리자에게 문의하세요.')
+        } finally {
+            setSending(false);
         }
     };
 
@@ -106,8 +108,8 @@ const SignUp = () => {
                         : (<img src="/warning_icon.png" alt="이메일 인증안됨" className={styles.icon} />)
                     }
                 </div>
-                <button className={`${styles.authBtn} ${validateEmail(email) && !showModal && !emailVerified ? styles.authBtnEnabled : styles.authBtnDisabled}`} onClick={authBtn} disabled={!validateEmail(email) || showModal || emailVerified}>
-                    인증하기
+                <button className={`${styles.authBtn} ${validateEmail(email) && !showModal && !emailVerified ? styles.authBtnEnabled : styles.authBtnDisabled}`} onClick={authBtn} disabled={!validateEmail(email) || showModal || emailVerified || sending}>
+                    {sending ? 'sending code...' : '인증하기' }
                 </button>
             </div>
             {showModal && (
