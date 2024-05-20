@@ -8,9 +8,9 @@ const SummaryPage = () => {
     const {summary} = location.state;
 
     const imageOptions = {
-        EXCELLENT: require('./score/gold.png'),
-        GOOD: require('./score/silver.png'),
-        FAIR: require('./score/bronze.png')
+        EXCELLENT: require("../../../asset/gold.png"),
+        GOOD: require("../../../asset/silver.png"),
+        FAIR: require("../../../asset/bronze.png")
     };
     // function selectImg(option) {
     //     const path = imageOptions[option];

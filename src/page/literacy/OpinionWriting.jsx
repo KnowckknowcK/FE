@@ -41,6 +41,20 @@ const OpinionWriting = () => {
 
         })
       }
+
+      else {
+        Swal.fire({
+          title: "AI 견해 피드백 생성 실패",
+          text: "AI 견해 피드백을 생성하는 도중에 오류가 발생했어요 :(",
+          icon: "error",
+          width: "350px",
+          confirmButtonColor: "#B5C9C0",
+        }).then((res) => {
+          if(res.isConfirmed) {
+            navigate("/article-list")
+          }
+        })
+      }
     }).catch((error) => {
       Swal.fire({
         title: "AI 견해 피드백 생성 실패",
@@ -61,7 +75,14 @@ const OpinionWriting = () => {
     }   
 
 
-    if (isWaitingOpinion) return <p>피드백을 기다리는 중입니다.</p>
+    if (isWaitingOpinion) {
+      return (
+        <div className={styles.spinnerContainer}>
+            <div className={styles.spinner}></div>
+            <div className={styles.text}>피드백을 기다리는 중입니다...</div>
+        </div>
+    );
+    }
 
     return (
         <div style={{overflow:"hidden", display:"flex", flexDirection:"column", gap:"10px",padding:"20px"}}>

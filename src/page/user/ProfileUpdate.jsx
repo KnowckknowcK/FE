@@ -37,6 +37,10 @@ const ProfileUpdate = () => {
     };
 
     const handleFileChange = (e) => {
+      if (e.target.files.length === 0) {
+        return;
+      }
+      
       const selectedFile = e.target.files[0];
       setProfileImg(selectedFile);
 

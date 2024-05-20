@@ -1,29 +1,40 @@
 /* bottomNavBar.module.css */
-.navBar {
+.navWrapper{
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
-    background-color: #E3D5CA;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-top: 1px solid #ffffff;
+    right: 0;
+    padding: 15px;
+    background-color: var(--color-white);
     display: flex;
     align-items: center;
-    padding: 15px;
+}
+
+.navBar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
     box-sizing: border-box;
+    border-radius: 20px;
+    background-color: var(--color-light-grey);
 }
 
 .inputField {
-    flex-grow: 1;
-    margin-right: 10px;
-    padding: 10px;
-    border: none
-;
+    background-color: var(--color-light-grey);
+    width: 90%;
+    border: none;
     outline: none;
-    background-color: #E3D5CA;
+    font-size: var(--font-size-sm);
+    white-space: pre-wrap;
 }
 
 .sendIcon {
     cursor: pointer;
+    align-self: flex-end;
+}
+.disabled {
+    pointer-events: none; /* 클릭 이벤트 비활성화 */
+    opacity: 0.5; /* 버튼을 흐리게 표시 */
 }
