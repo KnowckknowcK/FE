@@ -47,11 +47,19 @@
     font-weight: 600;
     color: var(--color-dark-green);
     font-size: var(--font-size-sm);
-    background-color: var(--color-beige);
     border-radius: 100px;
     border: none;
     cursor: pointer;
     margin-top: 20px;
+}
+
+.signInBtnEnabled {
+    background-color: var(--color-beige);
+  }
+  
+.signInBtnDisabled {
+    background-color: var(--color-grey);
+    cursor: not-allowed;
 }
 
 .centerLine {

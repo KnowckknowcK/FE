@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./SignIn.module.css";
 import axios from "axios";
@@ -8,7 +8,14 @@ const SignIn = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
+    const [isFormValid, setIsFormValid] = useState(false);
+
+    useEffect(() => {
+        const emailRegex = /\S+@\S+\.\S+/;
+        const isValid = emailRegex.test(email) && password.trim() !== '';
+        setIsFormValid(isValid);
+    }, [email, password]);
+
     const signInBtn = async (e) => {
         e.preventDefault();
         try {
@@ -40,9 +47,7 @@ const SignIn = () => {
 
     return (
         <div className={styles.page}>
-            <div className={styles.titleWrap}>
-                Sign in
-            </div>
+            <div className={styles.titleWrap}>Sign in</div>
             <div className={styles.inputWrap}>
                 <input
                     type="text" 
@@ -59,7 +64,11 @@ const SignIn = () => {
                     value={password}
                     onChange={(e)=>setPassword(e.target.value)}/>
             </div>
-            <button className={styles.signInButton} onClick={signInBtn}>
+            <button 
+                className={`${styles.signInButton} ${isFormValid ? styles.signInBtnEnabled : styles.signInBtnDisabled}`}
+                onClick={signInBtn}
+                disabled={!isFormValid}
+            >
                 Sign in
             </button>
             <div className={styles.centerLine}></div>
