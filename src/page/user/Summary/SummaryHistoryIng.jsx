@@ -26,14 +26,14 @@ const SummaryHistoryIng = () => {
     }, []);
 
     const handleSummaryClick = (summary) => {
-        navigate(`/summary/${summary.articleId}`,{state:{data : summary.article}});
+        navigate(`/summary/`,{state:{data:summary.article}});
     };
-    const initContent = "작성된 견해가 없습니다! 견해를 작성해서 문해력을 키워보아요!"
+    const initContent = "작성된 요약이 없습니다! 요약을 작성해서 문해력을 키워보아요!"
 
     return (
         <div className={styles.page}>
             <div className={styles.divUp}>
-                <p className={styles.pageTitle}>작성한 요약문</p>
+                <p className={styles.pageTitle}>작성중인 요약문</p>
                 <div className={styles.myList}>
                     {summaryList.length !== 0 && summaryList.map(summary =>(
                         <div key={summary.summaryId}
