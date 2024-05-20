@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import styles from "./ArticleList.module.css";
 import Article from "../literacy/Article";
 import customAxios from "../../lib/customAxios";
@@ -9,8 +9,7 @@ import BottomNavBar from '../../components/bottomNavBar/bottomNavBar';
 const ArticleList = () => {
 
     const [articleList, setArticleList] = useState([]);
-    const [articleCnt, setArticleCnt] = useState(0);
-    const [isLoading, setIsLoading] = useState([true]);
+    const [isLoading, setIsLoading] = useState(true);
     const [category, setCategory] = useState("ECONOMICS");
     const [pageNum, setPageNum] = useState(1);
 
@@ -22,7 +21,6 @@ const ArticleList = () => {
               .get(`/article/list/${category}/${pageNum}`)
               .then((response) => {
                 setArticleList(response.data.data.content);
-                setArticleCnt(response.data.data.totalElements);
               });
           };
       
@@ -45,8 +43,15 @@ const ArticleList = () => {
       }
 
     
-    if (isLoading) return <p>로딩중...</p>
-    
+    if (isLoading) {
+        <>
+            <div className={styles.spinnerContainer}>
+                <div className={styles.spinner}></div>
+                <div className={styles.text}>지문 목록 가져오는 중...</div>
+            </div>
+        </>
+    }
+
     return (
         <div>
             <div className={styles.menuBtn}>

@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import formatDateTime from "../../util/FormatDateTime"
 import styles from "./Article.module.css";

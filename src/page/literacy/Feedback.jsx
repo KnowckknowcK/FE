@@ -1,4 +1,3 @@
-import React from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./Feedback.module.css";
 import BottomNavBar from '../../components/bottomNavBar/bottomNavBar';
@@ -26,7 +25,7 @@ const Feedback = ({state}) => {
                         <h4>피드백 점수</h4>
                         <p>{summary.score}</p>
                     </div>
-                    <div  className={styles.contentBox}>
+                    <div className={styles.contentBox}>
                         <h4>소요 시간</h4>
                         <p>{`0${Math.floor((takenTime / 60000) % 60)}`.slice(-2)} 분 {`0${Math.floor((takenTime / 1000) % 60)}`.slice(-2)} 초</p>
                     </div>

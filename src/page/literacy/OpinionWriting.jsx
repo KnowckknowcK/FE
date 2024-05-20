@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./SummaryWriting.module.css";
 import customAxios from "../../lib/customAxios";
 import formatDateTime from "../../util/FormatDateTime"
+import {FormControl, FormLabel, RadioGroup, FormControlLabel, Radio} from '@mui/material';
 import Swal from "sweetalert2";
 
 const OpinionWriting = () => {
@@ -72,7 +73,11 @@ const OpinionWriting = () => {
 
     const onChangeTextArea = (e) => {
         setOpinion(e.target.value);
-    }   
+    }
+
+    const onChangePosition = (e) => {
+      setPosition(e.target.value);
+    }
 
 
     if (isWaitingOpinion) {
@@ -92,8 +97,22 @@ const OpinionWriting = () => {
                 <p className={styles.content}>{location.content}</p>
             </div>
 
+
             <div style={{display:"flex", justifyContent:"space-between"}}>
             <p className={styles.summaryNotice}>견해 작성</p>
+                <FormControl>
+                    <FormLabel id="demo-radio-buttons-group-label">입장 선택</FormLabel>
+                    <RadioGroup
+                        row
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        value={position}
+                        onChange={onChangePosition}
+                        name="radio-buttons-group"
+                    >
+                        <FormControlLabel value="AGREE" control={<Radio />} label="찬성" />
+                        <FormControlLabel value="DISAGREE" control={<Radio />} label="반대" />
+                    </RadioGroup>
+                </FormControl>
             </div>
 
             <textarea className={styles.textarea} onChange={onChangeTextArea} value={opinion}></textarea>

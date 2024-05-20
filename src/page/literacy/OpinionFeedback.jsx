@@ -1,13 +1,12 @@
-import React from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./Feedback.module.css";
 import BottomNavBar from '../../components/bottomNavBar/bottomNavBar';
 import { useNavigate } from "react-router-dom";
 
 
-const OpinionFeedback = ({state}) => {
+const OpinionFeedback = () => {
     const location = useLocation();
-    const title = location.state?.title;
+    const title = location.state.title;
     const opinion = location.state?.opinion;
     const position = location.state?.position;
     const category = location.state?.category;
