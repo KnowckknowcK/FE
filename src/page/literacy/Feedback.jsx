@@ -31,12 +31,12 @@ const Feedback = ({state}) => {
                     </div>
                     <div className={styles.contentBox}>
                         <h4>레벨 포인트</h4>
-                        <p>5 점</p>
+                        <p>{summary.point} 점</p>
                     </div>
                 </div>
                 <div className={styles.feedbackBox}>
                     <p style={{fontWeight:"700"}}>피드백 내용</p>
-                    <p>{summary.content}</p>
+                    <p style={{lineHeight:"24px"}}>{summary.content}</p>
                 </div>
             </div>
             <div style={{display:"flex", justifyContent:"space-around"}}>

@@ -20,14 +20,17 @@ const OpinionFeedback = () => {
             <h3> AI 피드백 </h3>
             <div className={styles.divBox}>
                 <h3 style={{lineHeight:"140%"}}><button className={styles.category}>{category}</button>  {title > 30 ? title.substr(0,30) + "..." : title}</h3>
-                <h5>나의 입장 : {position}</h5>
-                    <div className={styles.feedbackBox}>
+                <h5 style={{marginBottom: "0px", marginTop: "0px"}}>나의 입장 : <button
+                    className={styles.position}>{position == "AGREE" ? "찬성" : "반대"}</button>
+                      레벨 포인트 : <button className={styles.position}>{opinion.point} 10 점 </button>
+                </h5>
+                <div className={styles.feedbackBox}>
                         <h4>견해 작성 내용</h4>
                         <p>{opinion.content}</p>
                     </div>
                 <div className={styles.feedbackBox}>
                     <h4>피드백 내용</h4>
-                    <p>{opinion.feedbackContent}</p>
+                    <p style={{lineHeight:"24px"}}>{opinion.feedbackContent}</p>
                 </div>
             </div>
             <div style={{display:"flex", justifyContent:"space-around"}}>
