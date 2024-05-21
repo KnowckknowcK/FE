@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import customAxios from "../../lib/customAxios";
 import styles from "./Dashboard.module.css";
 import Donut from "./Donut";
+import BottomNavBar from "../../components/bottomNavBar/bottomNavBar";
 
 const Dashboard = () => {
     const [dashInfo, setMyDashInfo] = useState(null);
@@ -74,8 +75,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-
-
+            <BottomNavBar/>
         </div>
     )
 }

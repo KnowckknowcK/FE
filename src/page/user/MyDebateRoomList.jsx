@@ -22,14 +22,14 @@ const MyDebateRoomList = () => {
     }, []);
 
     return (
-        <div>
+        <div style={{overflowY:"auto", overflowX:"hidden"}}>
             <div className={styles.container}>
                 <div className= {styles.divUp}>
                     <p className={styles.pageTitle}>참여 중인 토론방</p>
                 </div>
-                <div>
+                <div className={styles.wrapper}>
                     {myDebateRoom.length !== 0 && myDebateRoom.map(room => (
-                        <div key={room.id} className={styles.wrapper}>
+                        <div key={room.id} style={{marginBottom:"15%"}}>
                             <MyDebateRoom data = {room}/>
                         </div>
                     ))}
@@ -39,8 +39,8 @@ const MyDebateRoomList = () => {
                         </div>
                     }
                 </div>
+                <BottomNavBar/>
             </div>
-            <BottomNavBar/>
         </div>
     )
 }
