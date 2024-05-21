@@ -6,7 +6,7 @@ import BottomNavBar from "../../components/bottomNavBar/bottomNavBar";
 
 const Dashboard = () => {
     const [dashInfo, setMyDashInfo] = useState(null);
-
+    const [level, setLevel] = useState(null);
     useEffect(() => {
         const getDashInfo = async() => {
             return await customAxios
@@ -14,6 +14,7 @@ const Dashboard = () => {
                 .then((response) => {
                     setMyDashInfo(response.data.data)
                     console.log(response.data.data)
+                    setLevel(Math.floor(response.data.data.point / 100));
                 });
         }
         const fetchData = async() => {
@@ -31,24 +32,24 @@ const Dashboard = () => {
             <div className={styles.page}>
                 <div className={styles.box}>
                     <div style={{width:"45%",marginTop:"4%"}}>
-                        <Donut value = "80"/>
+                        <Donut value = {dashInfo.point}/>
                     </div>
                     <div className={styles.boxContent}>
                         <p style={{color:"#FFFFFF"}}>{dashInfo.strikes ? dashInfo.strikes : 0}일 연속 참여 중이에요</p>
                         <div className={styles.boxLine}>
                             <img src = './score/silver.png' alt = "메달"/>
-                            <p style={{fontWeight:"bold",color:"#FFFFFF"}}>EXP.80</p>
+                            <p style={{fontWeight:"bold",color:"#FFFFFF"}}>LEVEL.{level}</p>
                         </div>
-                        <p style={{color:"#FFFFFF"}}>level3까지 -exp57</p>
+                        <p style={{color:"#FFFFFF"}}>level{level + 1}까지 exp {100 * (level+1)  - dashInfo.point}</p>
                     </div>
                 </div>
                 <div className={styles.para}>
                     <div className={styles.container}>
                         <div className={styles.line}>
                             <img src='./small.png' alt={"아이콘"} />
-                            <p>획득한 경험치</p>
+                            <p>총 획득 경험치</p>
                         </div>
-                        <p style={{fontWeight:"bold"}}>EXP</p>
+                        <p style={{fontWeight:"bold"}}>EXP.{dashInfo.point}</p>
                     </div>
                     <div className={styles.container}>
                         <div className={styles.line}>
