@@ -1,11 +1,14 @@
 import {useEffect, useState} from "react";
 import customAxios from "../../../lib/customAxios";
 
-export function useMessages(id, refreshKey){
+export function useMessages(id, refreshKey, isLoading){
     const [messages, setMessages] = useState({});
     const url = `/message/${id}`;
 
     useEffect(() => {
+        if(isLoading){
+            return;
+        }
         const fetchData = async () => {
             const response = await customAxios.get(url);
             const messageList = response.data.data
@@ -17,7 +20,7 @@ export function useMessages(id, refreshKey){
             setMessages(object);
         }
         fetchData()
-    }, [id, refreshKey])
+    }, [id, isLoading, refreshKey, url])
 
     function updateLikesNum(messageId, isIncrease){
         let newLikesNum = messages[messageId].likesNum;

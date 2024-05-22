@@ -26,14 +26,15 @@ export function DebateRoom() {
         debateRoomInfo,
         agreeRatio,
         disagreeRatio,
+        isLoading,
         updateRatio
     } = useDebateRoom(roomId)
 
     const { refreshKey, refresh } = useRefresh();
-    const { messages, updateMessage, updateLikesNum} = useMessages(roomId, refreshKey);
+    const { messages, updateMessage, updateLikesNum} = useMessages(roomId, refreshKey, isLoading);
     useSubscribe(roomId, updateMessage);
 
-    const messagesEndRef = useEndRef(messages);
+    const messagesEndRef = useEndRef(messages, isLoading);
     const {isDrawerOpen, toggleDrawer} = useDrawer();
     const {
         isModalOpen,
@@ -48,6 +49,14 @@ export function DebateRoom() {
         navigate(-1)
     }
 
+    if(isLoading) {
+        return (
+            <div className={styles.spinnerContainer}>
+                <div className={styles.spinner}></div>
+                <div className={styles.text}>토론방 정보를 불러오는 중입니다...</div>
+            </div>
+        );
+    }
     return (
         <div className={styles.background}>
             <TopNavBar
