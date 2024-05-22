@@ -52,27 +52,6 @@ const SummaryWriting = () => {
       return () => clearInterval(interval)
     }, [isRunning])
 
-    // useEffect(async() => {
-    //   if (summary.length === 0) {
-    //     return;
-    //   }
-    //   const interval = setInterval(async () =>{
-    //     return await customAxios
-    //       .post(`/summary/save`, {
-    //               content: summary,
-    //               articleId: location.id,
-    //               writerId: userId,
-    //               status: "ING",
-    //               takenTime: time
-    //           }).then((response) => {
-    //               if(response.data.code === 200) {
-    //                   console.log("자동 저장 완료");
-    //               }
-    //           })
-    //   }, 5000);
-    //   return () => clearInterval(interval);
-    // },[])
-
 
     const useSaveSummary = async () => {
 
