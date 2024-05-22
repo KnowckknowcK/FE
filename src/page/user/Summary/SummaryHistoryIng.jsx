@@ -26,8 +26,13 @@ const SummaryHistoryIng = () => {
 
     }, []);
 
-    const handleSummaryClick = (summary) => {
-        navigate(`/summary/`,{state:{data:summary.article}});
+    const handleSummaryClick = async (articleId) => {
+        await customAxios.get(`article/${articleId}`)
+            .then((response) => {
+                navigate(`/summary`,{state:{data:response.data.data}});
+                console.log(response.data.data);
+            });
+
     };
 
     const initContent = "작성중인 요약이 없습니다! 견해를 작성해서 문해력을 키워보아요!"
@@ -41,7 +46,7 @@ const SummaryHistoryIng = () => {
                 <div className={styles.wrapper}>
                     {summaryList.length !== 0 && summaryList.map(summary =>(
                         <div key={summary.summaryId} style={{marginBottom:"15%"}}>
-                            < Summary data={summary} onClick={() => handleSummaryClick(summary)}/>
+                            < Summary data={summary} onClick={() => handleSummaryClick(summary.articleId)}/>
                         </div>
                     ))}
                     {summaryList.length === 0 &&
