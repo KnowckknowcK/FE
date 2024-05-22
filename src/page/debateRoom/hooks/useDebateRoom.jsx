@@ -6,21 +6,25 @@ export function useDebateRoom(roomId) {
     const [debateRoomInfo, setDebateRoomInfo] = useState({})
     const [agreeRatio, setAgreeRatio] = useState(0)
     const [disagreeRatio, setDisagreeRatio] = useState(0);
-
+    const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
         const getDebateRoomInfo = async () => {
             try {
+                setIsLoading(true)
                 const response = await customAxios.put(`/debate-room/${roomId}`, null);
                 // response에서 원하는 데이터 추출하여 상태 업데이트
                 const dto = response.data.data;
                 setDebateRoomInfo(dto);
             } catch (error) {
                 console.error('Debate room 정보를 가져오는 중 오류가 발생했습니다.', error);
+            } finally {
+                setIsLoading(false)
             }
         };
         getDebateRoomInfo();
 
     }, [roomId]);
+
 
     useEffect(() => {
         if (debateRoomInfo) {
@@ -60,5 +64,5 @@ export function useDebateRoom(roomId) {
             }
         }
     }
-    return {debateRoomInfo, agreeRatio, disagreeRatio, updateRatio};
+    return {debateRoomInfo, agreeRatio, disagreeRatio, isLoading,updateRatio};
 }
