@@ -20,7 +20,7 @@ const SummaryDetailPage = () => {
                 <div className={styles.bg}>
                     <div>
                         <p className={styles.title} >{summary.title}</p>
-                        <p className={styles.content}>{summary.article.content}</p>
+                        <p className={styles.content}>{summary.articleContent}</p>
                     </div>
                     <div>
                         <p className={styles.title}>내가 작성한 요약</p>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {useLocation} from "react-router-dom";
 import styles from "./MyOpinion.module.css"
-const OpinionPage = () => {
+const OpinionDetailPage = () => {
     const location = useLocation();
     const { opinion } = location.state;
     return (
@@ -28,4 +28,4 @@ const OpinionPage = () => {
     );
 };
 
-export default OpinionPage;
+export default OpinionDetailPage;
