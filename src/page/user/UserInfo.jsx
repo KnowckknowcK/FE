@@ -43,7 +43,7 @@ const UserInfo = () => {
          <p className={styles.mywork}>MY WORK</p>
             <div>
                 <p className={styles.para} onClick={()=>{navigate('/summary-history/ing')}}>진행 중인 요약문 보기 <Button variant="text" endIcon={<ArrowForwardIosIcon />}/></p>
-                <p className={styles.para} onClick={()=>{navigate('/summary-history')}}>대시 보드 <Button variant="text" endIcon={<ArrowForwardIosIcon />}/></p>
+                <p className={styles.para} onClick={()=>{navigate('/dashboard')}}>대시 보드 <Button variant="text" endIcon={<ArrowForwardIosIcon />}/></p>
                 <p className={styles.para} onClick={()=>{navigate('/debate-room')}}>참여 중인 토론방 보기 <Button variant="text" endIcon={<ArrowForwardIosIcon />}/></p>
             </div>
         <BottomNavBar/>

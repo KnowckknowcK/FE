@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {useLocation} from "react-router-dom";
-import styles from "./MySummary.module.css";
+import styles from "./SummaryDetail.module.css";
 
-const SummaryPage = () => {
+const SummaryDetailPage = () => {
     const location = useLocation();
     // const [imagePath, setImagePath] = useState(null);
     const {summary} = location.state;
@@ -12,13 +12,7 @@ const SummaryPage = () => {
         GOOD: require("../../../asset/silver.png"),
         FAIR: require("../../../asset/bronze.png")
     };
-    // function selectImg(option) {
-    //     const path = imageOptions[option];
-    //     if (path !== imagePath) {
-    //         setImagePath(path);
-    //     }
-    // }
-    // selectImg(summary.score)
+
     const imagePath = imageOptions[summary.score];
     return (
         <div>
@@ -55,4 +49,4 @@ const SummaryPage = () => {
     );
 };
 
-export default SummaryPage;
+export default SummaryDetailPage;

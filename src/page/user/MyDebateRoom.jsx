@@ -18,7 +18,7 @@ const MyDebateRoom = ({data}) => {
     return (
         <div className={styles.block}
             onClick={() => getDebateRoomInfo(data.id)}>
-            <p style={{fontWeight : "bold"}}>{data.title}</p>
+            <p style={{fontWeight : "bold",maxWidth:"95%",height:"auto"}}>{data.title}</p>
             <p className={styles.vector}></p>
             <div className={styles.line}>
                 <img src={imagePath} alt="이미지" style={{weight:"40%", height:"40%"}} />
