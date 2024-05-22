@@ -25,7 +25,7 @@ import SummaryHistoryIng from "./page/user/Summary/SummaryHistoryIng";
 import SummaryHistoryDone from "./page/user/Summary/SummaryHistoryDone";
 import SummaryDetailPage from "./page/user/Summary/SummaryDetailPage";
 import GoogleLoginSuccess from "./page/signup&in/GoogleLoginSuccess";
-import OpinionPage from "./page/user/Opinion/OpinionPage";
+import OpinionDetailPage from "./page/user/Opinion/OpinionDetailPage";
 
 function App() {
   function setScreenSize() {
@@ -50,7 +50,7 @@ function App() {
         <Route path='/signin' element={<SignIn />} />
         <Route path='/debate-room' element={<MyDebateRoomList />} />
         <Route path='/opinion-history' element={<OpinionHistory />} />
-        <Route path='/opinion/:id' element={<OpinionPage />} />
+        <Route path='/opinion-detail/:id' element={<OpinionDetailPage />} />
         <Route path='/summary-history/ing' element={<SummaryHistoryIng />} />
         <Route path='/summary-history/done' element={<SummaryHistoryDone />} />
         <Route path='/summary-detail/:id' element={<SummaryDetailPage />} />

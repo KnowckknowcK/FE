@@ -18,7 +18,7 @@
 }
 
 .category {
-    width: auto;
+    width: 30%;
     height: 80%;
     padding: 2% 4%;
     background: var(--color-green);
