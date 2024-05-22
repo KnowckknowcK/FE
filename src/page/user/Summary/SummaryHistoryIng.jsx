@@ -27,8 +27,9 @@ const SummaryHistoryIng = () => {
     }, []);
 
     const handleSummaryClick = (summary) => {
-        navigate(`/summary/${summary.articleId}`,{state:{data : summary.article}});
+        navigate(`/summary/`,{state:{data:summary.article}});
     };
+
     const initContent = "작성중인 요약이 없습니다! 견해를 작성해서 문해력을 키워보아요!"
 
     return (
