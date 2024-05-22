@@ -23,7 +23,7 @@ import { useEffect } from "react";
 import OpinionFeedback from "./page/literacy/OpinionFeedback";
 import SummaryHistoryIng from "./page/user/Summary/SummaryHistoryIng";
 import SummaryHistoryDone from "./page/user/Summary/SummaryHistoryDone";
-import SummaryPage from "./page/user/Summary/SummaryPage";
+import SummaryDetailPage from "./page/user/Summary/SummaryDetailPage";
 import GoogleLoginSuccess from "./page/signup&in/GoogleLoginSuccess";
 import OpinionPage from "./page/user/Opinion/OpinionPage";
 
@@ -53,7 +53,7 @@ function App() {
         <Route path='/opinion/:id' element={<OpinionPage />} />
         <Route path='/summary-history/ing' element={<SummaryHistoryIng />} />
         <Route path='/summary-history/done' element={<SummaryHistoryDone />} />
-        <Route path='/summary-detail/:id' element={<SummaryPage />} />
+        <Route path='/summary-detail/:id' element={<SummaryDetailPage />} />
         <Route path='/mypage' element={<UserInfo />} />
         <Route path='/room' element={<RoomPage />} />
         <Route path='/profile-update' element={<ProfileUpdate />} />
