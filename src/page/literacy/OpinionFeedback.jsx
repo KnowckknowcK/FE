@@ -2,6 +2,8 @@ import { useLocation } from "react-router-dom";
 import styles from "./Feedback.module.css";
 import BottomNavBar from '../../components/bottomNavBar/bottomNavBar';
 import { useNavigate } from "react-router-dom";
+import customAxios from "../../lib/customAxios";
+import Swal from "sweetalert2";
 
 
 const OpinionFeedback = () => {
@@ -13,6 +15,24 @@ const OpinionFeedback = () => {
     const articleId = location.state?.articleId;
 
   const navigate = useNavigate();
+
+  const onClickDebateRoom = async () => {
+      const response = await customAxios.put(`/debate-room/${articleId}`);
+
+      if (response.status === 200) {
+          navigate(`/debate-room/${articleId}`);
+      }
+
+      else {
+          Swal.fire({
+              title: "토론방 입장 실패",
+              text: "토론방에 입장하는 도중에 오류가 발생했어요 :(",
+              icon: "error",
+              width: "350px",
+              confirmButtonColor: "#B5C9C0",
+          })
+      }
+    }
 
     
     return (
@@ -35,7 +55,7 @@ const OpinionFeedback = () => {
             </div>
             <div style={{display:"flex", justifyContent:"space-around"}}>
                 <button className={styles.feedbackBtn} onClick={() => {navigate('/')}}>홈으로</button>
-                <button className={styles.feedbackBtn} onClick={() => {navigate(`/debate-room/${articleId}`)}}>토론방 입장</button>
+                <button className={styles.feedbackBtn} onClick={onClickDebateRoom}>토론방 입장</button>
             </div>
             <BottomNavBar/>
         </div>
