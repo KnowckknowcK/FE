@@ -6,7 +6,7 @@ import styles from "./Main.module.css";
 import BottomNavBar from '../../components/bottomNavBar/bottomNavBar';
 import Modal from "../../components/modal/Modal";
 
-function Main(props) {
+const Main = () => {
     const [data, setData] = useState([]);
     const [modal, setModal] = useState(false);
 
@@ -18,7 +18,7 @@ function Main(props) {
   	
   	useEffect(() => {
 		const fetchData = async() => {
-          const res = await customAxios.get('/article/recommand');
+          const res = await customAxios.get('/article/recommended');
           return res.data;
         }	
         
@@ -29,7 +29,6 @@ function Main(props) {
             
     }, []);
 
-    
 
     return (
         <div className={styles.outer}>
@@ -41,11 +40,8 @@ function Main(props) {
             </h2>
         </div>
 
-        
-        
-    
 
-        <div className={styles.explain}>오늘의 맞춤 추천 기사</div>
+        <div className={styles.explain}>오늘의 추천 기사</div>
         <div className={styles.recommendList}>
             {data.map((item) =>(
                 <RecommendedItem data = {item} show={modal}/>
