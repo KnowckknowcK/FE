@@ -5,6 +5,9 @@ import customAxios from "../../lib/customAxios";
 import styles from "./Main.module.css";
 import BottomNavBar from '../../components/bottomNavBar/bottomNavBar';
 import Modal from "../../components/modal/Modal";
+import Logout from '../../components/logout/Logout';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 const Main = () => {
     const [data, setData] = useState([]);
@@ -28,10 +31,20 @@ const Main = () => {
         )
             
     }, []);
+    
+    const logoutHandler = () => {
+        console.log("dddd");
+        localStorage.removeItem("accessToken");
+    }
+    
 
 
     return (
+        
         <div className={styles.outer}>
+        <button onClick={logoutHandler} style={{position: 'fixed', top: '10px', right: '4px', backgroundColor: 'transparent', border: 'None'}}>
+            <FontAwesomeIcon icon={faRightFromBracket} size="2x" />
+        </button>
         <img src="/img/shapeImg.png" alt="Shape" className={styles.shapeImg} />
         <div className={styles.blank}></div>
         <div className={styles.wrapper}>
