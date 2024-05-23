@@ -5,8 +5,10 @@ import customAxios from "../../lib/customAxios";
 import styles from "./Main.module.css";
 import BottomNavBar from '../../components/bottomNavBar/bottomNavBar';
 import Modal from "../../components/modal/Modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
-function Main(props) {
+const Main = () => {
     const [data, setData] = useState([]);
     const [modal, setModal] = useState(false);
 
@@ -18,7 +20,7 @@ function Main(props) {
   	
   	useEffect(() => {
 		const fetchData = async() => {
-          const res = await customAxios.get('/article/recommand');
+          const res = await customAxios.get('/article/recommended');
           return res.data;
         }	
         
@@ -28,11 +30,20 @@ function Main(props) {
         )
             
     }, []);
-
+    
+    const logoutHandler = () => {
+        console.log("dddd");
+        localStorage.removeItem("accessToken");
+    }
     
 
+
     return (
+        
         <div className={styles.outer}>
+        <div onClick={logoutHandler}>
+            <FontAwesomeIcon icon={faRightFromBracket} size="2x" />
+        </div>
         <img src="/img/shapeImg.png" alt="Shape" className={styles.shapeImg} />
         <div className={styles.blank}></div>
         <div className={styles.wrapper}>
@@ -41,15 +52,14 @@ function Main(props) {
             </h2>
         </div>
 
-        
-        
-    
 
-        <div className={styles.explain}>오늘의 맞춤 추천 기사</div>
+        <div className={styles.explain}>오늘의 추천 기사</div>
         <div className={styles.recommendList}>
+            <div />
             {data.map((item) =>(
                 <RecommendedItem data = {item} show={modal}/>
             ))}
+            <div />
         </div>
 
         <button disabled={modal} className={styles.selectBtn} onClick={clickHandler}>

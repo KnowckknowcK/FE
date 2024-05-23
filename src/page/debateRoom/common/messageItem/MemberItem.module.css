@@ -24,6 +24,8 @@
     padding-left: 10px;
     padding-right: 10px;
     font-size: var(--font-size-sm);
+
+    flex-shrink: 0;
 }
 
 .position {
@@ -33,5 +35,8 @@
     color: var(--color-white);
     padding: 3px;
     border-radius: 10px;
+
+    flex-shrink: 0;
+    min-width: 30px;
 }
 

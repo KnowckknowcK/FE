@@ -46,7 +46,7 @@ export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio
                     {title}
                 </div>
                 <div className={styles.drawerRatio}>
-                    토론방 찬/반 비율
+                    토론방 좋아요 수 찬/반 비율
                 </div>
                 <br/>
                 <div>
