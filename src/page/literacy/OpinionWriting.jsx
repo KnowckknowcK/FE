@@ -1,10 +1,11 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./SummaryWriting.module.css";
 import customAxios from "../../lib/customAxios";
 import formatDateTime from "../../util/FormatDateTime"
 import {FormControl, FormLabel, RadioGroup, FormControlLabel, Radio} from '@mui/material';
 import Swal from "sweetalert2";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const OpinionWriting = () => {
   const location = useLocation().state.data;
@@ -91,6 +92,7 @@ const OpinionWriting = () => {
 
     return (
         <div style={{overflow:"hidden", display:"flex", flexDirection:"column", gap:"10px",padding:"20px"}}>
+            <ArrowBackIosIcon style={{marginTop:"25px", marginLeft:"10px"}} onClick={()=>{navigate(-1)}}/>
             <div className={styles.articleDiv}>
                 <h2 className={styles.title}>{location.title}</h2>
                 <h4>{formatDateTime(location.createdTime)}</h4>

@@ -5,6 +5,7 @@ import BottomNavBar from "../../components/bottomNavBar/bottomNavBar";
 import styles from "./UserInfo.module.css";
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const UserInfo = () => {
     const navigate = useNavigate();

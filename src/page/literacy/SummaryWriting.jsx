@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./SummaryWriting.module.css";
 import customAxios from "../../lib/customAxios";
 import formatDateTime from "../../util/FormatDateTime"
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Swal from "sweetalert2";
 
 const SummaryWriting = () => {
@@ -52,8 +53,35 @@ const SummaryWriting = () => {
       return () => clearInterval(interval)
     }, [isRunning])
 
+    const onClickBack = () => {
+      if(summary == null) {
+          navigate(-1)
+      }
+      else{
+          Swal.fire({
+              title: "요약 작성을 그만 두실건가요?",
+              text: "진행 사항을 임시저장할 수 있습니다",
+              icon: "question",
+              width: "350px",
+              confirmButtonColor: "#B5C9C0",
+              confirmButtonText: "임시저장",
+              cancelButtonText: "뒤로가기",
+              showCancelButton: true,
+              cancelButtonColor: "#aaa",
+          }).then((res) => {
+              if(res.isConfirmed) {
+                  onClickSaveSummary()
+              }
 
-    const useSaveSummary = async () => {
+              if(res.isDismissed) {
+                  navigate(-1)
+              }
+          })
+      }
+    }
+
+
+    const onClickSaveSummary = async () => {
 
       if (summary.length === 0) {
         alert("내용을 입력해주세요.");
@@ -97,7 +125,7 @@ const SummaryWriting = () => {
 
   const submitSummary = async () => {
 
-    if (summary.length === 0) {
+    if (summary == null || summary.length === 0) {
       alert("내용을 입력해주세요.");
       return;
     }
@@ -160,23 +188,24 @@ const SummaryWriting = () => {
     }
 
     return (
-        <div style={{overflow:"hidden", display:"flex", flexDirection:"column", gap:"10px",padding:"20px"}}>
+        <div style={{overflow: "hidden", display: "flex", flexDirection: "column", gap: "10px", padding: "20px"}}>
+            <ArrowBackIosIcon style={{marginTop:"25px", marginLeft:"10px"}} onClick={onClickBack}/>
             <div className={styles.articleDiv}>
                 <h2 className={styles.title}>{location.title}</h2>
                 <h4>{formatDateTime(location.createdTime)}</h4>
                 <p className={styles.content}>{location.content}</p>
             </div>
 
-            <div style={{display:"flex", justifyContent:"space-between"}}>
-            <p className={styles.takenTime}> 경과 시간 <time>
-              {`0${Math.floor((time / 60000) % 60)}`.slice(-2)} : {`0${Math.floor((time / 1000) % 60)}`.slice(-2)}
-            </time></p>
-            <p className={styles.summaryNotice}>요약 작성</p>
+            <div style={{display: "flex", justifyContent: "space-between"}}>
+                <p className={styles.takenTime}> 경과 시간 <time>
+                    {`0${Math.floor((time / 60000) % 60)}`.slice(-2)} : {`0${Math.floor((time / 1000) % 60)}`.slice(-2)}
+                </time></p>
+                <p className={styles.summaryNotice}>요약 작성</p>
             </div>
 
             <textarea className={styles.textarea} onChange={onChangeTextArea} value={summary}></textarea>
             <div className={styles.btnDiv}>
-                <button className={styles.summaryBtn} onClick={useSaveSummary}>요약 저장</button>
+                <button className={styles.summaryBtn} onClick={onClickSaveSummary}>요약 저장</button>
                 <button className={styles.summaryBtn} onClick={submitSummary}>요약 제출</button>
             </div>
         </div>
