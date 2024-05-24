@@ -8,6 +8,7 @@ import {TextField,OutlinedInput,InputAdornment,IconButton, Input} from '@mui/mat
 import {Visibility,VisibilityOff} from '@mui/icons-material';
 import Swal from "sweetalert2";
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 const { REACT_APP_API_URL } = process.env;
 
 const ProfileUpdate = () => {
@@ -104,6 +105,8 @@ const ProfileUpdate = () => {
 
     return (
         <div style={{overflowY:"hidden"}}>
+            <ArrowBackIosIcon style={{zIndex:"1", position:"absolute", top:"7%", left:"7%", color:"white"}} onClick={()=>{navigate(-1)}}/>
+
         <div className= {styles.bgroundDiv}>
             <p style={{marginTop:"50px"}}>Profile Update</p>
             <img src= {nowImg} className={styles.profileImg}/>
