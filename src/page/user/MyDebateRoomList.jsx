@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
 import customAxios from "../../lib/customAxios";
 import styles from "./MyDebateRoomList.module.css"
+import spinner from "./Spinner.module.css"
 import MyDebateRoom from "./MyDebateRoom";
 import BottomNavBar from "../../components/bottomNavBar/bottomNavBar";
 const MyDebateRoomList = () => {
     const [myDebateRoom, setMyDebateRoom] = useState([]);
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         const loadMyDebateRoom = async () => {
@@ -12,11 +14,11 @@ const MyDebateRoomList = () => {
                 .get('/debate-room/ing')
                 .then((res) => {
                     setMyDebateRoom(res.data.data);
-                    console.log(res.data.data)
                 });
         }
         const fetchData = async () => {
             await loadMyDebateRoom();
+            setIsLoading(false);
         };
         fetchData();
     }, []);
@@ -33,6 +35,12 @@ const MyDebateRoomList = () => {
                             <MyDebateRoom data = {room}/>
                         </div>
                     ))}
+                    {isLoading &&
+                        <div className={spinner.spinnerContainer}>
+                            <div className={spinner.spinner}></div>
+                            <div className={spinner.text}>토론방 가져오는 중</div>
+                        </div>
+                    }
                     {myDebateRoom.length === 0 &&
                         <div>
                             <p>아직 참여 중인 토론방이 없어요!</p>

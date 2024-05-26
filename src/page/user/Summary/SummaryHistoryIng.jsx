@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styles from './SummaryHistory.module.css';
+import spinner from "../Spinner.module.css"
 import customAxios from "../../../lib/customAxios";
 import BottomNavBar from "../../../components/bottomNavBar/bottomNavBar";
 import {useNavigate} from "react-router-dom";
@@ -7,6 +8,8 @@ import Summary from "./Summary";
 
 const SummaryHistoryIng = () => {
     const [summaryList, setMySummary] = useState([]);
+    const [isLoading, setIsLoading] = useState(true)
+
 
     const navigate = useNavigate();
     useEffect(() => {
@@ -20,6 +23,8 @@ const SummaryHistoryIng = () => {
 
         const fetchData = async () => {
             await loadMySummary();
+            setIsLoading(false);
+
         };
 
         fetchData();
@@ -44,6 +49,12 @@ const SummaryHistoryIng = () => {
                     <p className={styles.pageTitle}>작성 중인 요약문</p>
                 </div>
                 <div className={styles.wrapper}>
+                    {isLoading &&
+                        <div className={spinner.spinnerContainer}>
+                            <div className={spinner.spinner}></div>
+                            <div className={spinner.text}>작성 중인 요약문 가져오는 중</div>
+                        </div>
+                    }
                     {summaryList.length !== 0 && summaryList.map(summary =>(
                         <div key={summary.summaryId} style={{marginBottom:"15%"}}>
                             < Summary data={summary} onClick={() => handleSummaryClick(summary.articleId)}/>

@@ -48,7 +48,7 @@ function App() {
         <Route path='/opinion-feedback' element={<OpinionFeedback />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/signin' element={<SignIn />} />
-        <Route path='/debate-room' element={<MyDebateRoomList />} />
+        <Route path='/debate-room-list' element={<MyDebateRoomList />} />
         <Route path='/opinion-history' element={<OpinionHistory />} />
         <Route path='/opinion-detail/:id' element={<OpinionDetailPage />} />
         <Route path='/summary-history/ing' element={<SummaryHistoryIng />} />

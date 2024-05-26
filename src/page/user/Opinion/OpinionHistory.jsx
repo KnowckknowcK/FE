@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from "react";
 import customAxios from "../../../lib/customAxios";
 import {useNavigate} from 'react-router-dom';
-import OpinionDetailPage from "./OpinionDetailPage";
 import styles from "./OpinionHistory.module.css"
+import spinner from "../Spinner.module.css"
 import BottomNavBar from "../../../components/bottomNavBar/bottomNavBar";
-import Summary from "../Summary/Summary";
 import Opinion from "./Opinion";
 
 const OpinionHistory = () => {
     const [opinionList, setOpinionList] = useState([]);
+    const [isLoading, setIsLoading] = useState(true)
+
     const navigate = useNavigate();
 
 
@@ -18,12 +19,12 @@ const OpinionHistory = () => {
                 .get(`/opinion`)
                 .then((response) => {
                     setOpinionList(response.data.data)
-                    console.log(response.data.data)
                 });
         }
 
         const fetchData = async () => {
             await loadOpinions();
+            setIsLoading(false)
         };
 
         fetchData();
@@ -37,9 +38,15 @@ const OpinionHistory = () => {
         <div style={{overflowY:"auto", overflowX:"hidden"}}>
             <div className={styles.container}>
                 <div className={styles.divUp}>
-                    <p className={styles.pageTitle}>작성한 요약문</p>
+                    <p className={styles.pageTitle}>작성한 견해문</p>
                 </div>
                 <div className={styles.wrapper}>
+                    {isLoading &&
+                        <div className={spinner.spinnerContainer}>
+                            <div className={spinner.spinner}></div>
+                            <div className={spinner.text}>작성한 요약문 가져오는 중</div>
+                        </div>
+                    }
                     {opinionList.length !== 0 && opinionList.map(opinion =>(
                         <div key={opinion.opinionId} style={{marginBottom:"15%"}}>
                             <Opinion data={opinion}/>
