@@ -5,6 +5,7 @@ import styles from "./OpinionHistory.module.css"
 import spinner from "../Spinner.module.css"
 import BottomNavBar from "../../../components/bottomNavBar/bottomNavBar";
 import Opinion from "./Opinion";
+import MoveBackButton from "../MoveBackButton";
 
 const OpinionHistory = () => {
     const [opinionList, setOpinionList] = useState([]);
@@ -38,6 +39,7 @@ const OpinionHistory = () => {
         <div style={{overflowY:"auto", overflowX:"hidden"}}>
             <div className={styles.container}>
                 <div className={styles.divUp}>
+                    <MoveBackButton style={{marginLeft:"5%"}}/>
                     <p className={styles.pageTitle}>작성한 견해문</p>
                 </div>
                 <div className={styles.wrapper}>

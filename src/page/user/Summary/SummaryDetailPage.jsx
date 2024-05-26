@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useLocation} from "react-router-dom";
 import styles from "./SummaryDetail.module.css";
+import MoveBackButton from "../MoveBackButton";
 
 const SummaryDetailPage = () => {
     const location = useLocation();
@@ -17,6 +18,7 @@ const SummaryDetailPage = () => {
         <div>
             {summary ? (
                 <div className={styles.bg}>
+                    <MoveBackButton style={{marginLeft:"5%"}}/>
                     <div>
                         <p className={styles.title} >{summary.title}</p>
                         <div className={styles.content}>{summary.articleContent}</div>
