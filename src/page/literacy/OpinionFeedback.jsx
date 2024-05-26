@@ -50,7 +50,7 @@ const OpinionFeedback = () => {
                     </div>
                 <div className={styles.feedbackBox}>
                     <h4>피드백 내용</h4>
-                    <p style={{lineHeight:"24px"}}>{opinion.feedbackContent}</p>
+                    <p className={styles.summaryContent}>{opinion.feedbackContent}</p>
                 </div>
             </div>
             <div style={{display:"flex", justifyContent:"space-around"}}>
