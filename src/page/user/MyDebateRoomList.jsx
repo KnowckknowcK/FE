@@ -5,6 +5,7 @@ import spinner from "./Spinner.module.css"
 import MyDebateRoom from "./MyDebateRoom";
 import BottomNavBar from "../../components/bottomNavBar/bottomNavBar";
 import MoveBackButton from "./MoveBackButton";
+import NoWork from "./noWork/NoWork";
 const MyDebateRoomList = () => {
     const [myDebateRoom, setMyDebateRoom] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
@@ -44,10 +45,7 @@ const MyDebateRoomList = () => {
                         </div>
                     }
                     {myDebateRoom.length === 0 &&
-                        <div>
-                            <p>아직 참여 중인 토론방이 없어요!</p>
-                        </div>
-                    }
+                        <NoWork>아직 참여 중인 토론방이 없어요!<br/>토론방에 참여하여 문해력을<br/> 증진해봐요! :)</NoWork>                    }
                 </div>
                 <BottomNavBar/>
             </div>

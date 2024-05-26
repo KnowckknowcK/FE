@@ -6,6 +6,7 @@ import BottomNavBar from "../../../components/bottomNavBar/bottomNavBar";
 import {useNavigate} from "react-router-dom";
 import Summary from "./Summary";
 import MoveBackButton from "../MoveBackButton";
+import NoWork from "../noWork/NoWork";
 
 const SummaryHistoryIng = () => {
     const [summaryList, setMySummary] = useState([]);
@@ -63,9 +64,7 @@ const SummaryHistoryIng = () => {
                         </div>
                     ))}
                     {summaryList.length === 0 &&
-                        <div>
-                            <p>{initContent}</p>
-                        </div>
+                        <NoWork>아직 작성 중인 글이 없어요!<br/>글을 작성하고 똑똑과 함께 문해력을<br/> 증진해봐요! :)</NoWork>
                     }
                 </div>
                 <BottomNavBar user="1"></BottomNavBar>

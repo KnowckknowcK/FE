@@ -6,6 +6,7 @@ import spinner from "../Spinner.module.css"
 import BottomNavBar from "../../../components/bottomNavBar/bottomNavBar";
 import Opinion from "./Opinion";
 import MoveBackButton from "../MoveBackButton";
+import NoWork from "../noWork/NoWork";
 
 const OpinionHistory = () => {
     const [opinionList, setOpinionList] = useState([]);
@@ -32,7 +33,6 @@ const OpinionHistory = () => {
     },[]);
 
 
-    //TODO 아무것도 안 썼을 때 디자인 개선 지금 너무 글만 달랑 있음
     const initContent = "작성된 견해가 없습니다! 견해를 작성해서 문해력을 키워보아요!"
 
     return (
@@ -55,10 +55,7 @@ const OpinionHistory = () => {
                         </div>
                     ))}
                     {opinionList.length === 0 &&
-                        <div>
-                            <p>{initContent}</p>
-                        </div>
-                    }
+                        <NoWork>아직 작성한 견해가 없어요!<br/>견해를 작성하고 똑똑과 함께 문해력을<br/> 증진해봐요! :)</NoWork>                    }
                 </div>
                 <BottomNavBar user="1"></BottomNavBar>
             </div>
