@@ -6,6 +6,7 @@ import spinner from "../Spinner.module.css"
 import BottomNavBar from "../../../components/bottomNavBar/bottomNavBar";
 import Summary from "./Summary";
 import MoveBackButton from "../MoveBackButton";
+import NoWork from "../noWork/NoWork";
 
 const SummaryHistoryDone = () => {
     const [summaryList, setSummaryList] = useState([]);
@@ -56,9 +57,7 @@ const SummaryHistoryDone = () => {
                         </div>
                     ))}
                     {summaryList.length === 0 &&
-                        <div>
-                            <p>{initContent}</p>
-                        </div>
+                        <NoWork>아직 작성한 요약이 없어요!<br/>요약을 작성하고 똑똑과 함께 문해력을<br/> 증진해봐요! :)</NoWork>
                     }
                 </div>
                 <BottomNavBar user="1"></BottomNavBar>
