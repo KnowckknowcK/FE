@@ -38,7 +38,6 @@ const Donut = ({value}) => {
             ctx.restore();
         }
     }
-    Chart.register(textPlugin);
     const options = {
         maintainAspectRatio: false,
         plugins: {
@@ -54,7 +53,7 @@ const Donut = ({value}) => {
         }
     };
 
-    return <Doughnut data={data} options={options} />;
+    return <Doughnut data={data} options={options} plugins={[textPlugin]}  />;
 };
 
 export default Donut;
