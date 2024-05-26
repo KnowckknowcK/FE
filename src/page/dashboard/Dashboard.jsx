@@ -17,7 +17,7 @@ const Dashboard = () => {
                 .then((response) => {
                     setMyDashInfo(response.data.data)
                     console.log(response.data.data)
-                    setLevel(Math.floor(response.data.data.point / 100))
+                    setLevel(Math.floor(response.data.data.point / 100) + 1)
                 });
         }
         const fetchData = async() => {
@@ -39,23 +39,23 @@ const Dashboard = () => {
             {!isLoading &&
                 <div className={styles.page}>
                     <div className={styles.box}>
-                        <div style={{width:"45%",marginTop:"4%"}}>
+                        <div style={{width:"42%",margin:"3%"}}>
                             <Donut value = {dashInfo.point}/>
                         </div>
                         <div className={styles.boxContent}>
                             <p style={{color:"#FFFFFF"}}>{dashInfo.strikes ? dashInfo.strikes : 0}일 연속 참여 중이에요</p>
                             <div className={styles.boxLine}>
-                                <img src = './score/silver.png' alt = "메달"/>
-                                <p style={{fontWeight:"bold",color:"#FFFFFF"}}>LEVEL.{level}</p>
+                                {/*<img src = './score/silver.png' alt = "메달"/>*/}
+                                <p style={{fontWeight:"bold",color:"#FFFFFF",fontSize:"20px"}}>EXP.{dashInfo.point}</p>
                             </div>
-                            <p style={{color:"#FFFFFF"}}>level{level + 1}까지 exp {100 * (level+1)  - dashInfo.point}</p>
+                            <p style={{color:"#FFFFFF"}}>level{level + 1}까지 exp {100 * level - dashInfo.point}</p>
                         </div>
                     </div>
                     <div className={styles.para}>
                         <div className={styles.container}>
                             <div className={styles.line}>
                                 <img src='./small.png' alt={"아이콘"} />
-                                <p>총 획득 경험치</p>
+                                <p>오늘 획득 경험치</p>
                             </div>
                             <p style={{fontWeight:"bold"}}>EXP.{dashInfo.point}</p>
                         </div>

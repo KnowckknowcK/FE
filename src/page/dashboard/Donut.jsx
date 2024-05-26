@@ -1,59 +1,59 @@
 import React, {useEffect, useState} from 'react';
 import {Doughnut} from 'react-chartjs-2';
+import {Chart} from "chart.js";
 const Donut = ({value}) => {
-    const [displayedValue, setDisplayedValue] = useState(0);
-    console.log(value)
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setDisplayedValue((prevValue) => {
-                if (prevValue < {value}) {
-                    return prevValue + 1; // 데이터 값 증가
-                } else {
-                    clearInterval(interval);
-                    return prevValue;
-                }
-            });
-        }, 20); // 20ms 간격으로 데이터 업데이트
-
-        return () => clearInterval(interval);
-    }, [displayedValue]);
+    // console.(value)
 
     const data = {
-        labels: ['Value', 'Remainder'],
+        label: ['Value', 'Remainder'],
         datasets: [
             {
-                data: [displayedValue, 100-displayedValue],
+                data: [value, 100-value],
                 backgroundColor: ['#F5F5F5', '#7CC8A4'],
-                borderWidth: 1,
+                borderWidth: 0,
+                borderRadius:10,
+                cutout: 55,
             },
         ],
     };
 
+    const textPlugin = {
+        id: 'text',
+        afterDraw: (chart) => {
+            const ctx = chart.ctx;
+            ctx.save();
+
+            //level 표시
+            ctx.font = "bold 17px 'Noto Sans'";
+            ctx.textAlign = 'center';
+            ctx.fillStyle = 'white'
+            ctx.textBaseline = 'middle';
+            const centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
+            const centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
+            ctx.fillText(`LEVEL${Math.floor(value / 100) + 1}`, centerX, centerY - 10);
+
+            //퍼센트 표시
+            ctx.font = "bold 24px 'Noto Sans'";
+            ctx.fillText(`${value}%`, centerX, centerY + 15);
+            ctx.restore();
+        }
+    }
+    Chart.register(textPlugin);
     const options = {
         maintainAspectRatio: false,
-        customPercentage: 20,
         plugins: {
             tooltip: {
                 enabled: false,
             },
-            // 플러그인 추가
-            afterDraw: chart => {
-                const ctx = chart.ctx;
-                ctx.save();
-                ctx.font = "11px Arial";
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                const centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
-                const centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
-                ctx.fillText(`${displayedValue}%`, centerX, centerY - 10);
-                ctx.fillText(`Class 2`, centerX, centerY + 10);
-                ctx.restore();
-            },
             legend: {
                 display: false,
+            },
+            datalabels: {
+                display: false
             }
         }
     };
+
     return <Doughnut data={data} options={options} />;
 };
 
