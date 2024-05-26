@@ -4,6 +4,7 @@ import styles from "./MyDebateRoomList.module.css"
 import spinner from "./Spinner.module.css"
 import MyDebateRoom from "./MyDebateRoom";
 import BottomNavBar from "../../components/bottomNavBar/bottomNavBar";
+import MoveBackButton from "./MoveBackButton";
 const MyDebateRoomList = () => {
     const [myDebateRoom, setMyDebateRoom] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
@@ -27,6 +28,7 @@ const MyDebateRoomList = () => {
         <div style={{overflowY:"auto", overflowX:"hidden"}}>
             <div className={styles.container}>
                 <div className= {styles.divUp}>
+                    <MoveBackButton style={{marginLeft:"5%"}}/>
                     <p className={styles.pageTitle}>참여 중인 토론방</p>
                 </div>
                 <div className={styles.wrapper}>

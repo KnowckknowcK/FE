@@ -5,6 +5,7 @@ import customAxios from "../../../lib/customAxios";
 import BottomNavBar from "../../../components/bottomNavBar/bottomNavBar";
 import {useNavigate} from "react-router-dom";
 import Summary from "./Summary";
+import MoveBackButton from "../MoveBackButton";
 
 const SummaryHistoryIng = () => {
     const [summaryList, setMySummary] = useState([]);
@@ -46,6 +47,7 @@ const SummaryHistoryIng = () => {
         <div style={{overflowY:"auto", overflowX:"hidden"}}>
             <div className={styles.container}>
                 <div className={styles.divUp}>
+                    <MoveBackButton/>
                     <p className={styles.pageTitle}>작성 중인 요약문</p>
                 </div>
                 <div className={styles.wrapper}>

@@ -1,12 +1,17 @@
 .content {
+    position: relative;
     place-items: center;
-    width: 343px;
+    width: 90%;
     height: 358px;
     max-height: 358px;
-    position:relative;
     overflow-y: auto;
+    margin-left: 5%;
     background: #F6F6F6;
     border-radius: 8px;
+    word-wrap: break-word;
+    line-height: 1.5;
+    padding: 3%;
+    box-sizing: border-box;
 }
 
 .title {
@@ -20,12 +25,12 @@
     word-wrap: break-word;
     box-sizing: border-box;
     line-height: 1;
+    margin-left: 5%;
 }
 
 .bg {
     margin-top: 5px;
     margin-bottom: 80px;
-    margin-left: 5%;
     flex-direction: column; /* 요소들을 세로 방향으로 정렬 */
     align-items: center;
 }

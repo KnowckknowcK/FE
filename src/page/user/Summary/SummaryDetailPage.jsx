@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {useLocation} from "react-router-dom";
 import styles from "./SummaryDetail.module.css";
+import MoveBackButton from "../MoveBackButton";
 
 const SummaryDetailPage = () => {
     const location = useLocation();
-    // const [imagePath, setImagePath] = useState(null);
     const {summary} = location.state;
 
     const imageOptions = {
@@ -18,13 +18,14 @@ const SummaryDetailPage = () => {
         <div>
             {summary ? (
                 <div className={styles.bg}>
+                    <MoveBackButton style={{marginLeft:"5%"}}/>
                     <div>
                         <p className={styles.title} >{summary.title}</p>
-                        <p className={styles.content}>{summary.articleContent}</p>
+                        <div className={styles.content}>{summary.articleContent}</div>
                     </div>
                     <div>
                         <p className={styles.title}>내가 작성한 요약</p>
-                        <p className={styles.content}>{summary.content}</p>
+                        <div className={styles.content}>{summary.content}</div>
                     </div>
                     <div>
                         <p className={styles.title}>AI 피드백</p>

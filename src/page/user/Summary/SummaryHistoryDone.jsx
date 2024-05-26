@@ -5,6 +5,7 @@ import styles from "./SummaryHistory.module.css"
 import spinner from "../Spinner.module.css"
 import BottomNavBar from "../../../components/bottomNavBar/bottomNavBar";
 import Summary from "./Summary";
+import MoveBackButton from "../MoveBackButton";
 
 const SummaryHistoryDone = () => {
     const [summaryList, setSummaryList] = useState([]);
@@ -39,6 +40,7 @@ const SummaryHistoryDone = () => {
         <div style={{overflowY:"auto", overflowX:"hidden"}}>
             <div className={styles.container}>
                 <div className={styles.divUp}>
+                    <MoveBackButton style={{marginLeft:"5%"}}/>
                     <p className={styles.pageTitle}>작성한 요약문</p>
                 </div>
                 <div className={styles.wrapper}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import {useLocation} from "react-router-dom";
 import styles from "./MyOpinion.module.css"
+import MoveBackButton from "../MoveBackButton";
 const OpinionDetailPage = () => {
     const location = useLocation();
     const { opinion } = location.state;
@@ -8,6 +9,7 @@ const OpinionDetailPage = () => {
         <div>
             {opinion ? (
                 <div className={styles.bg}>
+                    <MoveBackButton style={{marginLeft:"5%"}}/>
                     <div>
                         <p className={styles.title} >{opinion.article.title}</p>
                         <p className={styles.content}>{opinion.article.content}</p>
