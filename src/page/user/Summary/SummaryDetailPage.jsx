@@ -4,7 +4,6 @@ import styles from "./SummaryDetail.module.css";
 
 const SummaryDetailPage = () => {
     const location = useLocation();
-    // const [imagePath, setImagePath] = useState(null);
     const {summary} = location.state;
 
     const imageOptions = {
@@ -20,11 +19,11 @@ const SummaryDetailPage = () => {
                 <div className={styles.bg}>
                     <div>
                         <p className={styles.title} >{summary.title}</p>
-                        <p className={styles.content}>{summary.articleContent}</p>
+                        <div className={styles.content}>{summary.articleContent}</div>
                     </div>
                     <div>
                         <p className={styles.title}>내가 작성한 요약</p>
-                        <p className={styles.content}>{summary.content}</p>
+                        <div className={styles.content}>{summary.content}</div>
                     </div>
                     <div>
                         <p className={styles.title}>AI 피드백</p>

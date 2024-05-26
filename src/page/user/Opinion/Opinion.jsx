@@ -11,7 +11,7 @@ const Opinion = ({data}) => {
     return (
         <div>
             <div className={styles.block} onClick={() => handleClick(data)}>
-                <p style={{fontWeight : "bold",maxWidth:"95%",height:"auto"}}>{data.title}</p>
+                <p style={{fontWeight : "bold",maxWidth:"95%",height:"auto"}}>{data.article.title}</p>
                 <p className={styles.vector}></p>
                 <div className={styles.line}>
                     <p style={{color:"#6B9080"}}>{formatDateTime(data.createdTime)}</p>
