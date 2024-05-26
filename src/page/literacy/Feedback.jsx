@@ -36,7 +36,7 @@ const Feedback = ({state}) => {
                 </div>
                 <div className={styles.feedbackBox}>
                     <p style={{fontWeight:"700"}}>피드백 내용</p>
-                    <p style={{lineHeight:"24px"}}>{summary.content}</p>
+                    <p className={styles.summaryContent}>{summary.content}</p>
                 </div>
             </div>
             <div style={{display:"flex", justifyContent:"space-around"}}>
