@@ -13,7 +13,7 @@ const OpinionDetailPage = () => {
                         <p className={styles.content}>{opinion.article.content}</p>
                     </div>
                     <div>
-                        <p className={styles.title}>내가 작성한 요약</p>
+                        <p className={styles.title}>내가 작성한 견해</p>
                         <p className={styles.content}>{opinion.content}</p>
                     </div>
                     <div>

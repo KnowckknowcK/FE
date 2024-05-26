@@ -3,10 +3,12 @@ import customAxios from "../../lib/customAxios";
 import styles from "./Dashboard.module.css";
 import Donut from "./Donut";
 import BottomNavBar from "../../components/bottomNavBar/bottomNavBar";
+import spinner from "../user/Spinner.module.css";
 
 const Dashboard = () => {
     const [dashInfo, setMyDashInfo] = useState(null);
     const [level, setLevel] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         const getDashInfo = async() => {
             return await customAxios
@@ -19,12 +21,16 @@ const Dashboard = () => {
         }
         const fetchData = async() => {
             await getDashInfo();
+            setIsLoading(false);
         };
         fetchData();
     }, []);
 
-    if (dashInfo === null) {
-        return <p>로딩 중...</p>;
+    if (isLoading) {
+        <div className={spinner.spinnerContainer}>
+            <div className={spinner.spinner}></div>
+            <div className={spinner.text}>토론방 가져오는 중</div>
+        </div>
     }
 
     return (
