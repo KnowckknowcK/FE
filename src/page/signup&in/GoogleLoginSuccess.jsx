@@ -17,6 +17,7 @@ const GoogleLoginSuccess = () => {
             try {
                 const response = await axios.post(REACT_APP_API_URL + '/api/account/return-token', {email});
                 localStorage.setItem('accessToken', response.data.data.jwt)
+                localStorage.setItem('refreshToken', response.data.data.refreshToken)
                 window.location.replace("/");
             } catch (error) {
                 console.error("get token error:", error);
