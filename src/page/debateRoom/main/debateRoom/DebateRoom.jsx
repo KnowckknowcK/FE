@@ -1,5 +1,5 @@
 import React, {} from 'react';
-import { useParams } from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 
 import {MessageItem} from "../../common/messageItem/MessageItem";
 import {TopNavBar} from "../../common/topNavBar/TopNavBar";
@@ -19,7 +19,7 @@ import {useDebateRoom} from "../../hooks/useDebateRoom";
 import {usePreference} from "../../hooks/usePreference";
 
 export function DebateRoom() {
-    let { roomId } = useParams();
+    const roomId = useLocation().state.roomId;
     const navigate = useNavigate();
 
     const {

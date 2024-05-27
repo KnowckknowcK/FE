@@ -58,7 +58,7 @@ function App() {
         <Route path='/room' element={<RoomPage />} />
         <Route path='/profile-update' element={<ProfileUpdate />} />
         <Route
-          path='/debate-room/:roomId'
+          path='/debate-room'
           element={
             <StompProvider>
               <DebateRoom />

@@ -5,7 +5,7 @@ export function RoomPage() {
     const navigate = useNavigate();
     const getDebateRoomInfo = async (roomId) => {
         await CustomAxios.put(`/debate-room/${roomId}`, null)
-        navigate(`/debate-room/${roomId}`);
+        navigate(`/debate-room`,  {state: {roomId}});
     }
     return (
         <>
