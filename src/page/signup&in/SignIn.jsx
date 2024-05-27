@@ -26,6 +26,7 @@ const SignIn = () => {
             if (response.status === 200) {
                 console.log('로그인 성공:', response.data);
                 localStorage.setItem('accessToken', response.data.data.jwt)
+                localStorage.setItem('refreshToken', response.data.data.refreshToken)
                 window.location.replace("/");
             }
         } catch (error) {

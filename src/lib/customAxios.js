@@ -54,14 +54,20 @@ const getToken = () => {
   return localStorage.getItem("accessToken");
 };
 
+const getRefreshToken = () => {
+  return localStorage.getItem("refreshToken");
+};
+
 const customAxios = axios.create({
   baseURL: REACT_APP_API_URL + "/api",
 });
 
 customAxios.interceptors.request.use((config) => {
   const token = getToken();
-  if (token) {
+  const refreshToken = getRefreshToken();
+  if (token && refreshToken) {
     config.headers.Authorization = `Bearer ${token}`;
+    config.headers['RefreshToken'] = refreshToken;
   } else {
     config.headers.Authorization = null;
   }
