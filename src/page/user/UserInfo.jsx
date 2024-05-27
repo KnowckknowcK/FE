@@ -6,6 +6,8 @@ import styles from "./UserInfo.module.css";
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 const UserInfo = () => {
     const navigate = useNavigate();
@@ -26,8 +28,18 @@ const UserInfo = () => {
         fetchData();
     },[]);
 
+    const logoutHandler = () => {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        alert("로그아웃 되었습니다.");
+        window.location.href = "/signin";
+    }
+
     return (
         <div style={{display:"flex", flexDirection:"column", marginBottom:"60px"}}>
+            <div onClick = {logoutHandler} className={styles.logoutBtn}>
+                <FontAwesomeIcon icon={faRightFromBracket} size="2x" />
+            </div>
             <div className= {styles.bgroundDiv}>
                 <p style={{marginTop:"50px"}}>Profile</p>
          <img src= {userInfo&&userInfo.profileImage} className={styles.profileImg}/>
