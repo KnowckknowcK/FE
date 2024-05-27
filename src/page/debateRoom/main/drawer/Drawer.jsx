@@ -62,11 +62,9 @@ export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio
                         </div>
                     ))}
                 </div>
-                <div>
-                    <div className={styles.leaveBtn} onClick={handleLeaveRoom}>
-                        <FiLogOut/>
-                        <p style={{paddingLeft: '7px'}}>토론방 나가기</p>
-                    </div>
+                <div className={styles.leaveBtn} onClick={handleLeaveRoom}>
+                    <FiLogOut/>
+                    <p style={{paddingLeft: '7px'}}>토론방 나가기</p>
                 </div>
 
             </div>
