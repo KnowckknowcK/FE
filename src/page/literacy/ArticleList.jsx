@@ -22,7 +22,6 @@ const ArticleList = () => {
 
 
     useEffect(() => {
-        setPageNum(1);
         const loadArticle = async () => {
             return await customAxios
               .get(`/article/list/${category}/${pageNum}`)
@@ -38,7 +37,26 @@ const ArticleList = () => {
       
           fetchData();
           
-    },[category, pageNum])
+    },[pageNum])
+
+    useEffect(() => {
+        setPageNum(1)
+        const loadArticle = async () => {
+            return await customAxios
+                .get(`/article/list/${category}/${pageNum}`)
+                .then((response) => {
+                    setArticleList(response.data.data.content);
+                });
+        };
+
+        const fetchData = async () => {
+            await loadArticle();
+            setIsLoading(false);
+        };
+
+        fetchData();
+
+    },[category])
 
     const handlePageChange = (event, page) => {
         setPageNum(page);
