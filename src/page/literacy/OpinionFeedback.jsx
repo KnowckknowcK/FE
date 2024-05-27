@@ -20,7 +20,8 @@ const OpinionFeedback = () => {
       const response = await customAxios.put(`/debate-room/${articleId}`);
 
       if (response.status === 200) {
-          navigate(`/debate-room/${articleId}`);
+          const roomId = articleId;
+          navigate(`/debate-room/`, {state: {roomId}});
       }
 
       else {

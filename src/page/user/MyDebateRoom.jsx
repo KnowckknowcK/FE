@@ -6,9 +6,8 @@ import customAxios from "../../lib/customAxios";
 
 const MyDebateRoom = ({data}) => {
     const navigate = useNavigate();
-    const getDebateRoomInfo = async (roomId) => {
-        await customAxios.put(`/debate-room/${roomId}`, null);
-        navigate(`/debate-room/${roomId}`);
+    const enterDebateRoom = async (roomId) => {
+        navigate(`/debate-room/`, {state: {roomId}});
     }
     const imageOptions = {
         AGREE: require('./Position/agree.png'),
@@ -17,7 +16,7 @@ const MyDebateRoom = ({data}) => {
     const imagePath = imageOptions[data.position];
     return (
         <div className={styles.block}
-            onClick={() => getDebateRoomInfo(data.id)}>
+            onClick={() => enterDebateRoom(data.id)}>
             <p style={{fontWeight : "bold",maxWidth:"95%",height:"auto"}}>{data.title}</p>
             <p className={styles.vector}></p>
             <div className={styles.line}>
