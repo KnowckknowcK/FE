@@ -79,7 +79,7 @@ customAxios.interceptors.response.use(
   (error) => {
     if (error.response && error.response.status === 401) {
       alert("로그인 후 시도해주세요.");
-      window.location.href = "/mypage";
+      window.location.href = "/signin";
       return new Promise(() => {});
     }
 
