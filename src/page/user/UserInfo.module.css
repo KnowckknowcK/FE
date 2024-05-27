@@ -2,6 +2,17 @@ h1 {
     color: #000;
 }
 
+
+.logoutBtn{
+    color: var(--color-white);
+    z-index: 100;
+    align-self: end;
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: var(--font-size-xs);
+}
+
+
 .bgroundDiv {
     position: absolute;
     width: 100%;
