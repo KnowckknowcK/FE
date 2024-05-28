@@ -40,7 +40,7 @@ const Dashboard = () => {
                 <div className={styles.page}>
                     <div className={styles.box}>
                         <div style={{width:"42%",margin:"3%"}}>
-                            <Donut value = {dashInfo.totalPoint % 100}/>
+                            <Donut value = {dashInfo.totalPoint}/>
                         </div>
                         <div className={styles.boxContent}>
                             <p style={{color:"#FFFFFF"}}>{dashInfo.strikes ? dashInfo.strikes : 0}일 연속 참여 중이에요</p>
