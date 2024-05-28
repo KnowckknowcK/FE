@@ -39,7 +39,7 @@ function App() {
   return (
     <>
       <Global styles={GlobalStyle} />
-      <ScrollToTop targetPaths={['/opinion-detail/:id','/article-list']} />
+      <ScrollToTop targetPaths={['/opinion-detail/:id','/summary-detail/:id']} />
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/dashboard' element={<Dashboard />} />
