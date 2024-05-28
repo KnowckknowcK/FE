@@ -1,0 +1,75 @@
+.drawer {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 60%;
+    height: 100%;
+    background-color: #F5F5F5;
+    transition: transform 0.3s ease;
+    z-index: 8;
+    padding: 10px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        background-color: transparent;
+        display: none;
+    };
+}
+
+.backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명한 검은색 */
+    z-index: 7; /* drawer 보다 낮은 z-index 값을 설정 */
+}
+
+.drawerTop{
+    font-size: var(--font-size-sm);
+    color:#777777;
+    padding-bottom: 20px;
+    border-bottom: 0.5px solid #B8B8B8;
+
+}
+
+.title {
+    font-weight: bolder;
+    font-size: var(--font-size-md);
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom: 0.5px solid #B8B8B8;
+}
+
+.drawerRatio {
+    margin-top: 5px;
+    color:#7A7A7A;
+    font-size: var(--font-size-sm);
+}
+
+.memberDebate {
+    color:#7A7A7A;
+    font-size: var(--font-size-sm);
+    margin-top: 20px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    border-top: 0.5px solid #B8B8B8;
+    /*border-top: 1px solid rgba(107, 144, 128);*/
+}
+.memberListContainer {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.leaveBtn {
+    position: fixed;
+    width: 60%;
+    background-color: #F5F5F5;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    right: 0px;
+    padding-bottom: 10px;
+    bottom: 0px;
+    font-size: var(--font-size-md);
+}

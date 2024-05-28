@@ -1,0 +1,139 @@
+h1 {
+    color: #000;
+}
+
+
+.logoutBtn{
+    color: var(--color-white);
+    z-index: 100;
+    align-self: end;
+    text-align: center;
+    margin-top: 15px;
+    margin-right: 15px;
+    font-size: var(--font-size-sm);
+
+    padding: 3px;
+    border-radius: 20px;
+    border: var(--color-white) 1.5px solid;
+
+    flex-shrink: 0;
+    min-width: 70px;
+    height: 20px;
+}
+
+
+.bgroundDiv {
+    position: absolute;
+    width: 100%;
+    height: 180px;
+    top: 0px;
+    background: var(--color-green);
+    color: var(--color-white);
+    justify-content: center;
+    display: flex;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.profileImg {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 122px;
+    height: 122px;
+    top: 94px;
+    background: #C4C4C4;
+    border: 5px solid #FFFFFF;
+    border-radius: 122px;
+}
+
+.history{
+    height: 29px;
+    align-content: center;
+    background: rgba(227, 213, 202, 0.4);
+    font-weight: 500;
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+.mywork {
+    height: 29px;
+    align-content: center;
+    background: rgba(227, 213, 202, 0.4);
+    font-weight: 500;
+    margin-top: 20px;
+    padding-left: 10px;
+}
+
+.para {
+    margin: 20px;
+    margin-bottom: 20px;
+}
+
+.profileDiv {
+    margin-top: 190px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+}
+
+.updateForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.formBtn {
+    all: unset;
+    padding: 10px; 
+    text-align: center; 
+    background-color: royalblue; 
+    color: white;
+    font-weight: 500; 
+    cursor: pointer; 
+    border-radius: 10px; 
+    transition: opacity linear 0.1s;
+}
+
+.submitBtn {
+    background-color: var(--color-green);
+    color: var(--color-white);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: var( --font-size-sm);
+    width: 90%;
+    padding: 10px 0px 10px 5px;
+
+}
+
+.fileLabel{
+    background-color: salmon; 
+    color: white;
+    font-weight: 500; 
+    cursor: pointer; 
+    border-radius: 10px; 
+    transition: opacity linear 0.1s;
+    font-size: var(--font-size-sm);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 90%;
+    padding: 10px 0px 10px 5px;
+
+}
+
+.btnBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width:71%;
+    min-width: fit-content;
+}
