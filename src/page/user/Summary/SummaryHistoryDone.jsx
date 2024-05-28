@@ -32,10 +32,8 @@ const SummaryHistoryDone = () => {
     }, []);
 
     const handleSummaryClick = (summary) => {
-        navigate(`/summary-detail/${summary.summaryId}`,{state:{summary}});
+        navigate(`/summary-detail/${summary.articleId}`,{state:{summary}});
     };
-
-    const initContent = "작성된 요약이 없습니다! 요약 작성해서 문해력을 키워보아요!"
 
     return (
         <div style={{overflowY:"auto", overflowX:"hidden"}}>

@@ -1,11 +1,25 @@
-import React, {useState} from 'react';
-import {useLocation} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {useLocation, useNavigate} from "react-router-dom";
 import styles from "./SummaryDetail.module.css";
 import MoveBackButton from "../MoveBackButton";
+import customAxios from "../../../lib/customAxios";
 
 const SummaryDetailPage = () => {
     const location = useLocation();
+    const [opinion, setOpinion] = useState(null);
     const {summary} = location.state;
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const getOpinion = async (articleId) => {
+            const response = await customAxios.get(`/opinion/${articleId}`);
+            if (response.data?.data) {
+                setOpinion(response.data.data);
+            }
+        }
+
+        getOpinion(summary.articleId);
+    }, []);
 
     const imageOptions = {
         EXCELLENT: require("../../../asset/gold.png"),
@@ -14,6 +28,12 @@ const SummaryDetailPage = () => {
     };
 
     const imagePath = imageOptions[summary.score];
+
+    const onClick = async (articleId) => {
+        console.log(opinion)
+        navigate(`/opinion-detail/${articleId}`,{state:{opinion}})
+    }
+
     return (
         <div>
             {summary ? (
@@ -41,6 +61,18 @@ const SummaryDetailPage = () => {
                                 {summary.feedBackContent}
                             </div>
                         </div>
+                    </div>
+                    <div>
+                        {opinion ?
+                            <div className={styles.moveBtn}>
+                                <img src={'/arrow.png'} alt={'이미지'}/>
+                                <p className={styles.btnText} onClick={() => onClick(summary.articleId)}>내가 작성한 견해 보기</p>
+                            </div>
+                            :
+                            <div className={styles.noOpinion}>
+                                <p className={styles.btnText}>작성한 견해 없음</p>
+                            </div>
+                        }
                     </div>
                 </div>
             ) : (
