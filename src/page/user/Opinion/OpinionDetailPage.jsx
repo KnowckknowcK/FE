@@ -28,7 +28,7 @@ const OpinionDetailPage = () => {
                     </div>
                     <div className={styles.moveBtn}>
                         <img src={'/arrow.png'} alt={'이미지'}/>
-                        <p className={styles.btnText} onClick={() => enterDebateRoom(opinion.article.articleId)} >토론방으로 이동하기</p>
+                        <p className={styles.btnText} onClick={() => enterDebateRoom(opinion.article.id)} >토론방으로 이동하기</p>
                     </div>
                 </div>
             ) : (
