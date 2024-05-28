@@ -8,7 +8,6 @@ const OpinionDetailPage = () => {
     const { opinion } = location.state;
     const navigate = useNavigate();
     const enterDebateRoom = async(roodId) => {
-        await customAxios.put(`/debate-room/${roodId}`,null)
         navigate('/debate-room/', {state: {roodId}});
     }
     return (
