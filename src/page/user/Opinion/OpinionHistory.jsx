@@ -32,9 +32,6 @@ const OpinionHistory = () => {
         fetchData();
     },[]);
 
-
-    const initContent = "작성된 견해가 없습니다! 견해를 작성해서 문해력을 키워보아요!"
-
     return (
         <div style={{overflowY:"auto", overflowX:"hidden"}}>
             <div className={styles.container}>

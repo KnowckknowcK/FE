@@ -17,7 +17,7 @@ const Dashboard = () => {
                 .then((response) => {
                     setMyDashInfo(response.data.data)
                     console.log(response.data.data)
-                    setLevel(Math.floor(response.data.data.point / 100) + 1)
+                    setLevel(Math.floor(response.data.data.totalPoint / 100) + 1)
                 });
         }
         const fetchData = async() => {
@@ -40,15 +40,15 @@ const Dashboard = () => {
                 <div className={styles.page}>
                     <div className={styles.box}>
                         <div style={{width:"42%",margin:"3%"}}>
-                            <Donut value = {dashInfo.point}/>
+                            <Donut value = {dashInfo.totalPoint % 100}/>
                         </div>
                         <div className={styles.boxContent}>
                             <p style={{color:"#FFFFFF"}}>{dashInfo.strikes ? dashInfo.strikes : 0}일 연속 참여 중이에요</p>
                             <div className={styles.boxLine}>
                                 {/*<img src = './score/silver.png' alt = "메달"/>*/}
-                                <p style={{fontWeight:"bold",color:"#FFFFFF",fontSize:"20px"}}>EXP.{dashInfo.point}</p>
+                                <p style={{fontWeight:"bold",color:"#FFFFFF",fontSize:"20px"}}>EXP.{dashInfo.totalPoint}</p>
                             </div>
-                            <p style={{color:"#FFFFFF"}}>level{level + 1}까지 exp {100 * level - dashInfo.point}</p>
+                            <p style={{color:"#FFFFFF"}}>level{level + 1}까지 exp {100 * level - dashInfo.totalPoint}</p>
                         </div>
                     </div>
                     <div className={styles.para}>
@@ -57,7 +57,7 @@ const Dashboard = () => {
                                 <img src='./small.png' alt={"아이콘"} />
                                 <p>오늘 획득 경험치</p>
                             </div>
-                            <p style={{fontWeight:"bold"}}>EXP.{dashInfo.point}</p>
+                            <p style={{fontWeight:"bold"}}>EXP.{dashInfo.todayPoint}</p>
                         </div>
                         <div className={styles.container}>
                             <div className={styles.line}>
