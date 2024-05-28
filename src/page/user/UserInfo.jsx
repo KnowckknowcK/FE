@@ -5,7 +5,6 @@ import BottomNavBar from "../../components/bottomNavBar/bottomNavBar";
 import styles from "./UserInfo.module.css";
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const UserInfo = () => {
     const navigate = useNavigate();
@@ -35,12 +34,9 @@ const UserInfo = () => {
 
     return (
         <div style={{display:"flex", flexDirection:"column", marginBottom:"60px"}}>
-            <div onClick = {logoutHandler} className={styles.logoutBtn}>
-                로그아웃
-            </div>
             <div className= {styles.bgroundDiv}>
                 <p style={{marginTop:"50px"}}>Profile</p>
-         <img src= {userInfo&&userInfo.profileImage} className={styles.profileImg}/>
+         <img src= {userInfo&&userInfo.profileImage} alt="나의 프로필 이미지" className={styles.profileImg}/>
             </div>
          <div className={styles.profileDiv}>
             <p style={{justifySelf:"center", fontWeight:"600", fontSize:"1.3rem"}}>{userInfo ? userInfo.name : "닉네임"}</p>
