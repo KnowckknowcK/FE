@@ -7,8 +7,8 @@ const OpinionDetailPage = () => {
     const location = useLocation();
     const { opinion } = location.state;
     const navigate = useNavigate();
-    const enterDebateRoom = async(roodId) => {
-        navigate('/debate-room/', {state: {roodId}});
+    const enterDebateRoom = async(roomId) => {
+        navigate('/debate-room/', {state: {roomId}});
     }
     return (
         <div>
