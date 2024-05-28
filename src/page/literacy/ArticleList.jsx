@@ -34,8 +34,9 @@ const ArticleList = () => {
             await loadArticle();
             setIsLoading(false);
           };
-      
+
           fetchData();
+        window.scrollTo(0, 0);
           
     },[pageNum])
 

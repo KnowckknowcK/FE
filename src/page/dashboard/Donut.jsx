@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {Doughnut} from 'react-chartjs-2';
 import {Chart} from "chart.js";
 const Donut = ({value}) => {
-    // console.(value)
-
+    const point = value % 100
+    const level = Math.floor(value / 100) + 1
     const data = {
         label: ['Value', 'Remainder'],
         datasets: [
             {
-                data: [value, 100-value],
+                data: [point, 100-point],
                 backgroundColor: ['#F5F5F5', '#7CC8A4'],
                 borderWidth: 0,
                 borderRadius:10,
@@ -30,11 +30,11 @@ const Donut = ({value}) => {
             ctx.textBaseline = 'middle';
             const centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
             const centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
-            ctx.fillText(`LEVEL${Math.floor(value / 100) + 1}`, centerX, centerY - 10);
+            ctx.fillText(`LEVEL${level}`, centerX, centerY - 10);
 
             //퍼센트 표시
             ctx.font = "bold 24px 'Noto Sans'";
-            ctx.fillText(`${value}%`, centerX, centerY + 15);
+            ctx.fillText(`${point}%`, centerX, centerY + 15);
             ctx.restore();
         }
     }

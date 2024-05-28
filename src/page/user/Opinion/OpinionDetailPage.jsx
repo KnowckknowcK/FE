@@ -1,14 +1,18 @@
 import React from 'react';
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import styles from "./MyOpinion.module.css"
 import MoveBackButton from "../MoveBackButton";
+import customAxios from "../../../lib/customAxios";
 const OpinionDetailPage = () => {
     const location = useLocation();
     const { opinion } = location.state;
+    const navigate = useNavigate();
+    const enterDebateRoom = async(roomId) => {
+        navigate('/debate-room/', {state: {roomId}});
+    }
     return (
         <div>
-            {opinion ? (
-                <div className={styles.bg}>
+            {opinion ? (<div className={styles.bg}>
                     <MoveBackButton style={{marginLeft:"5%"}}/>
                     <div>
                         <p className={styles.title} >{opinion.article.title}</p>
@@ -21,6 +25,10 @@ const OpinionDetailPage = () => {
                     <div>
                         <p className={styles.title}>AI 피드백</p>
                         <p className={styles.content}>{opinion.feedBackContent}</p>
+                    </div>
+                    <div className={styles.moveBtn}>
+                        <img src={'/arrow.png'} alt={'이미지'}/>
+                        <p className={styles.btnText} onClick={() => enterDebateRoom(opinion.article.id)} >토론방으로 이동하기</p>
                     </div>
                 </div>
             ) : (

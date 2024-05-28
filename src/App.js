@@ -26,6 +26,7 @@ import SummaryHistoryDone from "./page/user/Summary/SummaryHistoryDone";
 import SummaryDetailPage from "./page/user/Summary/SummaryDetailPage";
 import GoogleLoginSuccess from "./page/signup&in/GoogleLoginSuccess";
 import OpinionDetailPage from "./page/user/Opinion/OpinionDetailPage";
+import ScrollToTop from "./util/ScrollToTop";
 
 function App() {
   function setScreenSize() {
@@ -38,6 +39,7 @@ function App() {
   return (
     <>
       <Global styles={GlobalStyle} />
+      <ScrollToTop targetPaths={['/opinion-detail/:id','/summary-detail/:id']} />
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/dashboard' element={<Dashboard />} />

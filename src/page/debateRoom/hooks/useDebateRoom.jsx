@@ -34,11 +34,11 @@ export function useDebateRoom(roomId) {
 
     useEffect(() => {
         Swal.fire({
-            title: `${roomId}번 토론방 입장`,
-            text: `${debateRoomInfo.position === 'AGREE' ? '찬성 입장' : '반대 입장'}이에요.`,
+            title: `토론방에 오신 것을 환영합니다!`,
+            text: `랜덤 뽑기 결과 ${debateRoomInfo.position === 'AGREE' ? '찬성 ' : '반대 '}입장 당첨!
+            다양한 의견 기대할게요.`,
             icon: "info",
-            timer: 2000,
-            html: `${debateRoomInfo.position === 'AGREE' ? '찬성 입장' : '반대 입장'}이에요.`,
+            timer: 2500,
             width: "300px",
             confirmButtonColor: "#B5C9C0",
         });

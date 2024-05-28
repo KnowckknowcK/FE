@@ -32,9 +32,6 @@ const OpinionHistory = () => {
         fetchData();
     },[]);
 
-
-    const initContent = "작성된 견해가 없습니다! 견해를 작성해서 문해력을 키워보아요!"
-
     return (
         <div style={{overflowY:"auto", overflowX:"hidden"}}>
             <div className={styles.container}>
@@ -46,7 +43,7 @@ const OpinionHistory = () => {
                     {isLoading &&
                         <div className={spinner.spinnerContainer}>
                             <div className={spinner.spinner}></div>
-                            <div className={spinner.text}>작성한 요약문 가져오는 중</div>
+                            <div className={spinner.text}>작성한 견해문 가져오는 중</div>
                         </div>
                     }
                     {opinionList.length !== 0 && opinionList.map(opinion =>(
