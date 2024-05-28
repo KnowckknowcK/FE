@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 const Opinion = ({data}) => {
     const navigate = useNavigate();
     const handleClick = (opinion) => {
-        navigate(`/opinion-detail/${data.opinionId}`,{state:{opinion}})
+        navigate(`/opinion-detail/${data.article.id}`,{state:{opinion}})
     }
     return (
         <div>

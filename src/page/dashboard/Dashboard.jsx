@@ -46,7 +46,7 @@ const Dashboard = () => {
                             <p style={{color:"#FFFFFF"}}>{dashInfo.strikes ? dashInfo.strikes : 0}일 연속 참여 중이에요</p>
                             <div className={styles.boxLine}>
                                 {/*<img src = './score/silver.png' alt = "메달"/>*/}
-                                <p style={{fontWeight:"bold",color:"#FFFFFF",fontSize:"20px"}}>EXP.{dashInfo.totalPoint}</p>
+                                <p style={{fontWeight:"bold",color:"#FFFFFF",fontSize:"25px"}}>EXP.{dashInfo.totalPoint}</p>
                             </div>
                             <p style={{color:"#FFFFFF"}}>level{level + 1}까지 exp {100 * level - dashInfo.totalPoint}</p>
                         </div>

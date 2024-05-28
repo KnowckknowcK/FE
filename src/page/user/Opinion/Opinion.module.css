@@ -38,3 +38,32 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.moveBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 32px;
+    gap: 8px;
+    width: 75%;
+    height: 10px;
+    margin-left: 5%;
+    background: #65B891;
+    border-radius: 30px;
+    margin-top:10%
+}
+
+.btnText {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 110%;
+
+    color: #FFFFFF;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
