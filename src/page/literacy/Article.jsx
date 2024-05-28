@@ -17,7 +17,7 @@ const Article = ({data}) => {
             <h2 className={styles.title}>{data.title.length > 30 ? data.title.substr(0,30) + "..." : data.title}</h2>
             <p className={styles.category}>{data.category}</p>
             <div style={{display:"flex", width:"100%", justifyContent: "space-between"}}>
-                <p className={styles.content}>{formatDateTime(data.createdTime)}</p>
+                <p className={styles.date}>{formatDateTime(data.createdTime)}</p>
                 <div className={styles.doneDiv}>
                     {data.summaryDone ? <p className={styles.summaryDone}>요약 피드백 완료</p> : <p className={styles.summaryNotDone}>요약 피드백 가능</p>}
                     {data.opinionDone ? <p className={styles.summaryDone}>견해 피드백 완료</p> : <p className={styles.summaryNotDone}>견해 피드백 가능</p>}

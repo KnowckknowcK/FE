@@ -35,6 +35,15 @@
     color: #6B9080;
 }
 
+.date {
+    width: max-content;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 20px;
+    color: #6B9080;
+    margin: 0px;
+}
+
 .startBtn {
     display: flex;
     flex-direction: row;

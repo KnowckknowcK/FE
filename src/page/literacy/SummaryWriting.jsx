@@ -192,7 +192,7 @@ const SummaryWriting = () => {
             <ArrowBackIosIcon style={{marginTop:"25px", marginLeft:"10px"}} onClick={onClickBack}/>
             <div className={styles.articleDiv}>
                 <h2 className={styles.title}>{location.title}</h2>
-                <h4>{formatDateTime(location.createdTime)}</h4>
+                <p style={{margin:"0px", fontSize:"12px"}}>{formatDateTime(location.createdTime)}</p>
                 <p className={styles.content}>{location.content}</p>
             </div>
 

@@ -20,18 +20,20 @@ const Feedback = ({state}) => {
             <h3> AI 피드백 </h3>
             <div className={styles.divBox}>
                 <h3 style={{lineHeight:"140%"}}><button className={styles.category}>{category}</button>  {title > 30 ? title.substr(0,30) + "..." : title}</h3>
-                <div style={{display:"flex", gap:"10px", justifyContent:"space-around"}}>
+                <div style={{display:"flex", justifyContent:"space-between", height:"150px"}}>
                     <div className={styles.contentBox}>
                         <h4>피드백 점수</h4>
                         <p>{summary.score}</p>
                     </div>
-                    <div className={styles.contentBox}>
-                        <h4>소요 시간</h4>
-                        <p>{`0${Math.floor((takenTime / 60000) % 60)}`.slice(-2)} 분 {`0${Math.floor((takenTime / 1000) % 60)}`.slice(-2)} 초</p>
+                    <div style={{display:"flex", flexDirection:"column", justifyContent:"space-between"}}>
+                    <div className={styles.contentColBox}>
+                        <h4 style={{margin:"0px"}}>소요 시간</h4>
+                        <p style={{margin:"0px"}}>{`0${Math.floor((takenTime / 60000) % 60)}`.slice(-2)} 분 {`0${Math.floor((takenTime / 1000) % 60)}`.slice(-2)} 초</p>
                     </div>
-                    <div className={styles.contentBox}>
-                        <h4>레벨 포인트</h4>
-                        <p>{summary.point} 점</p>
+                    <div className={styles.contentColBox}>
+                        <h4 style={{margin:"0px"}}>레벨 포인트</h4>
+                        <p style={{margin:"0px"}}>{summary.point} 점</p>
+                    </div>
                     </div>
                 </div>
                 <div className={styles.feedbackBox}>
