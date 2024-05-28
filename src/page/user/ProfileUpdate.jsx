@@ -112,7 +112,7 @@ const ProfileUpdate = () => {
             <img src= {nowImg} className={styles.profileImg}/>
         </div>
      <div className={styles.profileDiv}>
-     <p style={{justifySelf:"center", fontWeight:"600", fontSize:"1.3rem"}}>{userInfo ? userInfo.name : "닉네임"}</p>
+     <p style={{justifySelf:"center", fontWeight:"600", fontSize:"1.3rem"}}>{userInfo ? userInfo.name : "로딩중..."}</p>
         <form onSubmit={onSubmit} method='PATCH' id='editForm' encType='multipart/form-data' className={styles.updateForm}>
         <TextField
           id="outlined-basic"

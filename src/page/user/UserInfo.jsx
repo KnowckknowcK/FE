@@ -5,7 +5,6 @@ import BottomNavBar from "../../components/bottomNavBar/bottomNavBar";
 import styles from "./UserInfo.module.css";
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
@@ -46,7 +45,10 @@ const UserInfo = () => {
             </div>
          <div className={styles.profileDiv}>
             <p style={{justifySelf:"center", fontWeight:"600", fontSize:"1.3rem"}}>{userInfo ? userInfo.name : "닉네임"}</p>
-            <Button variant="outlined" style={{width:"100px"}} onClick={()=>{navigate('/profile-update', {state: {userInfo: userInfo}})}}>프로필 수정</Button>
+             <div style={{display:"flex", flexDirection:"row", justifyContent:"space-around", gap:"10px"}}>
+                 <Button variant="outlined" style={{width:"100px"}} onClick={()=>{navigate('/profile-update', {state: {userInfo: userInfo}})}}>프로필 수정</Button>
+                 <Button variant="outlined" color= "error" style={{width:"100px"}} onClick={logoutHandler}>로그아웃</Button>
+             </div>
          </div>
          <p className={styles.history}>MY HISTORY</p>
          <div>

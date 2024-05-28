@@ -95,7 +95,7 @@ const ArticleList = () => {
                 {articleList.length !== 0  && articleList.map((article) => (
                     <Article data = {article}/>
                 ))}
-            <Pagination activePage={pageNum} count={10} variant="outlined" style={{marginBottom:"40px"}} onChange={handlePageChange}/>
+            <Pagination activePage={pageNum} count={10} variant="outlined" style={{marginTop:"10px", marginBottom:"40px"}} onChange={handlePageChange}/>
             </div>
         <BottomNavBar/>
         </div>
