@@ -34,7 +34,7 @@ export function DebateRoom() {
     const { messages, updateMessage, updateLikesNum} = useMessages(roomId, refreshKey, isLoading);
     useSubscribe(roomId, updateMessage);
 
-    const messagesEndRef = useEndRef(messages, isLoading);
+    const messagesEndRef = useEndRef(messages);
     const {isDrawerOpen, toggleDrawer} = useDrawer();
     const {
         isModalOpen,
@@ -90,6 +90,7 @@ export function DebateRoom() {
                         />
                     </div>
                 ))}
+                <div ref={messagesEndRef}/>
             </div>
 
             <MessageThread key={messages.messageId}
@@ -100,7 +101,7 @@ export function DebateRoom() {
                            handlePutPreference={handlePutPreference}
                            curTime={debateRoomInfo.now}
             />
-            <div ref={messagesEndRef}/>
+
 
             {!isModalOpen && (
                 <div className={styles.bottomMargin}>
