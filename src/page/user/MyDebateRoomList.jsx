@@ -45,7 +45,7 @@ const MyDebateRoomList = () => {
                         </div>
                     }
                     {myDebateRoom.length === 0 &&
-                        <NoWork>아직 참여 중인 토론방이 없어요!<br/>토론방에 참여하여 문해력을<br/> 증진해봐요! :)</NoWork>                    }
+                        <NoWork>아직 참여 중인 토론방이 없어요!<br/>견해를 작성하면 토론방에 들어갈 수 있어요 <br/> 토론방에 참여하여 문해력을<br/> 증진해봐요! :)</NoWork>                    }
                 </div>
                 <BottomNavBar/>
             </div>

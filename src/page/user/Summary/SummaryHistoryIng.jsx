@@ -37,7 +37,6 @@ const SummaryHistoryIng = () => {
         await customAxios.get(`article/${articleId}`)
             .then((response) => {
                 navigate(`/summary`,{state:{data:response.data.data}});
-                console.log(response.data.data);
             });
 
     };
