@@ -14,10 +14,10 @@ const { REACT_APP_API_URL } = process.env;
 const ProfileUpdate = () => {
     const userInfo = useLocation().state.userInfo;
     const navigate = useNavigate();
-    const [name, setName] = useState("");
+    const [name, setName] = useState(null);
     const [profileImg, setProfileImg] = useState(userInfo.profileImage);
     const [nowImg, setNowImg] = useState(userInfo.profileImage);
-    const [password, setPassword] = useState("");
+    const [password, setPassword] = useState(null);
     const [showPassword, setShowPassword] = React.useState(false);
 
     const storedJwtToken = localStorage.getItem("accessToken");
