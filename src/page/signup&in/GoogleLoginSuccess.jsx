@@ -13,7 +13,7 @@ const GoogleLoginSuccess = () => {
 
 
     const sendRequest = async () => {
-        if(email && email.endsWith("@gmail.com")) {
+        if(email) {
             try {
                 const response = await axios.post(REACT_APP_API_URL + '/api/account/return-token', {email});
                 localStorage.setItem('accessToken', response.data.data.jwt)
