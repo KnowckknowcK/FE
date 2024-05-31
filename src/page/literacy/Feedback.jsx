@@ -20,12 +20,12 @@ const Feedback = ({state}) => {
             <h3> AI 피드백 </h3>
             <div className={styles.divBox}>
                 <h3 style={{lineHeight:"140%"}}><button className={styles.category}>{category}</button>  {title > 30 ? title.substr(0,30) + "..." : title}</h3>
-                <div style={{display:"flex", justifyContent:"space-between", height:"150px"}}>
+                <div style={{display:"flex", justifyContent:"space-between", height:"150px", gap:"10px"}}>
                     <div className={styles.contentBox}>
                         <h4>피드백 점수</h4>
                         <p>{summary.score}</p>
                     </div>
-                    <div style={{display:"flex", flexDirection:"column", justifyContent:"space-between"}}>
+                    <div style={{display:"flex", flexDirection:"column", width:"100%", gap:"10px"}}>
                     <div className={styles.contentColBox}>
                         <h4 style={{margin:"0px"}}>소요 시간</h4>
                         <p style={{margin:"0px"}}>{`0${Math.floor((takenTime / 60000) % 60)}`.slice(-2)} 분 {`0${Math.floor((takenTime / 1000) % 60)}`.slice(-2)} 초</p>

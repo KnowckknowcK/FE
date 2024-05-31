@@ -5,6 +5,8 @@ import BottomNavBar from "../../components/bottomNavBar/bottomNavBar";
 import styles from "./UserInfo.module.css";
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const UserInfo = () => {
     const navigate = useNavigate();
@@ -34,14 +36,18 @@ const UserInfo = () => {
 
     return (
         <div style={{display:"flex", flexDirection:"column", marginBottom:"60px"}}>
-            <div className= {styles.bgroundDiv}>
-                <p style={{marginTop:"50px"}}>Profile</p>
-         <img src= {userInfo&&userInfo.profileImage} alt="나의 프로필 이미지" className={styles.profileImg}/>
+            <div className={styles.bgroundDiv}>
+                <p style={{marginTop: "50px"}}>Profile</p>
+                <picture>
+                    <source srcSet={userInfo && userInfo.profileImage} type="image/webp" className={styles.profileImg} />
+                    <img src={userInfo && userInfo.profileImage} alt="나의 프로필 이미지" className={styles.profileImg}/>
+                </picture>
             </div>
-         <div className={styles.profileDiv}>
-            <p style={{justifySelf:"center", fontWeight:"600", fontSize:"1.3rem"}}>{userInfo ? userInfo.name : "닉네임"}</p>
-             <div style={{display:"flex", flexDirection:"row", justifyContent:"space-around", gap:"10px"}}>
-                 <Button variant="outlined" style={{width:"100px"}} onClick={()=>{navigate('/profile-update', {state: {userInfo: userInfo}})}}>프로필 수정</Button>
+            <div className={styles.profileDiv}>
+                <p style={{justifySelf: "center", fontWeight: "600", fontSize: "1.3rem"}}>{userInfo ? userInfo.name :
+                    <Skeleton/>}</p>
+                <div style={{display: "flex", flexDirection: "row", justifyContent: "space-around", gap: "10px"}}>
+                    <Button variant="outlined" style={{width:"100px"}} onClick={()=>{navigate('/profile-update', {state: {userInfo: userInfo}})}}>프로필 수정</Button>
                  <Button variant="outlined" color= "error" style={{width:"100px"}} onClick={logoutHandler}>로그아웃</Button>
              </div>
          </div>

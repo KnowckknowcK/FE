@@ -37,11 +37,12 @@ h1 {
 
 .profileImg {
     box-sizing: border-box;
-
     position: absolute;
     width: 122px;
     height: 122px;
     top: 94px;
+    left: 50%;
+    transform: translate(-50%, 0);
     background: #C4C4C4;
     border: 5px solid #FFFFFF;
     border-radius: 122px;

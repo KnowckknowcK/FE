@@ -1,12 +1,11 @@
 
 .title {
-    margin-bottom: 0px;
+    margin-bottom: 0;
     font-size: var(--font-size-lg);
 }
 
 .category {
-    margin: 0px;
-    margin-top: 10px;
+    margin: 10px 0 0;
     color: rgb(29, 198, 130);
     font-size: var(--font-size-md);
 }
@@ -27,6 +26,21 @@
     align-items: flex-start;
 }
 
+.articleDivDone{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 16px;
+    margin: 10px 30px;
+    width: 76%;
+    max-width: 450px;
+    height: 195px;
+    background: #ececec;
+    box-shadow: 2px 12px 20px rgba(90, 117, 167, 0.3);
+    border-radius: 12px;
+    align-items: flex-start;
+}
+
 .content {
     width: max-content;
     font-weight: 400;
@@ -41,7 +55,7 @@
     font-size: 11px;
     line-height: 20px;
     color: #6B9080;
-    margin: 0px;
+    margin: 0;
 }
 
 .startBtn {
@@ -56,27 +70,22 @@
     height: 39px;
     background: rgba(107, 144, 128, 0.1);
     border-radius: 100px;
-
     flex: none;
     order: 2;
     flex-grow: 0;
-
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
     line-height: 110%;
-
     color: #6B9080;
-
     flex: none;
-    order: 0;
     flex-grow: 0;
 }
 
 .divisionLine {
     border-bottom: 1px solid #dfdfdf;
     width: 100%;
-    margin: 10px 0px;
+    margin: 10px 0;
   }
 
 .summaryDone {
@@ -86,7 +95,7 @@
     padding: 5px 10px;
     border-radius: 10px;
     align-self: center;
-    margin: 0px;
+    margin: 0;
 }
 
 .summaryNotDone{
@@ -96,12 +105,12 @@
     padding: 5px 10px;
     border-radius: 10px;
     align-self: center;
-    margin: 0px;
+    margin: 0;
 }
 
 .doneDiv {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin: 0px;
+    margin: 0;
 }
