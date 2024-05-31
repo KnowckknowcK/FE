@@ -33,7 +33,7 @@
 .content {
     font-size: var(--font-size-sm);
     line-height: 24px;
-    color: #537768;
+    color: black;
 }
 
 .textarea { 

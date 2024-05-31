@@ -37,6 +37,7 @@
     background-color: var(--color-middle-grey);
     padding: 10px;
     border-radius: 5px;
+    height: 100%;
 }
 
 .category {
