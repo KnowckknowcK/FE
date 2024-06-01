@@ -16,6 +16,10 @@ const Main = () => {
     const clickHandler = () => {
         navigate("/article-list");
     };
+
+    const tutorial = () => {
+        navigate("/tutorial");
+    }
   	
   	useEffect(() => {
 		const fetchData = async() => {
@@ -41,6 +45,7 @@ const Main = () => {
             <h2 className={styles.intro}>
                 똑똑과 함께 <br/> AI 피드백 받고, <br/> 문해력을 향상해보세요<br/> 
             </h2>
+            <button className={styles.tutorialBtn} onClick={tutorial}>Tutorial {'>>'}</button>
         </div>
 
 

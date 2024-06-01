@@ -16,6 +16,7 @@ import OpinionHistory from "./page/user/Opinion/OpinionHistory";
 import ProfileUpdate from "./page/user/ProfileUpdate";
 import UserInfo from "./page/user/UserInfo";
 import Main from "./page/main/Main";
+import Tutorial from "./page/main/Tutorial";
 import StompProvider from "./provider/StompProvider";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { Global } from "@emotion/react";
@@ -68,6 +69,7 @@ function App() {
           }
         />
         <Route path='/google-login' element={<GoogleLoginSuccess />} />
+        <Route path='/tutorial' element={<Tutorial />} />
       </Routes>
     </>
   );

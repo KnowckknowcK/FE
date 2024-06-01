@@ -1,0 +1,18 @@
+.tutorialImage {
+    margin-top: 15px;
+    width: 100%;
+    height: auto;
+}
+
+.outBtn{
+    margin-left: 70%;
+    margin-top: 8px;
+    width: 65px;
+    height: 30px;
+    font-weight: 700;
+    color: var(--color-dark-green);
+    font-size: var(--font-size-xs);
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+}
