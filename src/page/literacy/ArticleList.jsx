@@ -4,6 +4,7 @@ import Article from "../literacy/Article";
 import customAxios from "../../lib/customAxios";
 import {Pagination} from '@mui/material';
 import BottomNavBar from '../../components/bottomNavBar/bottomNavBar';
+import ArticleSkeleton from "./ArticleSkeleton";
 
 
 const ArticleList = () => {
@@ -23,11 +24,10 @@ const ArticleList = () => {
 
     useEffect(() => {
         const loadArticle = async () => {
-            return await customAxios
+            const response =  await customAxios
               .get(`/article/list/${category}/${pageNum}`)
-              .then((response) => {
+
                 setArticleList(response.data.data.content);
-              });
           };
       
           const fetchData = async () => {
@@ -43,11 +43,11 @@ const ArticleList = () => {
     useEffect(() => {
         setPageNum(1)
         const loadArticle = async () => {
-            return await customAxios
+            const response = await customAxios
                 .get(`/article/list/${category}/${pageNum}`)
-                .then((response) => {
-                    setArticleList(response.data.data.content);
-                });
+
+            setArticleList(response.data.data.content);
+
         };
 
         const fetchData = async () => {
@@ -68,16 +68,6 @@ const ArticleList = () => {
         setCategory(category);
       }
 
-    
-    if (isLoading) {
-        <>
-            <div className={styles.spinnerContainer}>
-                <div className={styles.spinner}></div>
-                <div className={styles.text}>지문 목록 가져오는 중...</div>
-            </div>
-        </>
-    }
-
     return (
         <div>
             <div className={styles.menuBtn}>
@@ -93,9 +83,17 @@ const ArticleList = () => {
                 <div style={{marginRight: '22px'}}/>
             </div>
             <div className={styles.articleList}>
-                {articleList.length !== 0  && articleList.map((article) => (
-                    <Article data = {article}/>
-                ))}
+                {isLoading ? (
+                    <>
+                    <ArticleSkeleton/>
+                    <ArticleSkeleton/>
+                    <ArticleSkeleton/>
+                    </>
+                ) : (
+                    articleList.length !== 0  && articleList.map((article) => (
+                            <Article data = {article}/>
+                        ))
+                    )}
             <Pagination activePage={pageNum} count={10} variant="outlined" style={{marginTop:"10px", marginBottom:"40px"}} onChange={handlePageChange}/>
             </div>
         <BottomNavBar/>

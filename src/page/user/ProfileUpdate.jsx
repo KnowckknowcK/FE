@@ -14,10 +14,10 @@ const { REACT_APP_API_URL } = process.env;
 const ProfileUpdate = () => {
     const userInfo = useLocation().state.userInfo;
     const navigate = useNavigate();
-    const [name, setName] = useState("");
+    const [name, setName] = useState(null);
     const [profileImg, setProfileImg] = useState(userInfo.profileImage);
     const [nowImg, setNowImg] = useState(userInfo.profileImage);
-    const [password, setPassword] = useState("");
+    const [password, setPassword] = useState(null);
     const [showPassword, setShowPassword] = React.useState(false);
 
     const storedJwtToken = localStorage.getItem("accessToken");
@@ -107,13 +107,21 @@ const ProfileUpdate = () => {
         <div style={{overflowY:"hidden"}}>
             <ArrowBackIosIcon style={{zIndex:"1", position:"absolute", top:"7%", left:"7%", color:"white"}} onClick={()=>{navigate(-1)}}/>
 
-        <div className= {styles.bgroundDiv}>
-            <p style={{marginTop:"50px"}}>Profile Update</p>
-            <img src= {nowImg} className={styles.profileImg}/>
-        </div>
-     <div className={styles.profileDiv}>
-     <p style={{justifySelf:"center", fontWeight:"600", fontSize:"1.3rem"}}>{userInfo ? userInfo.name : "로딩중..."}</p>
-        <form onSubmit={onSubmit} method='PATCH' id='editForm' encType='multipart/form-data' className={styles.updateForm}>
+            <div className={styles.bgroundDiv}>
+                <p style={{marginTop: "50px"}}>Profile Update</p>
+                <picture>
+                    <source srcSet={userInfo && userInfo.profileImage} type="image/webp" className={styles.profileImg}/>
+                    <img src={userInfo && userInfo.profileImage} alt="나의 프로필 이미지" className={styles.profileImg}/>
+                </picture>
+            </div>
+            <div className={styles.profileDiv}>
+                <p style={{
+                    justifySelf: "center",
+                    fontWeight: "600",
+                    fontSize: "1.3rem"
+                }}>{userInfo ? userInfo.name : "로딩중..."}</p>
+                <form onSubmit={onSubmit} method='PATCH' id='editForm' encType='multipart/form-data'
+                      className={styles.updateForm}>
         <TextField
           id="outlined-basic"
           label="새로운 닉네임 입력"

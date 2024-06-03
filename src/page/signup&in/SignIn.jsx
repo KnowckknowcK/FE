@@ -82,7 +82,7 @@ const SignIn = () => {
             </button>
             <div className={styles.centerLine}></div>
             <div className={styles.signUp}>
-                <img src="/img/web_neutral_rd_ctn@3x.png" alt="Continue with Google" className={styles.googleImg} onClick={continueWithGoogle} />
+                <img src="/img/web_neutral_rd_ctn_3x.webp" alt="Continue with Google" className={styles.googleImg} onClick={continueWithGoogle} />
                 <button className={styles.signUpButton} onClick={signUpBtn}>
                     <img src="/email.png" alt="Shape" className={styles.emailIcon} />
                     Sign up with Email

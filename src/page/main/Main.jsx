@@ -16,6 +16,10 @@ const Main = () => {
     const clickHandler = () => {
         navigate("/article-list");
     };
+
+    const tutorial = () => {
+        navigate("/tutorial");
+    }
   	
   	useEffect(() => {
 		const fetchData = async() => {
@@ -35,12 +39,13 @@ const Main = () => {
     return (
         
         <div className={styles.outer}>
-        <img src="/img/shapeImg.png" alt="Shape" className={styles.shapeImg} />
+        <img src="/img/shapeImg.webp" alt="Shape" className={styles.shapeImg} />
         <div className={styles.blank}></div>
         <div className={styles.wrapper}>
             <h2 className={styles.intro}>
                 똑똑과 함께 <br/> AI 피드백 받고, <br/> 문해력을 향상해보세요<br/> 
             </h2>
+            <button className={styles.tutorialBtn} onClick={tutorial}>Tutorial {'>>'}</button>
         </div>
 
 
@@ -60,7 +65,7 @@ const Main = () => {
             </div>
             <div></div>
             <div>
-                <img src="/img/buttonImg1.png" alt="Button" style={{ width: '50px', margin: '5px'}}/>
+                <img src="/img/buttonImg1.webp" alt="Button" style={{ width: '50px', margin: '5px'}}/>
             </div>
         </button>
 

@@ -9,6 +9,7 @@
     background: #F6F6F6;
     border-radius: 8px;
     word-wrap: break-word;
+    word-break: keep-all;
     line-height: 1.5;
     padding: 3%;
     box-sizing: border-box;
@@ -22,6 +23,7 @@
     font-size: 26px;
     color: #000000;
     word-wrap: break-word;
+    word-break: keep-all;
     box-sizing: border-box;
     line-height: 1;
     margin-left: 5%;

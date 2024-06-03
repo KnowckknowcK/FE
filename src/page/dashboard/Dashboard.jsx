@@ -16,7 +16,6 @@ const Dashboard = () => {
                 .get('/profile/dashboard')
                 .then((response) => {
                     setMyDashInfo(response.data.data)
-                    console.log(response.data.data)
                     setLevel(Math.floor(response.data.data.totalPoint / 100) + 1)
                 });
         }
