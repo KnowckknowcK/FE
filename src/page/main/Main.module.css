@@ -30,11 +30,23 @@
     background-color: var(--color-green);
 }
     
-
+@keyframes move {
+    from {
+        transform: translateX(-20%);
+        opacity: 0;
+    }
+    to { 
+        transform: translateX(0);
+        opacity: 1; 
+    }
+ }
+ 
 .intro {
     color: var(--color-white);
     margin: auto 0;
     padding: 20px;
+    animation-name: move;
+    animation-duration: 2s;
 }
 
 .tutorialBtn{
