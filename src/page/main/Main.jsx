@@ -11,7 +11,6 @@ import { FiChevronRight } from "react-icons/fi";
 const Main = () => {
     const [data, setData] = useState([]);
     const [modal, setModal] = useState(false);
-    const windowHeight = window.innerHeight-60;
 
     const navigate = useNavigate();
  
@@ -38,14 +37,16 @@ const Main = () => {
 
     return (
         <>
-        <div className={styles.wrapper}>
+        <div style={{position:'sticky', top: '0px', zIndex: 100}}>
+        <div className={styles.topWwrapper}>
             <img src={Background} alt="back" className={styles.backgoundImg} />
-
             <h2 className={styles.intro}>
                 <div className={styles.rowWrapper}><div style={{color: 'var(--color-green)'}}>똑똑</div>과 함께</div>
                 AI 피드백 받고, <br/> 문해력을 향상해보세요<br/> 
             </h2>
-        
+        </div>
+        </div>
+        <div className={styles.wrapper}>
             <button className={styles.tutorialBtn} onClick={tutorial}>
                 <div className={styles.columnWrapper}>
                 <div className={styles.btnText}>똑똑이 처음이신가요?</div>
