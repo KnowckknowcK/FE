@@ -4,16 +4,15 @@ import {PieChart} from "./PieChart";
 import {MemberItem} from "../../common/messageItem/MemberItem";
 import { FiLogOut } from "react-icons/fi";
 import {useNavigate} from "react-router-dom";
-import CustomAxios from "../../../../lib/customAxios";
+import customAxios from "../../../../lib/customAxios";
 
 export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio, title }) => {
     const [memberList, setMemberList] = useState([]);
     const navigate = useNavigate();
-    const api = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const loadMemberList = async() =>{
-            const response = await CustomAxios.get(`/debate-room/${roomId}`);
+            const response = await customAxios.get(`/debate-room/${roomId}`);
             setMemberList(response.data.data)
         }
         loadMemberList();
@@ -26,10 +25,10 @@ export const Drawer = ({ roomId, isOpen, toggleDrawer, agreeRatio, disagreeRatio
 
     const handleLeaveRoom = () =>{
         const leaveRoom = async () => {
-            await CustomAxios.delete(`${api}/api/debate-room/${roomId}`)
+            await customAxios.delete(`/debate-room/${roomId}`)
         }
         leaveRoom()
-        navigate(-1)
+        navigate('/mypage')
     }
 
     if(!isOpen){
