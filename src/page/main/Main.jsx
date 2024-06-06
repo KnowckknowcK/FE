@@ -57,7 +57,7 @@ const Main = () => {
 
             <button className={styles.selectBtn} onClick={clickHandler}>
                 <div className={styles.columnWrapper}>
-                <div className={styles.btnText}>카테고리별 기사가 제공되요</div>
+                <div className={styles.btnText}>카테고리별 기사가 제공돼요</div>
                 <div className={styles.btnTitle}>기사 선택하기</div>
                 </div>
                 <FiChevronRight style={{color:"white",width:"36px", height:"36px"}}/>

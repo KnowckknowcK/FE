@@ -102,7 +102,7 @@
 }
 
 .btnText {
-    font-size: var(--font-size-md);
+    font-size: 15px;
 }
 
 .tutorialBtn {
